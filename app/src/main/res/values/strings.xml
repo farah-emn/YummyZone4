@@ -1,4 +1,8 @@
 <resources>
+    <string name="TextStartScreen1">   Get the fatset
+    delivery food for you  </string>
+    <string name="TextStartScreen2"> Order food and get delivery within
+  a few minutes to your door </string>
     <string name="app_name">YummyZone</string>
     <string name="user_name">User name</string>
     <string name="password">Password</string>

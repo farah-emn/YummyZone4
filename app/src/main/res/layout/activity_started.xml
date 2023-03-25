@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StartedActivity">
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="284dp"
+        android:layout_height="335dp"
+        android:layout_marginTop="84dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/textView1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/startedimage" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="309dp"
+        android:layout_height="84dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:scaleType="centerCrop"
+        android:text="@string/TextStartScreen1"
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="344dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="36dp"
+        android:gravity="center"
+        android:scaleType="centerCrop"
+        android:text="@string/TextStartScreen2"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/started_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/started_button"
+        android:layout_width="272dp"
+        android:layout_height="66dp"
+        android:layout_marginBottom="92dp"
+        android:gravity="center"
+        android:inputType="textCapSentences"
+        android:scaleType="centerCrop"
+        android:text="Get Started"
+        android:textAlignment="center"
+        android:textColorLink="@color/orange"
+        android:textSize="28sp"
+        app:cornerRadius="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
