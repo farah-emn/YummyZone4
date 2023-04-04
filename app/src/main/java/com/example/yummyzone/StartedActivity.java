@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class StartedActivity extends AppCompatActivity {
+class StartedActivity extends AppCompatActivity {
     private Button start_button ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,7 @@ public class StartedActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 opensignUp();}});
-        }
+    }
     public void opensignUp(){
         Intent mainIntent = new Intent(StartedActivity.this,signUp.class);
         startActivity(mainIntent);

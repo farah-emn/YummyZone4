@@ -1,4 +1,3 @@
-
 package com.example.yummyzone;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,19 +19,19 @@ public class IntroActivity extends AppCompatActivity {
 
         if (firstStart){
             new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent mainIntent = new Intent(IntroActivity.this, StartedActivity.class);
-                startActivity(mainIntent);
-                finish(); }},screen1_DISPLAY_LENGTH);}
+                @Override
+                public void run() {
+                    Intent mainIntent = new Intent(IntroActivity.this, StartedActivity.class);
+                    startActivity(mainIntent);
+                    finish(); }},screen1_DISPLAY_LENGTH);}
 
         else{
             new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent mainIntent = new Intent(IntroActivity.this, StartedActivity.class);
-                startActivity(mainIntent);
-                finish(); }},screen1_DISPLAY_LENGTH);
+                @Override
+                public void run() {
+                    Intent mainIntent = new Intent(IntroActivity.this, StartedActivity.class);
+                    startActivity(mainIntent);
+                    finish(); }},screen1_DISPLAY_LENGTH);
         }
         SharedPreferences prefs1 = getSharedPreferences("prefs",MODE_PRIVATE);
         SharedPreferences.Editor editor=prefs1.edit();
