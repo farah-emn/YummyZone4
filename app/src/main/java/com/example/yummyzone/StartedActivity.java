@@ -1,13 +1,13 @@
 package com.example.yummyzone;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-class StartedActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class StartedActivity extends AppCompatActivity {
     private Button start_button ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,7 @@ class StartedActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 opensignUp();}});
-    }
+        }
     public void opensignUp(){
         Intent mainIntent = new Intent(StartedActivity.this,signUp.class);
         startActivity(mainIntent);
