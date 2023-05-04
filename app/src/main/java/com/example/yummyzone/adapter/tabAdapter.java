@@ -1,16 +1,16 @@
-package com.example.yummyzone;
+package com.example.yummyzone.adapter;
 
-import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.yummyzone.R;
+import com.example.yummyzone.classes.tab;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.example.yummyzone;
+package com.example.yummyzone.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +8,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.yummyzone.classes.Menu_tab;
+import com.example.yummyzone.R;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.example.yummyzone;
+package com.example.yummyzone.activites;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,11 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.yummyzone.adapter.Menu_Adapter;
+import com.example.yummyzone.classes.Menu_tab;
+import com.example.yummyzone.R;
+import com.example.yummyzone.adapter.Category_Adapter;
+import com.example.yummyzone.classes.Category_tab;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 

@@ -1,4 +1,4 @@
-package com.example.yummyzone;
+package com.example.yummyzone.classes;
 
 public class restaurant {
     private int restaurant_image;

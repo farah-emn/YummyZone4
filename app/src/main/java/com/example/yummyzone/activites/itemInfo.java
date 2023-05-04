@@ -1,4 +1,4 @@
-package com.example.yummyzone;
+package com.example.yummyzone.activites;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.yummyzone.R;
 
 public class itemInfo extends AppCompatActivity {
     TextView tv_restaurantName;

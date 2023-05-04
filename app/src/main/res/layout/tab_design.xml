@@ -3,22 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="45dp"
-    android:layout_gravity="center_vertical"
-   >
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/tab_cv"
         android:background="@drawable/tab_select"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginStart="10dp"
         android:layout_marginBottom="5dp"
+        android:layout_marginStart="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:cardCornerRadius="15dp"
+        app:cardCornerRadius="10dp"
+        style="@style/subScreen"
         >
 
         <LinearLayout
@@ -31,9 +31,10 @@
 
             <ImageView
                 android:id="@+id/tab_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginEnd="2dp"
+                android:layout_gravity="center_vertical"
                 android:src="@drawable/icon_favorite_gray"/>
 
             <TextView
@@ -41,6 +42,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
+                style="@style/text"
+                android:layout_gravity="center_vertical"
                 android:textSize="15sp"
                 app:backgroundTint="@color/orange"
                 app:layout_constraintStart_toStartOf="parent"

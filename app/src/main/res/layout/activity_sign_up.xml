@@ -5,7 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/orange"
-    tools:context=".signUp">
+    tools:context=".activites.signUp">
+
+    <Button
+        android:id="@+id/signup_bt_skip"
+        style="@style/text"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="Skip"
+        android:textSize="15sp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -18,21 +30,23 @@
 
     <ImageView
         android:id="@+id/imageView"
+        style="@style/Screen"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:src="@drawable/background"
+        android:layout_height="700dp"
+        android:layout_weight="2"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.25" />
 
     <EditText
         android:id="@+id/signUp_et_userName"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="33dp"
-        android:background="@drawable/et_design"
+        style="@style/eidttext"
         android:drawableStart="@drawable/icon_person_orange"
         android:drawablePadding="10dp"
         android:hint="@string/user_name"
@@ -55,7 +69,7 @@
         android:layout_marginEnd="10dp"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
-        android:background="@drawable/et_design"
+        style="@style/eidttext"
         android:drawableStart="@drawable/icon_lock_orange"
         android:drawablePadding="10dp"
         android:hint="@string/password"
@@ -73,7 +87,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="15dp"
-        android:background="@drawable/et_design"
+        style="@style/eidttext"
         android:drawableStart="@drawable/icon_lock_orange"
         android:drawablePadding="10dp"
         android:hint="Confirm password"
@@ -107,6 +121,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create a new account"
+        style="@style/text"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -141,6 +156,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="you have an account?"
+            style="@style/text"
             android:textAlignment="center"
             android:textSize="15sp" />
 

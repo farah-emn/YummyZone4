@@ -1,4 +1,4 @@
-package com.example.yummyzone;
+package com.example.yummyzone.classes;
 
 public class Menu_tab {
     private int item_img,icon_favorite;

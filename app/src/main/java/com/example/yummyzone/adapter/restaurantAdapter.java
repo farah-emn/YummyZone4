@@ -1,4 +1,4 @@
-package com.example.yummyzone;
+package com.example.yummyzone.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,15 +9,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.yummyzone.R;
+import com.example.yummyzone.classes.restaurant;
+
 import java.util.ArrayList;
 
 public class restaurantAdapter extends RecyclerView.Adapter<restaurantAdapter.restaurantViewHolder> {
     ArrayList<restaurant> restaurants;
-
     public restaurantAdapter(ArrayList<restaurant> restaurants) {
         this.restaurants = restaurants;
     }
-
     @NonNull
     @Override
     public restaurantViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -25,7 +26,6 @@ public class restaurantAdapter extends RecyclerView.Adapter<restaurantAdapter.re
         restaurantViewHolder vh = new restaurantViewHolder(v);
         return vh;
     }
-
     @Override
     public void onBindViewHolder(@NonNull restaurantViewHolder holder, int position) {
         restaurant r = restaurants.get(position);

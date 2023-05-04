@@ -10,23 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.YummyZone">
+
         <activity
-            android:name=".signIn"
-            android:exported="false" />
-        <activity
-            android:name=".homeScreen"
-            android:exported="false" />
-        <activity
-            android:name=".StartedActivity"
-            android:exported="false" />
-        <activity
-            android:name=".IntroActivity"
-            android:exported="false" />
-        <activity
-            android:name=".signUp"
-            android:exported="false" />
-        <activity
-            android:name=".itemInfo"
+            android:name=".activites.IntroActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,7 +21,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".activites.itemInfo"
+            android:exported="false" />
+        <activity
+            android:name=".activites.signIn"
+            android:exported="false" />
+        <activity
+            android:name=".activites.StartedActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activites.editProfile"
+            android:exported="false" />
+        <activity
+            android:name=".activites.signUp"
+            android:exported="false" />
+        <activity
+            android:name=".activites.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activites.MenuActivity"
             android:exported="false" />
     </application>
 

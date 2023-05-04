@@ -1,4 +1,4 @@
-package com.example.yummyzone;
+package com.example.yummyzone.classes;
 
 public class tab {
     private String name;

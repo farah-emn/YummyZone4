@@ -1,10 +1,12 @@
-package com.example.yummyzone;
+package com.example.yummyzone.activites;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.SharedPreferences;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.example.yummyzone.R;
 
 public class IntroActivity extends AppCompatActivity {
     private final int screen1_DISPLAY_LENGTH = 3000;
@@ -13,10 +15,8 @@ public class IntroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
         getSupportActionBar().hide();
-
         SharedPreferences prefs = getSharedPreferences("prefs",MODE_PRIVATE);
         boolean firstStart = prefs.getBoolean("firstStart",true);
-
         if (firstStart){
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -24,7 +24,6 @@ public class IntroActivity extends AppCompatActivity {
                     Intent mainIntent = new Intent(IntroActivity.this, StartedActivity.class);
                     startActivity(mainIntent);
                     finish(); }},screen1_DISPLAY_LENGTH);}
-
         else{
             new Handler().postDelayed(new Runnable() {
                 @Override

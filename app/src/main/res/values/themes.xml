@@ -3,7 +3,7 @@
     <style name="Theme.YummyZone" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/orange</item>
-        <item name="colorPrimaryVariant">@color/orange</item>
+        <item name="colorPrimaryVariant">@color/dark_orange</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -13,4 +13,10 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Screen"><item name="android:background">@drawable/background</item></style>
+    <style name="text"><item name="android:textColor">@color/light_black</item></style>
+    <style name="subScreen"><item name="android:background">@drawable/profile_bachground</item></style>
+    <style name="eidttext"><item name="android:background">@drawable/et_design_gray</item></style>
+    <style name="bar"><item name="android:background">@drawable/menu_bar_shape</item></style>
 </resources>
