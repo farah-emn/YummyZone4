@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/Screen"
+    tools:context=".fragment.homeFragment">
+
+
+    <EditText
+        android:id="@+id/homeScreen_et_search"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/buttonHeight_mdpi"
+        android:layout_marginStart="@dimen/margin_mdpi"
+        android:layout_marginTop="@dimen/margin_mdpi"
+        android:layout_marginEnd="@dimen/margin_mdpi"
+        android:drawableStart="@drawable/icon_search_gray"
+        style="@style/eidttext"
+        android:hint="Search here.."
+        android:paddingStart="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/homeScreen_rv_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/buttonHeight_mdpi"
+        android:layout_marginTop="@dimen/margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homeScreen_et_search"
+        android:layout_gravity="center"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/homeScreen_rv_restaurant"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_mdpi"
+        android:layout_marginEnd="@dimen/margin_mdpi"
+        android:layout_marginStart="@dimen/margin_mdpi"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homeScreen_rv_tabs"
+        android:layout_gravity="center"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

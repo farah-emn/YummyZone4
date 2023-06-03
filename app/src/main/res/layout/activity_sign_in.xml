@@ -33,10 +33,11 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="700dp"
         style="@style/Screen"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
@@ -78,12 +79,12 @@
 
     <EditText
         android:id="@+id/signIn_et_password"
+        style="@style/eidttext"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="15dp"
-        style="@style/eidttext"
         android:drawableStart="@drawable/icon_lock_orange"
         android:drawablePadding="10dp"
         android:hint="@string/password"
@@ -125,8 +126,8 @@
         app:layout_constraintTop_toBottomOf="@+id/signIn_tv_signIn" />
 
 
-
     <LinearLayout
+        android:id="@+id/linearLayout13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="45dp"
@@ -139,10 +140,10 @@
 
         <TextView
             android:id="@+id/textView2"
+            style="@style/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Don't have an account?"
-            style="@style/text"
             android:textAlignment="center"
             android:textSize="15sp" />
 

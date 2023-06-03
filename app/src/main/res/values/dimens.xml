@@ -2,4 +2,39 @@
 <resources>
     <dimen name="margin">10dp</dimen>
     <dimen name="marginTop">5dp</dimen>
+
+    <!-- mdpi h/3 -->
+    <dimen name="buttonHeight_mdpi">36dp</dimen>
+    <dimen name="buttonText_mdpi">13sp</dimen>
+    <dimen name="margin_mdpi">10dp</dimen>
+    <dimen name="title_mdpi">20sp</dimen>
+
+    <!-- hdpi  -->
+    <dimen name="buttonHeight_hdpi">110dp</dimen>
+    <dimen name="buttonText_hdpi">40sp</dimen>
+    <dimen name="margin_hdpi">30dp</dimen>
+    <dimen name="title_hdpi">60sp</dimen>
+
+    <!-- xhdpi h/2.5 -->
+    <dimen name="buttonHeight_xhdpi">44dp</dimen>
+    <dimen name="buttonText_xhdpi">16sp</dimen>
+    <dimen name="margin_xhdpi">12dp</dimen>
+    <dimen name="title_xhdpi">24sp</dimen>
+
+    <!-- xxhdpi  h/2-->
+    <dimen name="buttonHeight_xxhdpi">55dp</dimen>
+    <dimen name="buttonText_xxhdpi">20sp</dimen>
+    <dimen name="margin_xxhdpi">15dp</dimen>
+    <dimen name="title_xxhdpi">30sp</dimen>
+
+    <!-- xxxhdpi  h/2-->
+    <dimen name="buttonHeight_xxxhdpi">55dp</dimen>
+    <dimen name="buttonText_xxxhdpi">20sp</dimen>
+    <dimen name="margin_xxxhdpi">15dp</dimen>
+    <dimen name="title_xxxhdpi">30sp</dimen>
+
+
+
+
+
 </resources>

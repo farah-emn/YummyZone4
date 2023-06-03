@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="15"
-    tools:context=".activites.profileActivity"
+    tools:context=".fragment.cartFragment"
     android:background="@color/orange">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,25 +21,16 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
+            android:gravity="center_horizontal"
             android:text="Cart"
-            android:textAlignment="center"
-            android:textSize="25sp"
+            android:textSize="@dimen/title_xxhdpi"
+            style="@style/text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.411"
-            app:layout_constraintStart_toEndOf="@+id/cart_image_back"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.533" />
-
-        <ImageView
-            android:id="@+id/cart_image_back"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="15dp"
-            android:src="@drawable/icon_back"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.466" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -47,27 +38,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@drawable/background">
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/cart_nav"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/menu_bar_shape"
-            app:itemIconTint="@drawable/menu_bar_item_color"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/menu_bar" />
+        style="@style/Screen">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cart_rv"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/margin_xxhdpi"
+            android:layout_marginTop="@dimen/margin_xxhdpi"
+            android:layout_marginEnd="@dimen/margin_xxhdpi"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -78,15 +57,15 @@
         <Button
             android:id="@+id/cart_bt"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
+            android:layout_height="@dimen/buttonHeight_xxhdpi"
+            android:layout_marginStart="@dimen/margin_xxhdpi"
+            android:layout_marginEnd="@dimen/margin_xxhdpi"
             android:background="@drawable/bt_design"
             android:text="Check out"
             android:textAllCaps="false"
-            android:textSize="18sp"
-            android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toTopOf="@id/cart_nav"
+            android:textSize="@dimen/buttonText_xxhdpi"
+            android:layout_marginBottom="@dimen/margin_xxhdpi"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -96,11 +75,11 @@
         <LinearLayout
             android:id="@+id/linearLayout14"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="15dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_xxhdpi"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="15dp"
-            android:background="@drawable/et_design_gray"
+            android:layout_marginEnd="@dimen/margin_xxhdpi"
+            style="@style/Screen"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -112,8 +91,9 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:text="Total"
-                android:textSize="18sp"
+                android:textSize="@dimen/buttonText_xxhdpi"
                 android:textStyle="bold"
+                style="@style/text"
                 tools:layout_editor_absoluteX="18dp"
                 tools:layout_editor_absoluteY="327dp" />
 
@@ -122,9 +102,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="15 SR"
-                android:layout_marginEnd="5dp"
-                android:textSize="15sp" />
+                android:text="0 SR"
+                style="@style/text"
+                android:textSize="@dimen/buttonText_xxhdpi" />
         </LinearLayout>
 
 
