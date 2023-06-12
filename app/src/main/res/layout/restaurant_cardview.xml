@@ -24,26 +24,16 @@
             android:orientation="vertical">
 
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/homeScreen_cv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="10dp"
+            <ImageView
+                android:id="@+id/homeScreen_restaurant_image"
+                android:layout_width="match_parent"
+                android:layout_height="132dp"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:src="@drawable/dominos"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/homeScreen_restaurant_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="132dp"
-                    android:layout_gravity="center"
-                    android:background="@color/white"
-                    android:src="@drawable/dominos"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.cardview.widget.CardView>
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <TextView
@@ -51,34 +41,31 @@
                 style="@style/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginBottom="44dp"
                 android:text="Dominos"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_marginStart="2dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/homeScreen_cv" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/homeScreen_tv_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
+                android:layout_marginStart="2dp"
                 android:text="Pizza - chickens"
                 android:textSize="12sp"
-                android:layout_marginStart="2dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/homeScreen_tv_restaurantName" />
+                app:layout_constraintTop_toBottomOf="@+id/homeScreen_tv_restaurantName" />
 
             <ImageView
                 android:id="@+id/imageView6"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
-                android:layout_marginStart="2dp"
+                android:layout_marginStart="1dp"
                 android:src="@drawable/icon_coin"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/homeScreen_tv_description" />
@@ -88,10 +75,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
+                android:layout_marginStart="0dp"
                 android:text="15 SR"
                 android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView6"
-                app:layout_constraintTop_toBottomOf="@+id/homeScreen_tv_description" />
+                app:layout_constraintTop_toBottomOf="@+id/homeScreen_tv_description"
+                app:layout_constraintVertical_bias="0.0" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

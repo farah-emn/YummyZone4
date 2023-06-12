@@ -1,5 +1,4 @@
      package com.example.yummyzone.activites;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -15,7 +14,6 @@ import com.example.yummyzone.fragment.profileFragment;
 import com.example.yummyzone.fragment.searchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-
      public class MainActivity extends AppCompatActivity {
          BottomNavigationView nav;
     @Override
@@ -25,7 +23,8 @@ import com.google.android.material.navigation.NavigationBarView;
         getSupportActionBar().hide();
 
         nav = findViewById(R.id.main_nav);
-        getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment,new homeFragment()).commit();
+        String postkey = "";
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment,new homeFragment(postkey)).commit();
         nav.setSelectedItemId(R.id.home);
         nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -33,7 +32,7 @@ import com.google.android.material.navigation.NavigationBarView;
                 Fragment fragment = null;
                 switch (item.getItemId()){
                     case R.id.home:
-                        fragment = new homeFragment();
+                        fragment = new homeFragment(postkey);
                         break;
 
                     case R.id.search:
@@ -41,7 +40,8 @@ import com.google.android.material.navigation.NavigationBarView;
                         break;
 
                     case R.id.favorite:
-                        fragment = new favoriteFragment();
+
+                        fragment = new favoriteFragment(postkey);
                         break;
 
                     case R.id.cart:
@@ -56,5 +56,13 @@ import com.google.android.material.navigation.NavigationBarView;
                 return true;
             }
         });
-    }
+
+    }    @Override
+         public void onBackPressed() {
+             if (getFragmentManager().getBackStackEntryCount() > 0) {
+                 getFragmentManager().popBackStack();
+             } else {
+                 super.onBackPressed();
+             }
+         }
 }
