@@ -42,15 +42,15 @@
         app:layout_constraintVertical_bias="0.25" />
 
     <EditText
-        android:id="@+id/signUp_et_userName"
+        android:id="@+id/signUp_et_email"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="33dp"
         style="@style/eidttext"
         android:drawableStart="@drawable/icon_person_orange"
         android:drawablePadding="10dp"
-        android:hint="@string/user_name"
-        android:inputType="textPersonName"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -78,10 +78,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUp_et_userName" />
+        app:layout_constraintTop_toBottomOf="@+id/signUp_et_email" />
 
     <EditText
-        android:id="@+id/signUp_et_confrimPassword"
+        android:id="@+id/signUp_et_confirmPassword"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="15dp"
@@ -99,6 +99,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signUp_et_password" />
 
+    <ProgressBar
+        android:id="@+id/signUp_prog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/signUp_tv_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:textColor="@color/red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUp_et_confirmPassword" />
+
     <Button
         android:id="@+id/signUp_bt_signUp"
         android:layout_width="match_parent"
@@ -114,7 +139,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUp_et_confrimPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/signUp_et_confirmPassword" />
 
     <TextView
         android:id="@+id/textView"
@@ -131,7 +156,7 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="296dp"
+        android:layout_marginTop="228dp"
         android:text="Sign up"
         android:textAllCaps="true"
         android:textColor="@color/orange"

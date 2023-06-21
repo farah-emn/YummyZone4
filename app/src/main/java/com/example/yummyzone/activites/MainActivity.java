@@ -1,8 +1,10 @@
      package com.example.yummyzone.activites;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -14,13 +16,27 @@ import com.example.yummyzone.fragment.profileFragment;
 import com.example.yummyzone.fragment.searchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
      public class MainActivity extends AppCompatActivity {
          BottomNavigationView nav;
+         FirebaseUser user;
+         FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
+
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+
+//        if(user == null){
+//            Intent intent = new Intent(getApplicationContext(), signIn.class);
+//            startActivity(intent);
+//            finish();
+//        }
 
         nav = findViewById(R.id.main_nav);
         String postkey = "";

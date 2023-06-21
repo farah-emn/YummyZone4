@@ -285,7 +285,7 @@
                     android:textAlignment="textStart"/>
 
                 <EditText
-                    android:id="@+id/editProfile_et_st"
+                    android:id="@+id/editProfile_et_street"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/buttonHeight_mdpi"
                     android:layout_marginStart="5dp"
@@ -347,6 +347,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
+            android:id="@+id/editProfile_bt_save"
             android:layout_width="match_parent"
             android:layout_height="@dimen/buttonHeight_mdpi"
             android:layout_marginTop="40dp"

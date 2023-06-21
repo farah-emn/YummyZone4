@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="@style/Screen"
-    tools:context=".fragment.homeFragment">
+    tools:context=".fragment.homeFragment"
+    >
 
 
     <EditText

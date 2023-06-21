@@ -1,6 +1,7 @@
 package com.example.yummyzone.fragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -14,6 +15,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.yummyzone.R;
+import com.example.yummyzone.activites.MainActivity;
+import com.example.yummyzone.activites.MapActivity;
+import com.example.yummyzone.activites.editProfile;
 import com.example.yummyzone.adapter.cartItemAdapter;
 import com.example.yummyzone.classes.cartItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -26,6 +30,7 @@ public class cartFragment extends Fragment {
     Button b;
     TextView tv;
     ArrayList<cartItem> c;
+    MainActivity mainActivity;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,17 @@ public class cartFragment extends Fragment {
         rv =view.findViewById(R.id.cart_rv);
         b = view.findViewById(R.id.cart_bt);
         tv =view.findViewById(R.id.cart_tv_price);
+        mainActivity = (MainActivity)getActivity();
+
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MapActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
 
         c = new ArrayList<>();
         c.add(new cartItem(R.drawable.foodimage, "Big testy","2","44 SR"));
