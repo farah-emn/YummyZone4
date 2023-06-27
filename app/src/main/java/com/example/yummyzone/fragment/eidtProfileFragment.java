@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.yummyzone.R;
+import com.example.yummyzone.classes.user;
 import com.example.yummyzone.databinding.ActivityMainBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,9 +31,12 @@ public class eidtProfileFragment extends Fragment {
     EditText et_street;
     EditText et_district;
     TextView tv_firstName;
+    TextView tv_username;
+
     FirebaseAuth Auth;
     FirebaseUser user;
     DatabaseReference userR, rootR;
+    String username;
     String firstName;
     String lastName;
     String mobileNumber;
@@ -58,6 +62,7 @@ public class eidtProfileFragment extends Fragment {
         et_district= view.findViewById(R.id.editProfile_et_district);
         tv_firstName = view.findViewById(R.id.editprofile_tv_firstName);
         bt_save = view.findViewById(R.id.editProfile_bt_save);
+        tv_username = view.findViewById(R.id.editProfile_tv_username);
         Auth = FirebaseAuth.getInstance();
         user = Auth.getCurrentUser();
         rootR = FirebaseDatabase.getInstance().getReference();
@@ -68,6 +73,7 @@ public class eidtProfileFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot keyId : snapshot.getChildren()){
                     if (keyId.child("email").getValue().equals(user.getEmail())){
+                        username = keyId.child("username").getValue(String.class);
                         firstName = keyId.child("firstName").getValue(String.class);
                         lastName = keyId.child("lastName").getValue(String.class);
                         mobileNumber = keyId.child("mobileNumber").getValue(String.class);
@@ -100,9 +106,7 @@ public class eidtProfileFragment extends Fragment {
                 String ed_city = et_city.getText().toString();
                 String ed_street = et_street.getText().toString();
                 String ed_district = et_district.getText().toString();
-                if(! ed_firstName.equals(firstName)){
-                    userR.child("firstName").setValue(et_firstName);
-                }
+
             }
         });
 

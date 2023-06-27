@@ -8,9 +8,10 @@ public class user {
     String firstName;
     String lastName;
     String mobileNumber;
-    String City;
+    String city;
     String street;
     String district;
+    String username;
 
 
     public user(String email, String password) {
@@ -18,15 +19,26 @@ public class user {
         this.password = password;
     }
 
-    public user(String email, String password, String firstName, String lastName, String mobileNumber, String city, String street, String district) {
+    public user(String firstName, String lastName, String mobileNumber, String city, String street, String district) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.mobileNumber = mobileNumber;
+        this.city = city;
+        this.street = street;
+        this.district = district;
+
+    }
+
+    public user(String username, String email, String password, String firstName, String lastName, String mobileNumber, String city, String street, String district) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.mobileNumber = mobileNumber;
-        City = city;
+        this.city = city;
         this.street = street;
         this.district = district;
+        this.username = username;
     }
 
     public String getEmail() {
@@ -37,6 +49,10 @@ public class user {
         return password;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -45,12 +61,16 @@ public class user {
         return lastName;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getMobileNumber() {
         return mobileNumber;
     }
 
     public String getCity() {
-        return City;
+        return city;
     }
 
     public String getStreet() {
@@ -82,7 +102,7 @@ public class user {
     }
 
     public void setCity(String city) {
-        City = city;
+        this.city = city;
     }
 
     public void setStreet(String street) {

@@ -1,6 +1,5 @@
 package com.example.yummyzone.fragment;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -17,10 +16,8 @@ import android.widget.TextView;
 import com.example.yummyzone.R;
 import com.example.yummyzone.activites.MainActivity;
 import com.example.yummyzone.activites.MapActivity;
-import com.example.yummyzone.activites.editProfile;
 import com.example.yummyzone.adapter.cartItemAdapter;
 import com.example.yummyzone.classes.cartItem;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 

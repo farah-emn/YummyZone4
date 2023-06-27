@@ -36,9 +36,6 @@
             android:name=".activites.StartedActivity"
             android:exported="false" />
         <activity
-            android:name=".activites.editProfile"
-            android:exported="false" />
-        <activity
             android:name=".activites.signIn"
             android:exported="false" />
         <activity
