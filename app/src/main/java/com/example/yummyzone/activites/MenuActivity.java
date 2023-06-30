@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.example.yummyzone.adapter.Menu_Adapter;
 import com.example.yummyzone.classes.Menu_tab;
 import com.example.yummyzone.R;
-import com.example.yummyzone.adapter.Category_Adapter;
+import com.example.yummyzone.adapter.Category_adapter;
 import com.example.yummyzone.classes.Category_tab;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -41,18 +41,9 @@ public class MenuActivity extends AppCompatActivity {
 
 
         ArrayList<Menu_tab> tt =new ArrayList<>();
-        tt.add(new Menu_tab( R.drawable.foodimage,R.drawable.icon_favorite_gray,"big testy","16 SAR","16 min"));
-        tt.add(new Menu_tab( R.drawable.drink,R.drawable.icon_favorite_gray,"coca cola","16 SAR","16 min"));
-        tt.add(new Menu_tab( R.drawable.drink,R.drawable.icon_favorite_gray,"coca cola","16 SAR","16 min"));
-        tt.add(new Menu_tab( R.drawable.foodimage,R.drawable.icon_favorite_gray,"big testy","14 SAR","16 min"));
-        tt.add(new Menu_tab( R.drawable.foodimage,R.drawable.icon_favorite_gray,"big testy","16 SAR","16 min"));
-        tt.add(new Menu_tab( R.drawable.drink,R.drawable.icon_favorite_gray,"coca cola","16 SAR","16 min"));
-        tt.add(new Menu_tab( R.drawable.drink,R.drawable.icon_favorite_gray,"coca cola","20 SAR","16 min"));
-        tt.add(new Menu_tab( R.drawable.foodimage,R.drawable.icon_favorite_gray,"big testy","20 SAR","16 min"));
-        Menu_Adapter add = new Menu_Adapter(tt);
         RecyclerView.LayoutManager lm2 =new GridLayoutManager(this,2);
         RecyclerViewFoodList.setLayoutManager(lm2);
-        RecyclerViewFoodList.setAdapter(add);
+
 
         nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override

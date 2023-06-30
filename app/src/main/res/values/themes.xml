@@ -19,4 +19,5 @@
     <style name="subScreen"><item name="android:background">@drawable/profile_bachground</item></style>
     <style name="eidttext"><item name="android:background">@drawable/et_design_gray</item></style>
     <style name="bar"><item name="android:background">@drawable/menu_bar_shape</item></style>
+    <style name="infobackgrond"><item name="android:background">@drawable/infobackground</item></style>
 </resources>

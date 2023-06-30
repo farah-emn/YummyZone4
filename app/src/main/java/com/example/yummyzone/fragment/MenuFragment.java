@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.yummyzone.R;
-import com.example.yummyzone.adapter.Category_adaptermenu;
 import com.example.yummyzone.adapter.Menu_Adapter;
 import com.example.yummyzone.classes.Category_tab;
 import com.example.yummyzone.classes.Menu_tab;
@@ -30,7 +29,7 @@ public class MenuFragment extends Fragment {
 
     ImageView item_img, icon_favorite, tab_image,image_back;
     private RecyclerView recyclerView;
-    Category_adaptermenu adapter;
+
     DatabaseReference mbase;
     Menu_Adapter adapter1;
     DatabaseReference mbase1;
@@ -60,7 +59,6 @@ public class MenuFragment extends Fragment {
                     = new FirebaseRecyclerOptions.Builder<Category_tab>()
                     .setQuery(mbase, Category_tab.class)
                     .build();
-            adapter = new Category_adaptermenu(options);
             //recyclerView.setAdapter(adapter);
           //  adapter.startListening();
 
