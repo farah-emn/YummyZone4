@@ -118,6 +118,7 @@ public class itemInfoFragment extends Fragment {
                                  @Override
                                  public void onDataChange(@NonNull DataSnapshot snapshot) {
                                      if (!snapshot.exists()) {
+                                         Toast.makeText(getContext(), "Successfully added to cart", Toast.LENGTH_SHORT).show();
                                          String item_image = image;
                                          item_name = name;
                                          String qty = (String) tv_qty.getText();
@@ -125,7 +126,6 @@ public class itemInfoFragment extends Fragment {
                                          itemInfoFragment.id1 = restaurant;
                                          String total_price="";
                                          username = keyId.child("firstName").getValue(String.class);
-
                                          Cart UserCart = new Cart(item_image, item_name, qty, item_price, id1,total_price);
                                          FirebaseDatabase.getInstance().getReference().child("Cart").child(username).child(item_name).setValue(UserCart);
                                      }
@@ -136,20 +136,18 @@ public class itemInfoFragment extends Fragment {
                                                  for (DataSnapshot dataSnapshot : snapshot2.getChildren()) {
                                                      String keyresturant = dataSnapshot.getKey();
                                                      String restaurant_id = (String) snapshot2.child(keyresturant).child("id").getValue();
-
                                                      if (restaurant_id.equals(restaurant)) {
+                                                         Toast.makeText(getContext(), "Successfully added to cart", Toast.LENGTH_SHORT).show();
                                                          String item_image = image;
                                                          String item_name = name;
                                                          String qty = (String) tv_qty.getText();
                                                          String item_price = (String) price_total.getText();
                                                          String id = restaurant;
-                                                         String total_price="";
+                                                         String total_price = "";
                                                          username = keyId.child("username").getValue(String.class);
-
-                                                         Cart UserCart = new Cart(item_image, item_name, qty, item_price, id,total_price);
+                                                         Cart UserCart = new Cart(item_image, item_name, qty, item_price, id, total_price);
                                                          FirebaseDatabase.getInstance().getReference().child("Cart").child(username).child(item_name).setValue(UserCart);
-                                                         Toast.makeText(getContext(), "sucessfuly", Toast.LENGTH_SHORT).show();}
-
+                                                     }
                                                      else {
                                                          Toast.makeText(getContext(), "Can not added", Toast.LENGTH_SHORT).show();
                                                          break;}}}
