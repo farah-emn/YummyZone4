@@ -22,7 +22,9 @@ public class StartedActivity extends AppCompatActivity {
         {
             @Override
             public void onClick(View view) {
-                opensignUp();}});
+                opensignUp();
+
+            }});
         }
     public void opensignUp(){
         Intent mainIntent = new Intent(StartedActivity.this, signUp.class);
