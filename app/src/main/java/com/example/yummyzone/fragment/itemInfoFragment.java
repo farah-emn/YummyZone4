@@ -118,6 +118,7 @@ public class itemInfoFragment extends Fragment {
                                  @Override
                                  public void onDataChange(@NonNull DataSnapshot snapshot) {
                                      if (!snapshot.exists()) {
+                                         Toast.makeText(getContext(), "Successfully added to cart", Toast.LENGTH_SHORT).show();
                                          String item_image = image;
                                          item_name = name;
                                          String qty = (String) tv_qty.getText();
@@ -138,6 +139,7 @@ public class itemInfoFragment extends Fragment {
                                                      String restaurant_id = (String) snapshot2.child(keyresturant).child("id").getValue();
 
                                                      if (restaurant_id.equals(restaurant)) {
+                                                         Toast.makeText(getContext(), "Successfully added to cart", Toast.LENGTH_SHORT).show();
                                                          String item_image = image;
                                                          String item_name = name;
                                                          String qty = (String) tv_qty.getText();
@@ -148,10 +150,9 @@ public class itemInfoFragment extends Fragment {
 
                                                          Cart UserCart = new Cart(item_image, item_name, qty, item_price, id,total_price);
                                                          FirebaseDatabase.getInstance().getReference().child("Cart").child(username).child(item_name).setValue(UserCart);
-                                                         Toast.makeText(getContext(), "sucessfuly", Toast.LENGTH_SHORT).show();}
 
                                                      else {
-                                                         Toast.makeText(getContext(), "Can not added", Toast.LENGTH_SHORT).show();
+                                                            Toast.makeText(getContext(), " can not add from a different restaurant", Toast.LENGTH_SHORT).show();
                                                          break;}}}
                                              @Override
                                              public void onCancelled(@NonNull DatabaseError error) {}});}}
