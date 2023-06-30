@@ -1,31 +1,47 @@
 package com.example.yummyzone.classes;
 
 public class Menu_tab {
-    private int item_img,icon_favorite;
-    private String item_name,item_price,pre_time;
 
-    public int getIcon_favorite() {
-        return icon_favorite;
+    private String item_name;
+    private String item_price;
+    private String pre;
+    private String item_image;
+    private String restaurantid;
+    private String cateid;
+    private String calories;
+
+    public String getIcon() {
+        return icon;
     }
 
-    public void setIcon_favorite(int icon_favorite) {
-        this.icon_favorite = icon_favorite;
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
-    public int getItem_img() {
-        return item_img;
+    private String icon;
+
+    Menu_tab(){
+
     }
 
-    public String getItem_name() {
-        return item_name;
+    public String getCalories() {
+        return calories;
     }
 
-    public String getPre_time() {
-        return pre_time;
+    public void setCalories(String calories) {
+        this.calories = calories;
     }
 
-    public void setPre_time(String pre_time) {
-        this.pre_time = pre_time;
+    public String getCateid() {
+        return cateid;
+    }
+
+    public String getRestaurantid() {
+        return restaurantid;
+    }
+
+    public void setRestaurantid(String restaurantid) {
+        this.restaurantid = restaurantid;
     }
 
     public String getItem_price() {
@@ -36,20 +52,43 @@ public class Menu_tab {
         this.item_price = item_price;
     }
 
-    public void setItem_img(int item_img) {
-        this.item_img = item_img;
+    public String getPre() {
+        return pre;
+    }
+
+    public void setPre(String pre) {
+        this.pre = pre;
+    }
+
+    public String getItem_name() {
+        return item_name;
     }
 
     public void setItem_name(String item_name) {
         this.item_name = item_name;
     }
 
-    public Menu_tab(int item_img, int icon_favorite, String item_name, String item_price, String pre_time){
-this.item_img=item_img;
-this.icon_favorite=icon_favorite;
+    public String getItem_image() {
+        return item_image;
+    }
+
+    public void setItem_image(String item_image) {
+        this.item_image = item_image;
+    }
+
+    public void setCateid(String cateid) {
+        this.cateid = cateid;
+    }
+
+    public Menu_tab(String item_name,String icon,String item_price,String pre,String item_image,String restaurantid,String cateid,String calories){
 this.item_name=item_name;
 this.item_price=item_price;
-this.pre_time=pre_time;
+this.pre=pre;
+this.item_image=item_image;
+this.cateid=cateid;
+this.restaurantid=restaurantid;
+this.calories=calories;
+this.icon=icon;
 
 
 

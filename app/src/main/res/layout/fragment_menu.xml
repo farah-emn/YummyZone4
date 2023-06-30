@@ -4,70 +4,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/orange"
     android:orientation="vertical"
     android:weightSum="15"
-    tools:context=".fragment.searchFragment">
 
+    android:background="@color/orange">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="14"
         android:orientation="vertical">
-
         <TextView
-            android:id="@+id/search_title"
-            style="@style/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
-            android:gravity="center_horizontal"
-            android:text="Search"
+            android:text="macdonalds"
+            android:textAlignment="center"
             android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.411"
+            app:layout_constraintStart_toEndOf="@+id/image_back"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.466" />
+            app:layout_constraintVertical_bias="0.533" />
+
+        <ImageView
+            android:id="@+id/image_back"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="15dp"
+            android:src="@drawable/icon_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/Screen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
-
-        <EditText
-            android:id="@+id/searchScreen_et_search"
-            style="@style/eidttext"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="15dp"
-            android:drawableStart="@drawable/icon_search_gray"
-            android:hint="Search here.."
-            android:paddingStart="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+        android:layout_weight="1"
+        android:background="@drawable/background">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/RecyclerViewCategory"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_goneMarginTop="15dp"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            android:id="@+id/sh"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/RecyclerViewFoodList"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="@dimen/margin"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchScreen_et_search" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toTopOf="@+id/RecyclerViewCategory" />
 
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
