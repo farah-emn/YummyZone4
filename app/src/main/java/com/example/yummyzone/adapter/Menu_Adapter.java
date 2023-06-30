@@ -1,4 +1,5 @@
 package com.example.yummyzone.adapter;
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,7 @@ public class Menu_Adapter extends FirebaseRecyclerAdapter<Menu_tab,Menu_Adapter.
         super(options);
     }
     @Override
-    protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull final Menu_tab model) {
+    protected void onBindViewHolder(@NonNull myviewholder holder, @SuppressLint("RecyclerView") int position, @NonNull final Menu_tab model) {
         Auth = FirebaseAuth.getInstance();
         user = Auth.getCurrentUser();
         rootR = FirebaseDatabase.getInstance().getReference();
