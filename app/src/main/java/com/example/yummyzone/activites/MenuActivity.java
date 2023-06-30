@@ -33,26 +33,12 @@ public class MenuActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         RecyclerViewCategory=findViewById(R.id.RecyclerViewCategory);
         RecyclerViewFoodList=findViewById(R.id.RecyclerViewFoodList);
-        item_name=findViewById(R.id.item_name);
-        item_price=findViewById(R.id.item_price);
-        pre_time=findViewById(R.id.pre_time);
-        item_img=findViewById(R.id.item_img);
-        icon_favorite=findViewById(R.id.icon_favorite);
-        category_name = findViewById(R.id.tab_name);
-        tab_image= findViewById(R.id.tab_image);
         nav = findViewById(R.id.homeScreenNav);
 
-        ArrayList<Category_tab> tab_array_category =new ArrayList<>();
-        tab_array_category.add(new Category_tab("All",R.drawable.icon_favorite_gray));
-        tab_array_category.add(new Category_tab("pizza",R.drawable.icon_favorite_gray));
-        tab_array_category.add(new Category_tab("burger",R.drawable.icon_favorite_gray));
-        tab_array_category.add(new Category_tab("juice",R.drawable.icon_favorite_gray));
-        tab_array_category.add(new Category_tab("pizza",R.drawable.icon_favorite_gray));
-        Category_Adapter adapter_cat =new Category_Adapter(tab_array_category);
         RecyclerView.LayoutManager lm1 =new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         RecyclerViewCategory.setHasFixedSize(true);
         RecyclerViewCategory.setLayoutManager(lm1);
-        RecyclerViewCategory.setAdapter(adapter_cat);
+
 
         ArrayList<Menu_tab> tt =new ArrayList<>();
         tt.add(new Menu_tab( R.drawable.foodimage,R.drawable.icon_favorite_gray,"big testy","16 SAR","16 min"));

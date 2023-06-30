@@ -1,26 +1,27 @@
 package com.example.yummyzone.classes;
 
 public class Category_tab {
-    private String title;
-    private int image;
-    public Category_tab(String title,int image) {
-        this.title = title;
-        this.image=image;
+    private String name ,image;
+    public Category_tab() {
     }
 
-    public int getImage() {
-        return image;
-    }
-
-    public void setImage(int image) {
+    public Category_tab(String image) {
         this.image = image;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

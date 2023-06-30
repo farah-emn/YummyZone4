@@ -27,6 +27,9 @@ public class favoriteFragment extends Fragment {
 
     RecyclerView rv;
 
+    public favoriteFragment(String postkey) {
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

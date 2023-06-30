@@ -2,8 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.yummyzone">
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,8 +15,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.YummyZone">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyD_opFXaJF2cPjbU04frGOrm1UM2Xjhq4g" />
         <activity
-            android:name=".activites.IntroActivity"
+            android:name=".activites.signUp"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,16 +30,13 @@
             android:name=".activites.itemInfo"
             android:exported="false" />
         <activity
-            android:name=".activites.signIn"
+            android:name=".activites.IntroActivity"
             android:exported="false" />
         <activity
             android:name=".activites.StartedActivity"
             android:exported="false" />
         <activity
-            android:name=".activites.editProfile"
-            android:exported="false" />
-        <activity
-            android:name=".activites.signUp"
+            android:name=".activites.signIn"
             android:exported="false" />
         <activity
             android:name=".activites.MainActivity"
@@ -40,6 +44,10 @@
         <activity
             android:name=".activites.MenuActivity"
             android:exported="false" />
+        <activity
+            android:name=".activites.MapActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
