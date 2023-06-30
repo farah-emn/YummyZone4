@@ -43,18 +43,8 @@ public class favoriteFragment extends Fragment {
         rv = view.findViewById(R.id.favorite_rv);
 
         ArrayList<Menu_tab> tt =new ArrayList<>();
-        tt.add(new Menu_tab( R.drawable.foodimage,R.drawable.icon_favorite_gray,"big testy","16 SAR","16 min"));
-        tt.add(new Menu_tab( R.drawable.drink,R.drawable.icon_favorite_gray,"coca cola","16 SAR","16 min"));
-        tt.add(new Menu_tab( R.drawable.drink,R.drawable.icon_favorite_gray,"coca cola","16 SAR","16 min"));
-        tt.add(new Menu_tab( R.drawable.foodimage,R.drawable.icon_favorite_gray,"big testy","14 SAR","16 min"));
-        tt.add(new Menu_tab( R.drawable.foodimage,R.drawable.icon_favorite_gray,"big testy","16 SAR","16 min"));
-        tt.add(new Menu_tab( R.drawable.drink,R.drawable.icon_favorite_gray,"coca cola","16 SAR","16 min"));
-        tt.add(new Menu_tab( R.drawable.drink,R.drawable.icon_favorite_gray,"coca cola","20 SAR","16 min"));
-        tt.add(new Menu_tab( R.drawable.foodimage,R.drawable.icon_favorite_gray,"big testy","20 SAR","16 min"));
-        Menu_Adapter add = new Menu_Adapter(tt);
         RecyclerView.LayoutManager lm2 =new GridLayoutManager(this.getContext(),2);
         rv.setLayoutManager(lm2);
-        rv.setAdapter(add);
         return view;
     }
 }

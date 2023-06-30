@@ -20,10 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yummyzone.R;
-import com.example.yummyzone.adapter.Category_adaptermenu;
 import com.example.yummyzone.adapter.cartItemAdapter;
 import com.example.yummyzone.classes.Cart;
-import com.example.yummyzone.classes.items;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,11 +32,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.checkerframework.checker.units.qual.C;
+//import org.checkerframework.checker.units.qual.C;
 
 import java.util.ArrayList;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
+
+//import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
 public class cartFragment extends Fragment {
     RecyclerView RecyclerViewCategory, RecyclerViewFoodList, RecyclerViewFoodList1;
@@ -47,7 +47,7 @@ public class cartFragment extends Fragment {
     BottomNavigationView nav;
     String postkey = "";
     private RecyclerView recyclerView;
-    Category_adaptermenu adapter, adapter2;
+    //Category_adaptermenu adapter, adapter2;
     DatabaseReference mbase;
     RecyclerView recview1;
     cartItemAdapter adapter1, adapter3;
