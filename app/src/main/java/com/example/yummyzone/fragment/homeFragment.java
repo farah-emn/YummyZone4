@@ -1,6 +1,8 @@
 package com.example.yummyzone.fragment;
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,27 +13,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import com.example.yummyzone.R;
-import com.example.yummyzone.adapter.Category_adapter;
+import com.example.yummyzone.adapter.Category_Adapter;
 import com.example.yummyzone.adapter.restaurantAdapter;
 import com.example.yummyzone.classes.Category_tab;
 import com.example.yummyzone.classes.restaurant;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class homeFragment extends Fragment {
+    RecyclerView recyclerView_restaurants,recyclerView_category;
+    Category_Adapter category_adapter;
+    restaurantAdapter restaurantadapter;
+    DatabaseReference databaseReference;
+    String restaurant_id;
     EditText search;
-    RecyclerView recview;
-    Category_adapter adapter;
-    RecyclerView recview1, recview2;
-    restaurantAdapter adapter1, adapter2;
-    DatabaseReference mbase1, mbase2;
-    FirebaseDatabase firebaseDatabase1, firebaseDatabase2;
-    String post_key1 = "";
 
-    public homeFragment(String post_key1) {
-        this.post_key1 = post_key1;
+    public homeFragment(String restaurant_id) {
+        this.restaurant_id = restaurant_id;
     }
 
     @Override
@@ -40,28 +46,25 @@ public class homeFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
-        recview = (RecyclerView) view.findViewById(R.id.homeScreen_rv_tabs);
-        search = view.findViewById(R.id.homeScreen_et_search);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
-        recview.setLayoutManager(
-                new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false));
-        FirebaseRecyclerOptions<Category_tab> options =
-                new FirebaseRecyclerOptions.Builder<Category_tab>().setQuery(FirebaseDatabase.getInstance().getReference().child("Category"), Category_tab.class).build();
-        adapter = new Category_adapter(options);
-        adapter.startListening();
-        recview.setAdapter(adapter);
-        recview2 = (RecyclerView) view.findViewById(R.id.homeScreen_rv_restaurant);
-        firebaseDatabase2 = FirebaseDatabase.getInstance();
-        mbase2 = firebaseDatabase2.getReference("restaurant");
-        recview2.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        FirebaseRecyclerOptions<restaurant> options3 = new FirebaseRecyclerOptions.Builder<restaurant>()
-                .setQuery(mbase2, restaurant.class).build();
-        adapter2 = new restaurantAdapter(options3);
-        recview2.setAdapter(adapter2);
-        adapter2.startListening();
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        recyclerView_category = (RecyclerView) view.findViewById(R.id.homeScreen_rv_tabs);
+        search = view.findViewById(R.id.homeScreen_et_search);
+        recyclerView_category.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false));
+        FirebaseRecyclerOptions<Category_tab> categoryFirebaseRecyclerOptions =new FirebaseRecyclerOptions.Builder<Category_tab>().setQuery(FirebaseDatabase.getInstance().getReference().child("Category"), Category_tab.class).build();
+        category_adapter = new Category_Adapter(categoryFirebaseRecyclerOptions);
+        category_adapter.startListening();
+        recyclerView_category.setAdapter(category_adapter);
+
+        recyclerView_restaurants = (RecyclerView) view.findViewById(R.id.homeScreen_rv_restaurant);
+        databaseReference = FirebaseDatabase.getInstance().getReference("restaurant");
+        recyclerView_restaurants.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        FirebaseRecyclerOptions<restaurant> restaurantFirebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<restaurant>().setQuery(databaseReference, restaurant.class).build();
+        restaurantadapter= new restaurantAdapter(restaurantFirebaseRecyclerOptions);
+        recyclerView_restaurants.setAdapter(restaurantadapter);
+        restaurantadapter.startListening();
+
 
 
         search.addTextChangedListener(new TextWatcher() {
@@ -76,50 +79,74 @@ public class homeFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 String s = search.getText().toString();
-                FirebaseRecyclerOptions<restaurant> options4
-                        = new FirebaseRecyclerOptions.Builder<restaurant>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference("restaurant")
-                                .orderByChild("name")
-                                .startAt(s).endAt(s + "\uf8ff"), restaurant.class)
+                FirebaseRecyclerOptions<restaurant> restaurantFirebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<restaurant>().setQuery(FirebaseDatabase.getInstance().getReference("restaurant").orderByChild("restaurant_name") .startAt(s).endAt(s + "\uf8ff"), restaurant.class)
                         .build();
-                adapter2 = new restaurantAdapter(
-                        options4);
-                recview2.setAdapter(adapter2);
-                adapter2.startListening();
+                restaurantadapter = new restaurantAdapter(restaurantFirebaseRecyclerOptions);
+                recyclerView_restaurants.setAdapter(restaurantadapter);
+                restaurantadapter.startListening();
             }
         });
 
-        if (post_key1 != "" && post_key1 != "0") {
-            recview1 = (RecyclerView) view.findViewById(R.id.homeScreen_rv_restaurant);
-            firebaseDatabase1 = FirebaseDatabase.getInstance();
-            mbase1 = firebaseDatabase1.getReference("restaurant");
-            recview1.setLayoutManager(
-                    new GridLayoutManager(getContext(), 2));
-            FirebaseRecyclerOptions<restaurant> options1
-                    = new FirebaseRecyclerOptions.Builder<restaurant>()
-                    .setQuery(mbase1.orderByChild("cateid").equalTo(post_key1), restaurant.class)
-                    .build();
-            adapter1 = new restaurantAdapter(
-                    options1);
-            recview1.setAdapter(adapter1);
-            adapter1.startListening();
-        }
+        if (restaurant_id != "") {
+            FirebaseDatabase.getInstance().getReference().child("restaurant").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        if (restaurant_id.equals(dataSnapshot.child("categoryCoffee_id").getValue())) {
 
-        if (post_key1.equals("0")) {
-            recview1 = (RecyclerView) view.findViewById(R.id.homeScreen_rv_restaurant);
-            firebaseDatabase1 = FirebaseDatabase.getInstance();
-            mbase1 = firebaseDatabase1.getReference("restaurant");
-            recview1.setLayoutManager(
-                    new GridLayoutManager(getContext(), 2));
-            FirebaseRecyclerOptions<restaurant> options1
-                    = new FirebaseRecyclerOptions.Builder<restaurant>()
-                    .setQuery(mbase1, restaurant.class)
-                    .build();
-            adapter1 = new restaurantAdapter(
-                    options1);
-            recview1.setAdapter(adapter1);
-            adapter1.startListening();
-        }
+                            FirebaseRecyclerOptions<restaurant> restaurantFirebaseRecyclerOptions1 = new FirebaseRecyclerOptions.Builder<restaurant>()
+                                    .setQuery(databaseReference.orderByChild("categoryCoffee_id").equalTo(restaurant_id), restaurant.class).build();
+                            restaurantadapter = new restaurantAdapter(restaurantFirebaseRecyclerOptions1);
+                            recyclerView_restaurants.setAdapter(restaurantadapter);
+                            restaurantadapter.startListening();
+                        } else if (restaurant_id.equals(dataSnapshot.child("categoryBurgers_id").getValue())) {
+                            FirebaseRecyclerOptions<restaurant> restaurantFirebaseRecyclerOptions1 = new FirebaseRecyclerOptions.Builder<restaurant>()
+                                    .setQuery(databaseReference.orderByChild("categoryBurgers_id").equalTo(restaurant_id), restaurant.class).build();
+                            restaurantadapter = new restaurantAdapter(restaurantFirebaseRecyclerOptions1);
+                            recyclerView_restaurants.setAdapter(restaurantadapter);
+                            restaurantadapter.startListening();
+
+                        } else if (restaurant_id.equals(dataSnapshot.child("categoryDesserts_id").getValue())) {
+                            FirebaseRecyclerOptions<restaurant> restaurantFirebaseRecyclerOptions1 = new FirebaseRecyclerOptions.Builder<restaurant>()
+                                    .setQuery(databaseReference.orderByChild("categoryDesserts_id").equalTo(restaurant_id), restaurant.class).build();
+                            restaurantadapter = new restaurantAdapter(restaurantFirebaseRecyclerOptions1);
+                            recyclerView_restaurants.setAdapter(restaurantadapter);
+                            restaurantadapter.startListening();
+                        } else if
+                        (restaurant_id.equals(dataSnapshot.child("categoryBeverages_id").getValue())) {
+                            FirebaseRecyclerOptions<restaurant> restaurantFirebaseRecyclerOptions1 = new FirebaseRecyclerOptions.Builder<restaurant>()
+                                    .setQuery(databaseReference.orderByChild("categoryBeverages_id").equalTo(restaurant_id), restaurant.class).build();
+                            restaurantadapter = new restaurantAdapter(restaurantFirebaseRecyclerOptions1);
+                            recyclerView_restaurants.setAdapter(restaurantadapter);
+                            restaurantadapter.startListening();
+                        } else if (restaurant_id.equals(dataSnapshot.child("categoryPizza_id").getValue())) {
+                            FirebaseRecyclerOptions<restaurant> restaurantFirebaseRecyclerOptions1 = new FirebaseRecyclerOptions.Builder<restaurant>()
+                                    .setQuery(databaseReference.orderByChild("categoryPizza_id").equalTo(restaurant_id), restaurant.class).build();
+                            restaurantadapter = new restaurantAdapter(restaurantFirebaseRecyclerOptions1);
+                            recyclerView_restaurants.setAdapter(restaurantadapter);
+                            restaurantadapter.startListening();
+                        }
+
+
+                    }
+                }
+
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }else {
+            recyclerView_restaurants = (RecyclerView) view.findViewById(R.id.homeScreen_rv_restaurant);
+            databaseReference = FirebaseDatabase.getInstance().getReference("restaurant");
+            recyclerView_restaurants.setLayoutManager(new GridLayoutManager(getContext(), 2));
+            FirebaseRecyclerOptions<restaurant> restaurantFirebaseRecyclerOptions1 = new FirebaseRecyclerOptions.Builder<restaurant>().setQuery(databaseReference, restaurant.class).build();
+            restaurantadapter= new restaurantAdapter(restaurantFirebaseRecyclerOptions1);
+            recyclerView_restaurants.setAdapter(restaurantadapter);
+            restaurantadapter.startListening();}
+
+
         return view;
     }
 

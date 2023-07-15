@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -32,24 +32,8 @@ public class cartItemAdapter extends FirebaseRecyclerAdapter<Cart,cartItemAdapte
     FirebaseUser user;
     DatabaseReference userR, rootR;
     String username;
-    cartItemAdapter  adapter1,adapter3;
-    DatabaseReference mbase1,mbase2;
-    FirebaseDatabase firebaseDatabase1,firebaseDatabase2;
-    String cate="",cate2="";
-    String post_key1="",post_key3="";
-    RecyclerView rv;
-    Button b;
-    TextView tv;
-    TextView cart_tv_price;
-    String name="";
-    String total_price="";
-
-   public static double sum=0;
+    double sum=0;
     ArrayList<Cart> list;
-    ArrayList<Cart> list1;
-
-
-
     public cartItemAdapter(@NonNull FirebaseRecyclerOptions<Cart> options) {
         super(options);
     }
@@ -59,7 +43,7 @@ public class cartItemAdapter extends FirebaseRecyclerAdapter<Cart,cartItemAdapte
         holder.name.setText((CharSequence) model.getItem_name());
         holder.price.setText((CharSequence) model.getItem_price());
         holder.number.setText((CharSequence) model.getQty());
-        Glide.with(holder.item_image.getContext()).load(model.getItem_image()).into(holder.item_image);
+        Picasso.get().load(model.getItem_image()) .into(holder.item_image);
         Auth = FirebaseAuth.getInstance();
         user = Auth.getCurrentUser();
         rootR = FirebaseDatabase.getInstance().getReference();
@@ -104,54 +88,29 @@ public class cartItemAdapter extends FirebaseRecyclerAdapter<Cart,cartItemAdapte
                                 FirebaseDatabase.getInstance().getReference("Cart")
                                         .child(username).child(getRef(position).getKey()).child("item_price").setValue(String.valueOf(price));
 
-                            }
-                        });
-                    }
-                }
-            }
-
+                            }});}}}
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error) {}});
 
-            }
-        });
-
-        userR.addListenerForSingleValueEvent(new ValueEventListener() {
+        userR.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot keyId : snapshot.getChildren()){
                     if (keyId.child("email").getValue().equals(user.getEmail())) {
                         String username= keyId.child("username").getValue(String.class);
-
-                        FirebaseDatabase.getInstance().getReference().child("Cart").child(username).addValueEventListener(new ValueEventListener() {
+                        FirebaseDatabase.getInstance().getReference().child("Cart").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) { int items=0;
                                 list.clear();
                                 for (DataSnapshot dataSnapshot:snapshot.getChildren()){
                                     String keyresturant = dataSnapshot.getKey();
-                                    //String id1 = (String) snapshot.child(keyresturant).child("id").;
-                                        Cart bazar = dataSnapshot.getValue(Cart.class);
-                                        Cart bazar1 = dataSnapshot.getValue(Cart.class);
-                                        list.add(bazar);
-                                      //  Integer cost = Integer.valueOf(bazar.getItem_price());
-                                        //sum +=cost;
-                                        //
-                                     sum = 0;
+                                        Cart cart = dataSnapshot.getValue(Cart.class);
+                                        list.add(cart);
+                                         sum = 0;
                                 }
                                 for (Cart b :list) {
                                            sum += Double.parseDouble(b.getItem_price());
-
-
-                                           FirebaseDatabase.getInstance().getReference().child("Cart").child(username).child(b.getItem_name()).child("tot").setValue(String.valueOf(sum));
-                                           //  FirebaseDatabase.getInstance().getReference().child("Cart").child(username).child(keyresturant).child("total_price").setValue(sum);
-                                 }
-
-
-                                //items = Integer.parseInt((String) snapshot.child(dataSnapshot.getKey()).child("item_price").getValue());
-                                        //sum+= items;
-                                        //total_price = String.valueOf(sum);
-
-                            }
+                                           FirebaseDatabase.getInstance().getReference().child("Cart").child(username).child(b.getItem_name()).child("total_price").setValue(String.valueOf(sum));}}
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {}});}}}
             @Override
@@ -196,15 +155,11 @@ public class cartItemAdapter extends FirebaseRecyclerAdapter<Cart,cartItemAdapte
                  @Override
                  public void onDataChange(@NonNull DataSnapshot snapshot) {
                      for (DataSnapshot keyId : snapshot.getChildren()) {
-                         if (keyId.child("email").getValue().equals(user.getEmail())) {
+                         if (keyId.child("email").getValue().equals(user.  getEmail())) {
                              username = keyId.child("username").getValue(String.class);
                              FirebaseDatabase.getInstance()
                                      .getReference()
-                                     .child("Cart").child(username).child(getRef(getPosition()).getKey()).removeValue();
-                         }
-
-                     }
-                 }
+                                     .child("Cart").child(username).child(getRef(getPosition()).getKey()).removeValue();}}}
 
                  @Override
                  public void onCancelled(@NonNull DatabaseError error) {

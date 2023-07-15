@@ -1,8 +1,8 @@
 package com.example.yummyzone.fragment;
 
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class itemInfoFragment extends Fragment {
     TextView tv_restaurantName;
@@ -37,12 +38,10 @@ public class itemInfoFragment extends Fragment {
     ImageView iv_item;
     ImageView iv_minus;
     ImageView iv_plus;
-    public static String  id1;
     FirebaseAuth Auth;
     FirebaseUser user;
     DatabaseReference userR, rootR;
-    String username="";
-    public String item_name;
+    String username;
     Button bt_add;
     public String name,image,id,price,restaurant;
     int count=0;
@@ -74,16 +73,19 @@ public class itemInfoFragment extends Fragment {
         iv_minus = view.findViewById(R.id.itemInfo_image_minus);
         iv_plus = view.findViewById(R.id.itemInfo_image_plus);
         bt_add = view.findViewById(R.id.itemInfo_bt_add);
+        tv_restaurantName.setText(restaurant);
         tv_qty=view.findViewById(R.id.itemInfo_tv_itemNumber);
         price_total=view.findViewById(R.id.price);
+        tv_itemName.setText(name);
+        tv_price.setText(price +" "+"SR");
+        price_total.setText(price);
+        Glide.with(this).load(image).into(iv_item);
         Auth = FirebaseAuth.getInstance();
         user = Auth.getCurrentUser();
         rootR = FirebaseDatabase.getInstance().getReference();
         userR = rootR.child("user");
-        tv_itemName.setText(name);
-        Glide.with(this).load(image).into(iv_item);
-        tv_price.setText(price +" "+"SR");
-        price_total.setText(price);
+
+
 
        iv_plus.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -91,9 +93,8 @@ public class itemInfoFragment extends Fragment {
         count++;
         tv_qty.setText(""+count);
         String price10 = String.valueOf(Integer.parseInt(String.valueOf(Integer.parseInt(price)*count)));
-        price_total.setText(price10);
+        price_total.setText(price10);}});
 
-      }});
       iv_minus.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -101,63 +102,75 @@ public class itemInfoFragment extends Fragment {
           count--;
               String price4 =String.valueOf(Integer.parseInt ((String) price_total.getText())-Integer.parseInt( price));
               price_total.setText(price4);
-              tv_qty.setText(""+count);}}
-  });
+              tv_qty.setText(""+count);}}});
 
      bt_add.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View view) {
-
-             userR.addListenerForSingleValueEvent(new ValueEventListener() {
+             userR.addValueEventListener(new ValueEventListener() {
                  @Override
                  public void onDataChange(@NonNull DataSnapshot snapshot1) {
                      for (DataSnapshot keyId : snapshot1.getChildren()) {
                          if (keyId.child("email").getValue().equals(user.getEmail())) {
                              username = keyId.child("username").getValue(String.class);
-                             FirebaseDatabase.getInstance().getReference().child("Cart").addListenerForSingleValueEvent(new ValueEventListener() {
+                             FirebaseDatabase.getInstance().getReference().child("Cart").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
                                  @Override
                                  public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                     if (!snapshot.exists()) {
-                                         Toast.makeText(getContext(), "Successfully added to cart", Toast.LENGTH_SHORT).show();
-                                         String item_image = image;
-                                         item_name = name;
-                                         String qty = (String) tv_qty.getText();
-                                         String item_price = (String) price_total.getText();
-                                         itemInfoFragment.id1 = restaurant;
-                                         String total_price="";
-                                         username = keyId.child("firstName").getValue(String.class);
-                                         Cart UserCart = new Cart(item_image, item_name, qty, item_price, id1,total_price);
-                                         FirebaseDatabase.getInstance().getReference().child("Cart").child(username).child(item_name).setValue(UserCart);
-                                     }
-                                     else if (snapshot.exists()) {
-                                         FirebaseDatabase.getInstance().getReference().child("Cart").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
-                                             @Override
-                                             public void onDataChange(@NonNull DataSnapshot snapshot2) {
-                                                 for (DataSnapshot dataSnapshot : snapshot2.getChildren()) {
-                                                     String keyresturant = dataSnapshot.getKey();
-                                                     String restaurant_id = (String) snapshot2.child(keyresturant).child("id").getValue();
-                                                     if (restaurant_id.equals(restaurant)) {
-                                                         Toast.makeText(getContext(), "Successfully added to cart", Toast.LENGTH_SHORT).show();
-                                                         String item_image = image;
-                                                         String item_name = name;
-                                                         String qty = (String) tv_qty.getText();
-                                                         String item_price = (String) price_total.getText();
-                                                         String id = restaurant;
-                                                         String total_price = "";
-                                                         username = keyId.child("username").getValue(String.class);
-                                                         Cart UserCart = new Cart(item_image, item_name, qty, item_price, id, total_price);
-                                                         FirebaseDatabase.getInstance().getReference().child("Cart").child(username).child(item_name).setValue(UserCart);
+                                     if (snapshot.getValue()==null) {
+                                     Toast.makeText(getContext(), "Successfully added to cart1"+(snapshot.getValue()==null), Toast.LENGTH_SHORT).show();
+                                     String item_image = image;
+                                     String item_name = name;
+                                     String qty = (String) tv_qty.getText();
+                                     String item_price = (String) price_total.getText();
+                                     String restaurant_id = restaurant;
+                                     String total_price = "";
+                                     Cart UserCart = new Cart(item_image, item_name, qty, item_price, restaurant_id, total_price);
+                                     FirebaseDatabase.getInstance().getReference().child("Cart").child(username).child(item_name).setValue(UserCart);
+                                } else if (snapshot.getValue()!=null) {
+                                          FirebaseDatabase.getInstance().getReference().child("Cart").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
+                                              @Override
+                                              public void onDataChange(@NonNull DataSnapshot snapshot2) {
+                                                  for (DataSnapshot dataSnapshot : snapshot2.getChildren()) {
+                                                      String keyresturant = dataSnapshot.getKey();
+                                                      String restaurant_id = (String) snapshot2.child(keyresturant).child("id").getValue();
+                                                      if (restaurant_id.equals(restaurant)) {
+                                                          Toast.makeText(getContext(), "Successfully added to cart", Toast.LENGTH_SHORT).show();
+                                                          String item_image = image;
+                                                          String item_name = name;
+                                                          String qty = (String) tv_qty.getText();
+                                                          String item_price = (String) price_total.getText();
+                                                          String id = restaurant;
+                                                          String total_price = "";
+                                                          username = keyId.child("username").getValue(String.class);
+                                                          Cart UserCart = new Cart(item_image, item_name, qty, item_price, id, total_price);
+                                                          FirebaseDatabase.getInstance().getReference().child("Cart").child(username).child(item_name).setValue(UserCart);
 
-                                                     }
-                                                     else {
-                                                            Toast.makeText(getContext(), " can not add from a different restaurant", Toast.LENGTH_SHORT).show();
-                                                         break;}}}
-                                             @Override
-                                             public void onCancelled(@NonNull DatabaseError error) {}});}}
+                                                      }
+                                                      else {
+                                                          Toast.makeText(getContext(), " can not add from a different restaurant", Toast.LENGTH_SHORT).show();
+                                                          break;}}}
+                                              @Override
+                                              public void onCancelled(@NonNull DatabaseError error) {}});}}
                                  @Override
                                  public void onCancelled(@NonNull DatabaseError error) {}});}}}
                  @Override
                  public void onCancelled(@NonNull DatabaseError error) {}});}});
+
+
+     iv_back.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View view) {
+             Fragment fragment=new MenuFragment();
+             Bundle bundle=new Bundle();
+             bundle.putString("restaurant_id", restaurant);
+             fragment.setArguments(bundle);
+             AppCompatActivity activity = (AppCompatActivity) view.getContext();
+             activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, fragment).addToBackStack(null).commit();
+         }
+
+
+
+     });
 
   return view;
     }

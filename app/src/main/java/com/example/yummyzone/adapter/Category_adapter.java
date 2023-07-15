@@ -1,5 +1,7 @@
 package com.example.yummyzone.adapter;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -18,25 +21,21 @@ import com.example.yummyzone.fragment.homeFragment;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
-public class Category_adapter extends FirebaseRecyclerAdapter<Category_tab, Category_adapter.myviewholder>
-{ public Category_adapter(@NonNull FirebaseRecyclerOptions<Category_tab> options) {
-        super(options);}
+public class Category_Adapter extends FirebaseRecyclerAdapter<Category_tab, Category_Adapter.myviewholder>
+{
+    public Category_Adapter(@NonNull FirebaseRecyclerOptions<Category_tab> options) {
+        super(options);
+    }
     @Override
-    protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull final Category_tab model) {
-        holder.nametext.setText(model.getName());
-
-        Glide.with(holder.img1.getContext()).load(model.getImage()).into(holder.img1);
-        holder.nametext.setOnClickListener(new View.OnClickListener() {
-            String post_key1 = getRef(position).getKey();
+    protected void onBindViewHolder(@NonNull myviewholder holder, @SuppressLint("RecyclerView") int position, @NonNull final Category_tab model) {
+        holder.name_category.setText(model.getName());
+        Glide.with(holder.image_category.getContext()).load(model.getImage()).into(holder.image_category);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                homeFragment fragment=new homeFragment(post_key1);
-                Bundle bundle=new Bundle();
-                bundle.putString("cate1",post_key1);
-                fragment.setArguments(bundle);
+                final String  position_id = getRef(position).getKey();
                 AppCompatActivity activity=(AppCompatActivity)view.getContext();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment,fragment).commit();
-
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment,new homeFragment(position_id)).commit();
             }});}
 
     @NonNull
@@ -48,16 +47,21 @@ public class Category_adapter extends FirebaseRecyclerAdapter<Category_tab, Cate
 
     public class myviewholder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-        ImageView img1;
-        TextView nametext;
-
+        ImageView image_category;
+        TextView name_category;
         public myviewholder(@NonNull View itemView) {
             super(itemView);
+            image_category=itemView.findViewById(R.id.tab_image);
+            name_category=itemView.findViewById(R.id.tab_name);
 
-            img1=itemView.findViewById(R.id.tab_image);
-            nametext=itemView.findViewById(R.id.tab_name);
+
         }
+
         @Override
-        public void onClick(View view) {}}
+        public void onClick(View view) {
+
+
+        }
+    }
 
 }

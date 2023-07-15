@@ -10,6 +10,17 @@ public class Menu_tab {
     private String cateid;
     private String calories;
 
+    public Menu_tab(String item_name, String item_image,String item_price,String pre, String icon) {
+        this.item_name=item_name;
+        this.item_image=item_image;
+        this.item_price=item_price;
+        this.pre=pre;
+        this.icon=icon;
+    }
+
+    public Menu_tab(String key, String item_name, String item_image, String icon) {
+    }
+
     public String getIcon() {
         return icon;
     }
@@ -21,6 +32,7 @@ public class Menu_tab {
     private String icon;
 
     Menu_tab(){
+
 
     }
 
