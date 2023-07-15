@@ -4,30 +4,35 @@ public class Menu_tab {
 
     private String item_name;
     private String item_price;
-    private String pre;
+    private String preparation_time;
     private String item_image;
     private String restaurantid;
     private String cateid;
     private String calories;
+    private String description;
+    private String favorite_icon;
 
-    public Menu_tab(String item_name, String item_image,String item_price,String pre, String icon) {
+
+    public Menu_tab(String item_name, String item_image,String item_price,String preparation_time, String favorite_icon) {
         this.item_name=item_name;
         this.item_image=item_image;
         this.item_price=item_price;
-        this.pre=pre;
-        this.icon=icon;
+        this.preparation_time=preparation_time;
+        this.favorite_icon=favorite_icon;
     }
 
-    public Menu_tab(String key, String item_name, String item_image, String icon) {
+    public String getDescription() {
+        return description;
     }
 
-    public String getIcon() {
-        return icon;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
+    public Menu_tab(String key, String item_name, String item_image, String favorite_icon) {
     }
+
+
 
     private String icon;
 
@@ -64,12 +69,28 @@ public class Menu_tab {
         this.item_price = item_price;
     }
 
-    public String getPre() {
-        return pre;
+    public String getFavorite_icon() {
+        return favorite_icon;
     }
 
-    public void setPre(String pre) {
-        this.pre = pre;
+    public void setFavorite_icon(String favorite_icon) {
+        this.favorite_icon = favorite_icon;
+    }
+
+    public String getPreparation_time() {
+        return preparation_time;
+    }
+
+    public void setPreparation_time(String preparation_time) {
+        this.preparation_time = preparation_time;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     public String getItem_name() {
@@ -92,15 +113,15 @@ public class Menu_tab {
         this.cateid = cateid;
     }
 
-    public Menu_tab(String item_name,String icon,String item_price,String pre,String item_image,String restaurantid,String cateid,String calories){
+    public Menu_tab(String item_name,String favorite_icon,String item_price,String preparation_time,String item_image,String restaurantid,String cateid,String calories){
 this.item_name=item_name;
 this.item_price=item_price;
-this.pre=pre;
+this.preparation_time=preparation_time;
 this.item_image=item_image;
 this.cateid=cateid;
 this.restaurantid=restaurantid;
 this.calories=calories;
-this.icon=icon;
+this.favorite_icon=favorite_icon;
 
 
 

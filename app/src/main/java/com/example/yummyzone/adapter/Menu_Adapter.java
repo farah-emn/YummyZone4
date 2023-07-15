@@ -53,8 +53,8 @@ public class Menu_Adapter extends FirebaseRecyclerAdapter<Menu_tab,Menu_Adapter.
         holder.item_name.setText(model.getItem_name());
         holder.item_price.setText(model.getItem_price());
         Glide.with(holder.item_image.getContext()).load(model.getItem_image()).into(holder.item_image);
-        Glide.with(holder.icon_facorite.getContext()).load(model.getIcon()).into(holder.icon_facorite) ;
-        holder.pre.setText(model.getPre());
+        Glide.with(holder.icon_facorite.getContext()).load(model.getFavorite_icon()).into(holder.icon_facorite) ;
+        holder.pre.setText(model.getPreparation_time());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,8 +63,9 @@ public class Menu_Adapter extends FirebaseRecyclerAdapter<Menu_tab,Menu_Adapter.
                 String item_name = model.getItem_name();
                 String item_image = model.getItem_image();
                 String item_price = model.getItem_price();
+                String description=model.getDescription();
                 String id = getRef(position).getKey();
-                itemInfoFragment fragment = new itemInfoFragment(item_name, item_image, id, item_price, restaurant);
+                itemInfoFragment fragment = new itemInfoFragment(item_name, item_image, id, item_price, restaurant,description,model.getCalories(),model.getPreparation_time());
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, fragment).addToBackStack(null).commit();
             }
@@ -86,7 +87,7 @@ public class Menu_Adapter extends FirebaseRecyclerAdapter<Menu_tab,Menu_Adapter.
                                         if (keyId.child("email").getValue().equals(user.getEmail())) {
                                             username = keyId.child("username").getValue(String.class);
                                             Toast.makeText(view.getContext(), "delete", Toast.LENGTH_SHORT).show();
-                                            FirebaseDatabase.getInstance().getReference().child("Foods").child(getRef(position).getKey()).child("icon").setValue("https://i.ibb.co/m571XXg/like-9.png");
+                                            FirebaseDatabase.getInstance().getReference().child("Foods").child(getRef(position).getKey()).child("favorite_icon").setValue("https://i.ibb.co/m571XXg/like-9.png");
 
                                         }}FirebaseDatabase.getInstance().getReference().child("Favourite").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
                                         @Override
@@ -113,7 +114,7 @@ public class Menu_Adapter extends FirebaseRecyclerAdapter<Menu_tab,Menu_Adapter.
                                             if (keyId.child("email").getValue().equals(user.getEmail())) {
 
                                                 username = keyId.child("username").getValue(String.class);
-                                                Menu_tab M=new Menu_tab(model.getItem_name(),model.getItem_image(),model.getItem_price(),model.getPre(),"https://iili.io/HPUQz3x.png");
+                                                Menu_tab M=new Menu_tab(model.getItem_name(),model.getItem_image(),model.getItem_price(),model.getPreparation_time(),"https://iili.io/HPUQz3x.png");
                                                 FirebaseDatabase.getInstance().getReference().child("Favourite").child(username).child(getRef(position).getKey()).setValue(M);
                                                 FirebaseDatabase.getInstance().getReference().child("Foods").addListenerForSingleValueEvent(new ValueEventListener() {
                                                     @Override
@@ -123,10 +124,10 @@ public class Menu_Adapter extends FirebaseRecyclerAdapter<Menu_tab,Menu_Adapter.
                                                             FirebaseDatabase.getInstance().getReference().child("Favourite").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
                                                                 @Override
                                                                 public void onDataChange(@NonNull DataSnapshot snapshot23) {
-                                                                    FirebaseDatabase.getInstance().getReference().child("Foods").child(dataSnapshot.getKey()).child("icon").setValue("https://iili.io/HPgLSoX.png");
+                                                                    FirebaseDatabase.getInstance().getReference().child("Foods").child(dataSnapshot.getKey()).child("favorite_icon").setValue("https://iili.io/HPgLSoX.png");
                                                                     for (DataSnapshot dataSnapshot1:snapshot23.getChildren()){
                                                                         if(dataSnapshot1.getKey().equals(dataSnapshot.getKey())){
-                                                                            FirebaseDatabase.getInstance().getReference().child("Foods").child(dataSnapshot1.getKey()).child("icon").setValue("https://iili.io/HPUQz3x.png");
+                                                                            FirebaseDatabase.getInstance().getReference().child("Foods").child(dataSnapshot1.getKey()).child("favorite_icon").setValue("https://iili.io/HPUQz3x.png");
 
                                                                         }
                                                                     }}
@@ -168,7 +169,7 @@ public class Menu_Adapter extends FirebaseRecyclerAdapter<Menu_tab,Menu_Adapter.
     public class myviewholder extends RecyclerView.ViewHolder
     {
         ImageView item_image,icon_facorite;
-        TextView item_name,pre,calories,item_price;
+        TextView item_name,pre,item_price;
         public myviewholder(@NonNull View itemView) {
             super(itemView);
             item_image=itemView.findViewById(R.id.item_img);

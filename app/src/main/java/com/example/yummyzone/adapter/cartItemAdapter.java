@@ -60,14 +60,14 @@ public class cartItemAdapter extends FirebaseRecyclerAdapter<Cart,cartItemAdapte
                             @Override
                             public void onClick(View view) {
                                 int qty = Integer.parseInt((String) holder.number.getText());
-                                int price_item = Integer.parseInt((String) holder.price.getText());
-                                int pricec = price_item / qty;
+                                double price_item =  Double.parseDouble((String) holder.price.getText());
+                                double pricec = price_item / qty;
                                 if (qty != 1) {
                                     qty--;
                                     holder.number.setText(String.valueOf(qty));
                                     FirebaseDatabase.getInstance().getReference("Cart").child(username)
                                             .child(getRef(position).getKey()).child("qty").setValue(String.valueOf(String.valueOf(qty)));
-                                    int price = price_item - pricec;
+                                    double price = price_item - pricec;
                                     holder.price.setText(String.valueOf(price));
                                     FirebaseDatabase.getInstance().getReference("Cart").child(username)
                                             .child(getRef(position).getKey()).child("item_price").setValue(String.valueOf(price));
@@ -77,13 +77,13 @@ public class cartItemAdapter extends FirebaseRecyclerAdapter<Cart,cartItemAdapte
                             @Override
                             public void onClick(View view) {
                                 int qty = Integer.parseInt((String) holder.number.getText());
-                                int price_item = Integer.parseInt((String) holder.price.getText());
-                                int pricec = price_item / qty;
+                                double price_item =  Double.parseDouble((String) holder.price.getText());
+                                double pricec = price_item / qty;
                                 qty++;
                                 holder.number.setText(String.valueOf(qty));
                                 FirebaseDatabase.getInstance().getReference("Cart")
                                         .child(username).child(getRef(position).getKey()).child("qty").setValue(String.valueOf(String.valueOf(qty)));
-                                int price = price_item + pricec;
+                                double price = price_item + pricec;
                                 holder.price.setText(String.valueOf(price));
                                 FirebaseDatabase.getInstance().getReference("Cart")
                                         .child(username).child(getRef(position).getKey()).child("item_price").setValue(String.valueOf(price));

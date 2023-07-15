@@ -21,7 +21,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 public class itemInfoFragment extends Fragment {
     TextView tv_restaurantName;
@@ -43,14 +42,18 @@ public class itemInfoFragment extends Fragment {
     DatabaseReference userR, rootR;
     String username;
     Button bt_add;
-    public String name,image,id,price,restaurant;
+    public String name,image,id,price,restaurant,description,prepration_time,calories;
+
     int count=0;
-    public itemInfoFragment(String name, String image, String id, String price, String restaurant) {
+    public itemInfoFragment(String name, String image, String id, String price, String restaurant, String description,String calories,String prepration_time) {
         this.name=name;
         this.image=image;
         this.id=id;
         this.price=price;
         this.restaurant=restaurant;
+        this.description=description;
+        this.calories=calories;
+        this.prepration_time=prepration_time;
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,9 +77,12 @@ public class itemInfoFragment extends Fragment {
         iv_plus = view.findViewById(R.id.itemInfo_image_plus);
         bt_add = view.findViewById(R.id.itemInfo_bt_add);
         tv_restaurantName.setText(restaurant);
+        tv_description.setText(description);
         tv_qty=view.findViewById(R.id.itemInfo_tv_itemNumber);
         price_total=view.findViewById(R.id.price);
         tv_itemName.setText(name);
+        tv_time.setText(prepration_time+" "+"Min");
+        tv_cal.setText(calories);
         tv_price.setText(price +" "+"SR");
         price_total.setText(price);
         Glide.with(this).load(image).into(iv_item);
@@ -92,7 +98,7 @@ public class itemInfoFragment extends Fragment {
       public void onClick(View view) {
         count++;
         tv_qty.setText(""+count);
-        String price10 = String.valueOf(Integer.parseInt(String.valueOf(Integer.parseInt(price)*count)));
+        String price10 = String.valueOf( Double.parseDouble(String.valueOf( Double.parseDouble(price)*count)));
         price_total.setText(price10);}});
 
       iv_minus.setOnClickListener(new View.OnClickListener() {
@@ -100,7 +106,7 @@ public class itemInfoFragment extends Fragment {
       public void onClick(View view) {
           if(count!=1){
           count--;
-              String price4 =String.valueOf(Integer.parseInt ((String) price_total.getText())-Integer.parseInt( price));
+              String price4 =String.valueOf( Double.parseDouble ((String) price_total.getText())- Double.parseDouble( price));
               price_total.setText(price4);
               tv_qty.setText(""+count);}}});
 
