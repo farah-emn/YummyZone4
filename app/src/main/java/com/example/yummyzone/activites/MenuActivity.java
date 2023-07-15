@@ -1,24 +1,17 @@
 package com.example.yummyzone.activites;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.example.yummyzone.adapter.Menu_Adapter;
 import com.example.yummyzone.classes.Menu_tab;
 import com.example.yummyzone.R;
-import com.example.yummyzone.adapter.Category_adapter;
-import com.example.yummyzone.classes.Category_tab;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-
 import java.util.ArrayList;
 
 public class MenuActivity extends AppCompatActivity {
