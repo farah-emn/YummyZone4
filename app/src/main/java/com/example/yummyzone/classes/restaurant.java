@@ -2,7 +2,7 @@ package com.example.yummyzone.classes;
 
 public class restaurant {
 
-    private String restaurant_name,logo,delivery_fee,categoryBeverages_id,categoryPizza_id,categoryCoffee_id,categoryDesserts_id,categorySandwiche_id,categoryBurgers_id;
+    private String restaurant_name,logo,delivery_fee,categoryBeverages_id,categoryPizza_id,categoryCoffee_id,categoryDesserts_id,categorySandwiche_id,categoryBurgers_id,categorySeaFood_id;
 
     public String getLogo() {
         return logo;
@@ -22,6 +22,14 @@ public class restaurant {
 
     restaurant(){
 
+    }
+
+    public String getCategorySeaFood_id() {
+        return categorySeaFood_id;
+    }
+
+    public void setCategorySeaFood_id(String categorySeaFood_id) {
+        this.categorySeaFood_id = categorySeaFood_id;
     }
 
     public String getCategoryBurgers_id() {
@@ -80,7 +88,7 @@ public class restaurant {
         this.restaurant_name = restaurant_name;
     }
 
-    public restaurant(String restaurant_name, String logo,String delivery_fee,String categoryBeverages_id,String categoryPizza_id,String categoryCoffee_id,String categoryDesserts_id,String categorySandwiche_id,String categoryBurgers_id) {
+    public restaurant(String restaurant_name, String logo,String delivery_fee,String categoryBeverages_id,String categoryPizza_id,String categoryCoffee_id,String categoryDesserts_id,String categorySandwiche_id,String categoryBurgers_id,String categorySeaFood_id) {
         this.restaurant_name = restaurant_name;
         this.logo=logo;
         this.delivery_fee=delivery_fee;
@@ -90,6 +98,8 @@ public class restaurant {
         this.categoryDesserts_id=categoryDesserts_id;
         this.categoryPizza_id=categoryPizza_id;
         this.categoryBurgers_id=categoryBurgers_id;
+        this.categorySeaFood_id=categorySeaFood_id;
+
 
 
     }

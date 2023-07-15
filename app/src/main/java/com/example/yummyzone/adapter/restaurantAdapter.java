@@ -45,46 +45,83 @@ public class restaurantAdapter extends FirebaseRecyclerAdapter<restaurant,restau
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment,fragment).commit();
             }});
         {
-        if(model.getCategoryBeverages_id() !=null && model.getCategoryCoffee_id() !=null &&model.getCategoryDesserts_id() !=null &&model.getCategoryPizza_id() ==null &&model.getCategorySandwiche_id() !=null&&model.getCategoryBurgers_id()==null){
+        if(model.getCategoryBeverages_id() !=null && model.getCategoryCoffee_id() !=null &&model.getCategoryDesserts_id() !=null &&model.getCategoryPizza_id() ==null &&model.getCategorySandwiche_id() !=null&&model.getCategoryBurgers_id()==null&&model.getCategorySeaFood_id()==null){
             holder.description.setText(model.getCategoryCoffee_id()+""+","+""+model.getCategorySandwiche_id()+""+","+""+model.getCategoryDesserts_id() +""+","+""+model.getCategoryBeverages_id());
         }
-        else if (model.getCategoryCoffee_id() !=null && model.getCategoryBeverages_id() !=null&&model.getCategoryDesserts_id() ==null &&model.getCategoryPizza_id() ==null&&model.getCategorySandwiche_id() ==null&&model.getCategoryBurgers_id()==null ){
+        else if (model.getCategoryCoffee_id() !=null && model.getCategoryBeverages_id() !=null&&model.getCategoryDesserts_id() ==null &&model.getCategoryPizza_id() ==null&&model.getCategorySandwiche_id() ==null&&model.getCategoryBurgers_id()==null&&model.getCategorySeaFood_id()==null ){
             holder.description.setText(model.getCategoryCoffee_id()+""+","+""+model.getCategoryBeverages_id());
         }
-        else if (model.getCategoryCoffee_id() !=null && model.getCategoryBeverages_id() !=null && model.getCategoryDesserts_id() !=null&&model.getCategoryBurgers_id()==null&&model.getCategorySandwiche_id()==null&&model.getCategoryPizza_id()==null){
+        else if (model.getCategoryCoffee_id() !=null && model.getCategoryBeverages_id() !=null && model.getCategoryDesserts_id() !=null&&model.getCategoryBurgers_id()==null&&model.getCategorySandwiche_id()==null&&model.getCategoryPizza_id()==null&&model.getCategorySeaFood_id()==null){
             holder.description.setText(model.getCategoryCoffee_id()+""+","+""+model.getCategoryBeverages_id()+""+","+""+model.getCategoryDesserts_id());
         }
-        else if(model.getCategoryCoffee_id() ==null&&model.getCategoryBeverages_id()!=null&&model.getCategoryBurgers_id()!=null &&model.getCategorySandwiche_id()!=null &&model.getCategoryDesserts_id()==null &&model.getCategoryPizza_id()==null)
+        else if(model.getCategoryCoffee_id() ==null&&model.getCategoryBeverages_id()!=null&&model.getCategoryBurgers_id()!=null &&model.getCategorySandwiche_id()!=null &&model.getCategoryDesserts_id()==null &&model.getCategoryPizza_id()==null&&model.getCategorySeaFood_id()==null)
         {
             holder.description.setText(model.getCategoryBurgers_id()+""+","+""+model.getCategorySandwiche_id()+""+","+""+model.getCategoryBeverages_id());
         }
-        else if(model.getCategoryBurgers_id() !=null && model.getCategorySandwiche_id() !=null&&model.getCategoryCoffee_id() ==null&&model.getCategoryBeverages_id()==null&&model.getCategoryDesserts_id()==null &&model.getCategoryPizza_id()==null){
+        else if(model.getCategoryBurgers_id() !=null && model.getCategorySandwiche_id() !=null&&model.getCategoryCoffee_id() ==null&&model.getCategoryBeverages_id()==null&&model.getCategoryDesserts_id()==null &&model.getCategoryPizza_id()==null&&model.getCategorySeaFood_id()==null){
             holder.description.setText(model.getCategoryBurgers_id()+""+","+""+model.getCategorySandwiche_id());
         }
-        else if( model.getCategorySandwiche_id() !=null &&model.getCategoryBeverages_id() !=null&&model.getCategoryCoffee_id() !=null&&model.getCategoryDesserts_id()==null &&model.getCategoryPizza_id()==null&&model.getCategoryCoffee_id() ==null){
+        else if( model.getCategorySandwiche_id() !=null &&model.getCategoryBeverages_id() !=null&&model.getCategoryCoffee_id() !=null&&model.getCategoryDesserts_id()==null &&model.getCategoryPizza_id()==null&&model.getCategoryCoffee_id() ==null&&model.getCategorySeaFood_id()==null){
             holder.description.setText(model.getCategorySandwiche_id()+""+","+""+model.getCategoryBeverages_id()+""+","+""+model.getCategoryCoffee_id() );
         }
-        else if (model.getCategoryPizza_id()!=null&&model.getCategorySandwiche_id() ==null &&model.getCategoryBeverages_id() ==null&&model.getCategoryCoffee_id() ==null&&model.getCategoryDesserts_id()==null&&model.getCategoryBurgers_id() ==null) {
+        else if (model.getCategoryPizza_id()!=null&&model.getCategorySandwiche_id() ==null &&model.getCategoryBeverages_id() ==null&&model.getCategoryCoffee_id() ==null&&model.getCategoryDesserts_id()==null&&model.getCategoryBurgers_id() ==null&&model.getCategorySeaFood_id()==null) {
             holder.description.setText(model.getCategoryPizza_id());
         }
-        else if (model.getCategoryCoffee_id() !=null && model.getCategoryDesserts_id() !=null&&model.getCategoryBurgers_id()!=null&&model.getCategoryPizza_id()==null&&model.getCategorySandwiche_id() ==null&&model.getCategoryBeverages_id()==null){
+        else if (model.getCategoryCoffee_id() !=null && model.getCategoryDesserts_id() !=null&&model.getCategoryBurgers_id()!=null&&model.getCategoryPizza_id()==null&&model.getCategorySandwiche_id() ==null&&model.getCategoryBeverages_id()==null&&model.getCategorySeaFood_id()==null){
             holder.description.setText(model.getCategoryCoffee_id()+""+","+""+model.getCategoryDesserts_id()+""+","+""+model.getCategoryBurgers_id());
         }
-        else if (model.getCategoryDesserts_id()!=null && model.getCategoryCoffee_id()==null&&model.getCategoryBurgers_id()==null&&model.getCategoryPizza_id()==null&&model.getCategorySandwiche_id() ==null&&model.getCategoryBeverages_id()==null) {
+        else if (model.getCategoryDesserts_id()!=null && model.getCategoryCoffee_id()==null&&model.getCategoryBurgers_id()==null&&model.getCategoryPizza_id()==null&&model.getCategorySandwiche_id() ==null&&model.getCategoryBeverages_id()==null&&model.getCategorySeaFood_id()==null) {
             holder.description.setText(model.getCategoryDesserts_id());
         }
-        else if (model.getCategoryDesserts_id()!=null && model.getCategoryCoffee_id()!=null&&model.getCategoryPizza_id()==null&&model.getCategorySandwiche_id() ==null&&model.getCategoryBeverages_id()==null&&model.getCategoryBurgers_id() ==null) {
+        else if (model.getCategoryDesserts_id()!=null && model.getCategoryCoffee_id()==null&&model.getCategoryBurgers_id()==null&&model.getCategoryPizza_id()!=null&&model.getCategorySandwiche_id() ==null&&model.getCategoryBeverages_id()==null&&model.getCategorySeaFood_id()==null) {
+            holder.description.setText(model.getCategoryPizza_id()+""+","+""+model.getCategoryDesserts_id());
+        }
+        else if (model.getCategoryDesserts_id()!=null && model.getCategoryCoffee_id()!=null&&model.getCategoryPizza_id()==null&&model.getCategorySandwiche_id() ==null&&model.getCategoryBeverages_id()==null&&model.getCategoryBurgers_id() ==null&&model.getCategorySeaFood_id()==null) {
             holder.description.setText(model.getCategoryDesserts_id()+""+","+""+model.getCategoryCoffee_id());
 
         }
-        else if (model.getCategoryDesserts_id()==null && model.getCategoryCoffee_id()==null&&model.getCategoryPizza_id()==null&&model.getCategorySandwiche_id() ==null&&model.getCategoryBeverages_id()==null&&model.getCategoryBurgers_id() !=null) {
+        else if (model.getCategoryDesserts_id()!=null && model.getCategoryCoffee_id()==null&&model.getCategoryPizza_id()==null&&model.getCategorySandwiche_id() ==null&&model.getCategoryBeverages_id()!=null&&model.getCategoryBurgers_id() ==null&&model.getCategorySeaFood_id()==null) {
+            holder.description.setText(model.getCategoryDesserts_id()+""+","+""+model.getCategoryCoffee_id()+""+","+""+model.getCategoryBeverages_id());
+
+        }
+        else if (model.getCategoryDesserts_id()!=null && model.getCategoryCoffee_id()!=null&&model.getCategoryPizza_id()==null&&model.getCategorySandwiche_id() !=null&&model.getCategoryBeverages_id()==null&&model.getCategoryBurgers_id() ==null&&model.getCategorySeaFood_id()==null) {
+            holder.description.setText(model.getCategoryDesserts_id()+""+","+""+model.getCategoryCoffee_id()+""+","+""+model.getCategorySandwiche_id());
+
+        }
+        else if (model.getCategoryDesserts_id()==null && model.getCategoryCoffee_id()==null&&model.getCategoryPizza_id()==null&&model.getCategorySandwiche_id() ==null&&model.getCategoryBeverages_id()==null&&model.getCategoryBurgers_id() !=null&&model.getCategorySeaFood_id()==null) {
             holder.description.setText(model.getCategoryBurgers_id());
 
-        }     else if (model.getCategoryDesserts_id()==null && model.getCategoryCoffee_id()==null&&model.getCategoryPizza_id()==null&&model.getCategorySandwiche_id() ==null&&model.getCategoryBeverages_id()!=null&&model.getCategoryBurgers_id() !=null) {
+        }
+        else if (model.getCategoryCoffee_id() !=null && model.getCategoryDesserts_id() !=null&&model.getCategoryBurgers_id()==null&&model.getCategoryPizza_id()==null&&model.getCategorySandwiche_id() !=null&&model.getCategoryBeverages_id()==null&&model.getCategorySeaFood_id()==null){
+            holder.description.setText(model.getCategoryCoffee_id()+""+","+""+model.getCategoryDesserts_id()+""+","+""+model.getCategorySandwiche_id());
+        }
+        else if (model.getCategoryDesserts_id()==null && model.getCategoryCoffee_id()==null&&model.getCategoryPizza_id()==null&&model.getCategorySandwiche_id() ==null&&model.getCategoryBeverages_id()!=null&&model.getCategoryBurgers_id() !=null &&model.getCategorySeaFood_id()==null) {
             holder.description.setText(model.getCategoryBurgers_id()+""+","+""+model.getCategoryBeverages_id());
 
-        }   else if (model.getCategoryDesserts_id()==null && model.getCategoryCoffee_id()==null&&model.getCategoryPizza_id()==null&&model.getCategorySandwiche_id() !=null&&model.getCategoryBeverages_id()==null&&model.getCategoryBurgers_id() !=null) {
+        }
+        else if (model.getCategoryDesserts_id()==null && model.getCategoryCoffee_id()==null&&model.getCategoryPizza_id()==null&&model.getCategorySandwiche_id() !=null&&model.getCategoryBeverages_id()==null&&model.getCategoryBurgers_id() !=null&&model.getCategorySeaFood_id()==null) {
             holder.description.setText(model.getCategoryBurgers_id()+""+","+""+model.getCategorySandwiche_id());
+
+        }
+        else if (model.getCategoryDesserts_id()==null && model.getCategoryCoffee_id()==null&&model.getCategoryPizza_id()==null&&model.getCategorySandwiche_id() !=null&&model.getCategoryBeverages_id()==null&&model.getCategoryBurgers_id() !=null&&model.getCategorySeaFood_id()!=null) {
+            holder.description.setText(model.getCategoryBurgers_id()+""+","+""+model.getCategorySandwiche_id()+"+"+""+model.getCategorySeaFood_id());
+
+        }
+        else if (model.getCategoryDesserts_id()==null && model.getCategoryCoffee_id()==null&&model.getCategoryPizza_id()==null&&model.getCategorySandwiche_id() ==null&&model.getCategoryBeverages_id()==null&&model.getCategoryBurgers_id() !=null&&model.getCategorySeaFood_id()!=null) {
+            holder.description.setText(model.getCategoryBurgers_id()+""+","+""+model.getCategorySeaFood_id());
+
+        }
+        else if (model.getCategoryDesserts_id()==null && model.getCategoryCoffee_id()==null&&model.getCategoryPizza_id()==null&&model.getCategorySandwiche_id() !=null&&model.getCategoryBeverages_id()==null&&model.getCategoryBurgers_id() ==null&&model.getCategorySeaFood_id()!=null) {
+            holder.description.setText(model.getCategorySandwiche_id()+"+"+""+model.getCategorySeaFood_id());
+        }
+          else if (model.getCategoryDesserts_id()==null && model.getCategoryCoffee_id()==null&&model.getCategoryPizza_id()==null&&model.getCategorySandwiche_id() ==null&&model.getCategoryBeverages_id()!=null&&model.getCategoryBurgers_id() ==null&&model.getCategorySeaFood_id()!=null) {
+            holder.description.setText(model.getCategoryBeverages_id()+""+","+""+model.getCategorySeaFood_id());
+
+        }   else if (model.getCategoryDesserts_id()!=null && model.getCategoryCoffee_id()==null&&model.getCategoryPizza_id()==null&&model.getCategorySandwiche_id() ==null&&model.getCategoryBeverages_id()!=null&&model.getCategoryBurgers_id() ==null&&model.getCategorySeaFood_id()!=null) {
+            holder.description.setText(model.getCategoryDesserts_id()+""+","+""+model.getCategoryBeverages_id()+""+","+""+model.getCategorySeaFood_id());
+
+        } else if (model.getCategoryDesserts_id()==null && model.getCategoryCoffee_id()==null&&model.getCategoryPizza_id()==null&&model.getCategorySandwiche_id() ==null&&model.getCategoryBeverages_id()==null&&model.getCategoryBurgers_id() ==null&&model.getCategorySeaFood_id()!=null) {
+            holder.description.setText(model.getCategorySeaFood_id());
 
         }
 

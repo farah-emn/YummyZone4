@@ -126,6 +126,14 @@ public class homeFragment extends Fragment {
                             recyclerView_restaurants.setAdapter(restaurantadapter);
                             restaurantadapter.startListening();
                         }
+                        else if (restaurant_id.equals(dataSnapshot.child("categorySeaFood_id").getValue())) {
+                            FirebaseRecyclerOptions<restaurant> restaurantFirebaseRecyclerOptions1 = new FirebaseRecyclerOptions.Builder<restaurant>()
+                                    .setQuery(databaseReference.orderByChild("categorySeaFood_id").equalTo(restaurant_id), restaurant.class).build();
+                            restaurantadapter = new restaurantAdapter(restaurantFirebaseRecyclerOptions1);
+                            recyclerView_restaurants.setAdapter(restaurantadapter);
+                            restaurantadapter.startListening();
+                        }
+
 
 
                     }
