@@ -101,7 +101,14 @@ public class cartFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                Intent i = new Intent(view.getContext(),MapActivity.class);
+                startActivity(i);
+            }
+        });
         ItemTouchHelper.SimpleCallback item = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
 
             @Override
