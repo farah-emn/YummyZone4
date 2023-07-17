@@ -2,38 +2,36 @@ package com.example.yummyzone.fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.yummyzone.R;
 import com.example.yummyzone.adapter.Menu_Adapter;
-import com.example.yummyzone.classes.Category_tab;
 import com.example.yummyzone.classes.Menu_tab;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-
+import java.util.ArrayList;
 public class MenuFragment extends Fragment {
-    RecyclerView RecyclerViewCategory, RecyclerViewFoodList,RecyclerViewFoodList1;
-
-    TextView item_name, item_price, pre_time, category_name;
-
-    ImageView item_img, icon_favorite, tab_image,image_back;
-    private RecyclerView recyclerView;
-
-    DatabaseReference mbase;
-    Menu_Adapter adapter1;
-    DatabaseReference mbase1;
-   String post_key1="",post_key3="";
+    RecyclerView RecyclerViewFoodList;
+    ImageView image_back;
+    Menu_Adapter menu_adapter;
+    DatabaseReference databaseReference;
+    TextView restaurant_name;
     public MenuFragment() {
     }
     @Override
@@ -41,37 +39,30 @@ public class MenuFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
+    public View onCreateView(LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
-        mbase = FirebaseDatabase.getInstance().getReference("Category");
-        recyclerView = view.findViewById(R.id.RecyclerViewCategory);
+
         RecyclerViewFoodList = view.findViewById(R.id.RecyclerViewFoodList);
         image_back=view.findViewById(R.id.image_back);
+        restaurant_name=view.findViewById(R.id.restaurant_name);
         Bundle args = getArguments();
-        Bundle args1 = getArguments();
-        post_key1 = args.getString("cate");
+        String restaurant_id=args.getString("restaurant_id");
+        restaurant_name.setText(restaurant_id);
 
-            recyclerView.setLayoutManager(
-                    new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-            FirebaseRecyclerOptions<Category_tab> options
-                    = new FirebaseRecyclerOptions.Builder<Category_tab>()
-                    .setQuery(mbase, Category_tab.class)
-                    .build();
-            //recyclerView.setAdapter(adapter);
-          //  adapter.startListening();
+        databaseReference = FirebaseDatabase.getInstance().getReference("Foods");
+        RecyclerViewFoodList.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        FirebaseRecyclerOptions<Menu_tab> MenuFirebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<Menu_tab>().setQuery(databaseReference.orderByChild("restaurantid").equalTo(restaurant_id), Menu_tab.class).build();
+        menu_adapter = new Menu_Adapter(MenuFirebaseRecyclerOptions);
+        RecyclerViewFoodList.setAdapter(menu_adapter);
+        menu_adapter.startListening();
 
-            post_key3 = args1.getString("cate4");
-            mbase1 = FirebaseDatabase.getInstance().getReference("Foods");
-            RecyclerViewFoodList.setLayoutManager(
-                    new GridLayoutManager(getContext(), 2));
-            FirebaseRecyclerOptions<Menu_tab> options3 = new FirebaseRecyclerOptions.Builder<Menu_tab>()
-                    .setQuery(mbase1.orderByChild("restaurantid"), Menu_tab.class)
-                    .build();
-            adapter1 = new Menu_Adapter(options3);
-            RecyclerViewFoodList.setAdapter(adapter1);
-            adapter1.startListening();
+            image_back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Fragment fragment=new homeFragment(restaurant_id);
+                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, fragment).addToBackStack(null).commit();
+                }});
 
         return view;}}
 

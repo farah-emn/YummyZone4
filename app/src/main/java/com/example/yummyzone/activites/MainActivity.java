@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.favorite:
 
-                        fragment = new favoriteFragment(postkey);
+                        fragment = new favoriteFragment();
                         break;
 
                     case R.id.cart:
