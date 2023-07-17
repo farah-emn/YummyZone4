@@ -66,9 +66,10 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
+                    android:id="@+id/profile_img"
                     android:layout_width="110dp"
                     android:layout_height="110dp"
-                    android:src="@drawable/yummyzoneimage" />
+                    android:scaleType="centerCrop"/>
             </androidx.cardview.widget.CardView>
 
             <LinearLayout
@@ -87,7 +88,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="15dp"
                     android:gravity="center"
-                    android:text="First name :"
+                    android:text="Username :"
                     android:textColor="@color/orange"
                     android:textSize="@dimen/buttonText_xxhdpi"
                     android:textStyle="bold"
@@ -101,7 +102,7 @@
                     android:layout_marginEnd="15dp"
                     android:background="@drawable/et_design_gray"
                     android:paddingStart="10dp"
-                    android:text="First name"
+                    android:text="Username"
                     android:textSize="@dimen/buttonText_xxhdpi"
                     android:textAlignment="textStart"/>
             </LinearLayout>
@@ -121,6 +122,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout20">
@@ -167,6 +169,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -216,6 +219,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
+                android:layout_marginTop="2dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout8"
                 tools:layout_editor_absoluteY="138dp">
@@ -262,6 +266,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -312,6 +317,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
+                android:layout_marginTop="2dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout10"
                 tools:layout_editor_absoluteY="238dp">
@@ -360,6 +366,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
+                android:layout_marginTop="2dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout11"
                 tools:layout_editor_absoluteY="288dp">

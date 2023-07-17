@@ -1,20 +1,36 @@
 package com.example.yummyzone.fragment;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.yummyzone.R;
+import com.example.yummyzone.activites.MainActivity;
 import com.example.yummyzone.classes.user;
 import com.example.yummyzone.databinding.ActivityMainBinding;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +38,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.File;
+import java.io.IOException;
 
 public class eidtProfileFragment extends Fragment {
     EditText et_firstName;
@@ -35,7 +56,8 @@ public class eidtProfileFragment extends Fragment {
 
     FirebaseAuth Auth;
     FirebaseUser user;
-    DatabaseReference userR, rootR;
+    DatabaseReference userR, rootR, newR;
+    FirebaseDatabase database;
     String username;
     String firstName;
     String lastName;
@@ -44,11 +66,29 @@ public class eidtProfileFragment extends Fragment {
     String street;
     String district;
     Button bt_save;
+    String email;
+    String password;
+    ImageView img_profile;
+    Uri img_uri;
+    FirebaseStorage storage;
+    StorageReference storageReference;
+
+    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
+            new ActivityResultCallback<Uri>() {
+                @Override
+                public void onActivityResult(Uri uri) {
+                    if(uri != null){
+                        img_uri = uri;
+                        img_profile.setImageURI(uri);
+
+                    }
+                }
+            });
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -63,10 +103,21 @@ public class eidtProfileFragment extends Fragment {
         tv_firstName = view.findViewById(R.id.editprofile_tv_firstName);
         bt_save = view.findViewById(R.id.editProfile_bt_save);
         tv_username = view.findViewById(R.id.editProfile_tv_username);
+        img_profile = view.findViewById(R.id.profile_img);
         Auth = FirebaseAuth.getInstance();
         user = Auth.getCurrentUser();
         rootR = FirebaseDatabase.getInstance().getReference();
         userR = rootR.child("user");
+        storage= FirebaseStorage.getInstance();
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("images/");
+
+
+        img_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mGetContent.launch("image/*");
+            }
+        });
 
         userR.addValueEventListener(new ValueEventListener() {
             @Override
@@ -80,15 +131,65 @@ public class eidtProfileFragment extends Fragment {
                         City = keyId.child("city").getValue(String.class);
                         street = keyId.child("street").getValue(String.class);
                         district = keyId.child("district").getValue(String.class);
+                        email = keyId.child("email").getValue(String.class);
+                        password = keyId.child("password").getValue(String.class);
+
                     }
                 }
-
+                tv_username.setText(username);
                 et_firstName.setText(firstName);
                 et_lastName.setText(lastName);
                 et_city.setText(City);
                 et_street.setText(street);
                 et_mobileNumber.setText(mobileNumber);
                 et_district.setText(district);
+
+                storageReference.child(username).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Glide.with(getActivity()).load(uri).into(img_profile);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle any errors
+                    }
+                });
+
+//                Glide.with(getActivity())
+//                        .load(img_uri)
+//                        .into(img_profile);
+
+//                try {
+//                    File localFile = File.createTempFile("images", "jpeg");
+//                    storageReference.getFile(localFile);
+//                    Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+//                    img_profile.setImageBitmap(bitmap);
+//
+//                } catch (IOException e) {
+//                    throw new RuntimeException(e);
+//                }
+
+
+
+                bt_save.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String ed_firstName =String.valueOf(et_firstName.getText()) ;
+                        String ed_lastName = et_lastName.getText().toString();
+                        String ed_mobileNumber = et_mobileNumber.getText().toString();
+                        String ed_city = et_city.getText().toString();
+                        String ed_street = et_street.getText().toString();
+                        String ed_district = et_district.getText().toString();
+                        FirebaseStorage.getInstance().getReference("images/"+username).putFile(img_uri);
+
+                        user u = new user(username, email, password, ed_firstName, ed_lastName, ed_mobileNumber, ed_city, ed_street, ed_district);
+                        userR.child(String.valueOf(username)).setValue(u);
+                        Fragment fragment = new profileFragment();
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, fragment).commit();
+
+                    }
+                });
             }
 
             @Override
@@ -97,20 +198,10 @@ public class eidtProfileFragment extends Fragment {
             }
         });
 
-        bt_save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String ed_firstName =String.valueOf(et_firstName.getText()) ;
-                String ed_lastName = et_lastName.getText().toString();
-                String ed_mobileNumber = et_mobileNumber.getText().toString();
-                String ed_city = et_city.getText().toString();
-                String ed_street = et_street.getText().toString();
-                String ed_district = et_district.getText().toString();
 
-            }
-        });
 
 
         return view;
     }
+
 }

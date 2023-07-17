@@ -66,9 +66,10 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
+                    android:id="@+id/profile_img"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:src="@drawable/yummyzoneimage" />
+                    android:scaleType="centerCrop"/>
             </androidx.cardview.widget.CardView>
 
 
@@ -89,7 +90,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="15dp"
                     android:gravity="center"
-                    android:text="First name :"
+                    android:text="Username :"
                     android:textColor="@color/orange"
                     android:textSize="@dimen/buttonText_mdpi"
                     android:textStyle="bold"
@@ -103,7 +104,7 @@
                     android:layout_marginEnd="15dp"
                     android:background="@drawable/et_design_gray"
                     android:paddingStart="10dp"
-                    android:text="First name"
+                    android:text="Username"
                     android:textSize="@dimen/buttonText_mdpi"
                     android:textAlignment="textStart"/>
             </LinearLayout>
@@ -124,6 +125,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -171,6 +173,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -183,7 +186,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="15dp"
                     android:gravity="center"
-                    android:text="Mobile number :"
+                    android:text="Mobile :"
                     android:textColor="@color/orange"
                     android:textSize="@dimen/buttonText_mdpi"
                     android:textStyle="bold"
@@ -219,6 +222,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -267,6 +271,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -315,6 +320,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"

@@ -12,7 +12,28 @@ public class user {
     String street;
     String district;
     String username;
+    String img;
 
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public user(String email, String password, String firstName, String lastName, String mobileNumber, String city, String street, String district, String username, String img) {
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.mobileNumber = mobileNumber;
+        this.city = city;
+        this.street = street;
+        this.district = district;
+        this.username = username;
+        this.img = img;
+    }
+
+    public String getImg() {
+        return img;
+    }
 
     public user(String email, String password) {
         this.email = email;

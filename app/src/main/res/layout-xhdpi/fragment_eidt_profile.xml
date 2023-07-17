@@ -66,9 +66,10 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
+                    android:id="@+id/profile_img"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
-                    android:src="@drawable/yummyzoneimage" />
+                    android:scaleType="centerCrop" />
             </androidx.cardview.widget.CardView>
 
             <LinearLayout
@@ -88,7 +89,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="15dp"
                     android:gravity="center"
-                    android:text="First name :"
+                    android:text="Username :"
                     android:textColor="@color/orange"
                     android:textSize="@dimen/buttonText_xhdpi"
                     android:textStyle="bold"
@@ -96,15 +97,15 @@
 
                 <TextView
                     android:id="@+id/editProfile_tv_username"
+                    style="@style/eidttext"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/buttonHeight_xhdpi"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="15dp"
-                    android:background="@drawable/et_design_gray"
                     android:paddingStart="10dp"
-                    android:text="First name"
-                    android:textSize="@dimen/buttonText_xhdpi"
-                    android:textAlignment="textStart"/>
+                    android:text="Username"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/buttonText_xhdpi" />
             </LinearLayout>
 
             <View
@@ -123,6 +124,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout20">
@@ -146,9 +148,9 @@
                     android:layout_height="@dimen/buttonHeight_xhdpi"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="15dp"
-                    android:background="@drawable/et_design_gray"
                     android:paddingStart="10dp"
                     android:text="First name"
+                    style="@style/eidttext"
                     android:textSize="@dimen/buttonText_xhdpi"
                     android:textAlignment="textStart"/>
             </LinearLayout>
@@ -172,6 +174,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="2dp"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout7"
                 tools:layout_editor_absoluteY="88dp">
 
@@ -192,7 +195,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/buttonHeight_xhdpi"
                     android:layout_marginStart="5dp"
-                    android:background="@drawable/et_design_gray"
+                    style="@style/eidttext"
                     android:paddingStart="10dp"
                     android:layout_marginEnd="15dp"
                     android:text="Lirst name"
@@ -216,6 +219,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -228,7 +232,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="15dp"
                     android:gravity="center"
-                    android:text="Mobile number :"
+                    android:text="Mobile :"
                     android:textColor="@color/orange"
                     android:textSize="@dimen/buttonText_xhdpi"
                     android:textStyle="bold"
@@ -239,7 +243,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/buttonHeight_xhdpi"
                     android:layout_marginStart="5dp"
-                    android:background="@drawable/et_design_gray"
+                    style="@style/eidttext"
                     android:paddingStart="10dp"
                     android:layout_marginEnd="15dp"
                     android:text="Mobile number"
@@ -266,6 +270,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
+                android:layout_marginTop="2dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout9"
                 tools:layout_editor_absoluteY="188dp">
@@ -287,7 +292,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/buttonHeight_xhdpi"
                     android:layout_marginStart="5dp"
-                    android:background="@drawable/et_design_gray"
+                    style="@style/eidttext"
                     android:paddingStart="10dp"
                     android:layout_marginEnd="15dp"
                     android:text="City"
@@ -314,6 +319,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
+                android:layout_marginTop="2dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout10"
                 tools:layout_editor_absoluteY="238dp">
@@ -335,7 +341,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/buttonHeight_xhdpi"
                     android:layout_marginStart="5dp"
-                    android:background="@drawable/et_design_gray"
+                    style="@style/eidttext"
                     android:paddingStart="10dp"
                     android:layout_marginEnd="15dp"
                     android:text="Street"
@@ -362,6 +368,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
+                android:layout_marginTop="2dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout11"
                 tools:layout_editor_absoluteY="288dp">
@@ -383,7 +390,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/buttonHeight_xhdpi"
                     android:layout_marginStart="5dp"
-                    android:background="@drawable/et_design_gray"
+                    style="@style/eidttext"
                     android:paddingStart="10dp"
                     android:layout_marginEnd="15dp"
                     android:text="District"

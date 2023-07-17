@@ -1,18 +1,17 @@
-package com.example.yummyzone;
+package com.example.yummyzone.activites;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.yummyzone.activites.MainActivity;
-import com.example.yummyzone.activites.signIn;
-import com.example.yummyzone.activites.signUp;
+import com.example.yummyzone.R;
 import com.example.yummyzone.adapter.slideAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class slide extends AppCompatActivity {
 
@@ -20,6 +19,9 @@ public class slide extends AppCompatActivity {
     slideAdapter adapter;
     ConstraintLayout cl_signIn;
     ConstraintLayout cl_signUp;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

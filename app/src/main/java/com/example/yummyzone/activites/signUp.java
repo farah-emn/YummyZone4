@@ -96,7 +96,6 @@ public class signUp extends AppCompatActivity {
                 username = String.valueOf(et_username.getText());
                 password = String.valueOf(et_password.getText());
                 confirmpassword = String.valueOf(et_confirmPassword.getText());
-
                 userR.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -105,14 +104,11 @@ public class signUp extends AppCompatActivity {
                             tv_text.setText("The username is already exit");
                         } else {
                             if (!email.equals("") && !password.equals("") && !confirmpassword.equals("")) {
-
                                 if (password.equals(confirmpassword)) {
-
                                     mAuth.createUserWithEmailAndPassword(email, password)
                                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<AuthResult> task) {
-
                                                     progressBar.setVisibility(View.GONE);
                                                     if (task.isSuccessful()) {
                                                         insertUser(username, email, password);
@@ -338,6 +334,8 @@ public class signUp extends AppCompatActivity {
                 String district = "";
                 user u = new user(username, email, password, firstName, lastName, mobileNumber, city, street, district);
                 userR.child(String.valueOf(username)).setValue(u);
+
+
             }
 
         });

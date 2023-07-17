@@ -20,4 +20,10 @@
     <style name="eidttext"><item name="android:background">@drawable/et_design_dark</item></style>
     <style name="bar"><item name="android:background">@drawable/menu_bar_shape_dark</item></style>
     <style name="infobackgrond"><item name="android:background">@drawable/infobachground_dark</item></style>
+    <style name="check_mark"><item name="android:background">@drawable/check_dark</item></style>
+    <style name="profile_squer"><item name="android:background">@drawable/profile_squer_dark</item></style>
+    <style name="dialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_out</item>
+    </style>
 </resources>

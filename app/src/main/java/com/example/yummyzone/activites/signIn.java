@@ -46,6 +46,7 @@ public class signIn extends AppCompatActivity {
             finish();
         }
     }
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
