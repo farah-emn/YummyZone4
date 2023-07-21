@@ -21,14 +21,14 @@ public class IntroActivity extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent mainIntent = new Intent(IntroActivity.this, StartedActivity.class);
+                    Intent mainIntent = new Intent(IntroActivity.this, slide.class);
                     startActivity(mainIntent);
                     finish(); }},screen1_DISPLAY_LENGTH);}
         else{
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent mainIntent = new Intent(IntroActivity.this, StartedActivity.class);
+                    Intent mainIntent = new Intent(IntroActivity.this, slide.class);
                     startActivity(mainIntent);
                     finish(); }},screen1_DISPLAY_LENGTH);
         }

@@ -2,15 +2,23 @@ package com.example.yummyzone.activites;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Dialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,21 +52,32 @@ public class MapActivity extends AppCompatActivity {
     FusedLocationProviderClient client;
     Button loc;
     TextView tl;
+    Button bt_continue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         loc=findViewById(R.id.Confirm_Location);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        bt_continue = findViewById(R.id.map_bt_continue);
+        bt_continue.setEnabled(false);
+        getSupportActionBar().hide();
+
 
         smf = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.google_map);
         client = LocationServices.getFusedLocationProviderClient(this);
+
+        bt_continue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialog();
+            }
+        });
         loc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getmylocation();;
-
+                getmylocation();
+                bt_continue.setEnabled(true);
             }
         });
         Dexter.withContext(getApplicationContext())
@@ -81,6 +100,51 @@ public class MapActivity extends AppCompatActivity {
                 }).check();
 
     }
+
+    private void showDialog() {
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog);
+//        EditText et_city = dialog.findViewById(R.id.dialog_et_city);
+//        EditText et_street = dialog.findViewById(R.id.dialog_et_street);
+//        EditText et_district = dialog.findViewById(R.id.dialog_et_district);
+//        TextView tv = dialog.findViewById(R.id.dialig_tv);
+        Button bt_save = dialog.findViewById(R.id.dialog_bt_save);
+        dialog.show();
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().getAttributes().windowAnimations= R.style.dialogAnimation;
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
+
+//        String city, street, district;
+//        city = et_city.getText().toString();
+//        street = et_street.getText().toString();
+//        district = et_district.getText().toString();
+
+
+        bt_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String city = ((EditText)dialog.findViewById(R.id.dialog_et_city)).getText().toString();
+                String street = ((EditText)dialog.findViewById(R.id.dialog_et_street)).getText().toString();
+                String district = ((EditText)dialog.findViewById(R.id.dialog_et_district)).getText().toString();
+                TextView tv = dialog.findViewById(R.id.dialig_tv);
+                if (city == null || street == null || district == null){
+                    tv.setText("please enter all field");
+
+                }
+                else {
+                    String price = getIntent().getStringExtra("total");
+                    String id = getIntent().getStringExtra("id");
+                    Intent intent = new Intent(MapActivity.this, orderActivity.class);
+                    intent.putExtra("total", price.toString());
+                    intent.putExtra("id", id.toString());
+                    startActivity(intent);
+                }
+            }
+        });
+    }
+
     @SuppressLint("MissingPermission")
     private void pi() {
 

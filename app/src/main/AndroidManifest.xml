@@ -47,6 +47,9 @@
         <activity
             android:name=".activites.MapActivity"
             android:exported="false" />
+        <activity
+            android:name=".activites.orderActivity"
+            android:exported="false" />
 
     </application>
 

@@ -85,6 +85,7 @@ public class profileFragment extends Fragment {
 
 
 
+
         sharedPreferences = getContext().getSharedPreferences("mode", Context.MODE_PRIVATE);
         nightMode = sharedPreferences.getBoolean("night", false);
         if(nightMode){

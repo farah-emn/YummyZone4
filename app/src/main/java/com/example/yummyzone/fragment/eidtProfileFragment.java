@@ -133,7 +133,6 @@ public class eidtProfileFragment extends Fragment {
                         district = keyId.child("district").getValue(String.class);
                         email = keyId.child("email").getValue(String.class);
                         password = keyId.child("password").getValue(String.class);
-
                     }
                 }
                 tv_username.setText(username);
