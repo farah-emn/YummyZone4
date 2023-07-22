@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.yummyzone.R;
 import com.example.yummyzone.activites.MapActivity;
 import com.example.yummyzone.adapter.cartItemAdapter;
@@ -40,16 +42,13 @@ public class cartFragment extends Fragment {
     DatabaseReference userR, rootR, cartR;
     ArrayList<String> list;
     double sum = 0;
-    String id;
     String username;
-
+    String delivery_fee;
 
     public cartFragment() {
     }
-
     public cartFragment(String name) {
         this.name = name;
-
     }
 
     public cartFragment(double sum) {
@@ -77,27 +76,12 @@ public class cartFragment extends Fragment {
         cartR = rootR.child("Cart");
         list =new ArrayList<String>();
 
-//        cartR.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for (DataSnapshot keyId : snapshot.getChildren()){
-//                    id = keyId.child()
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-
         userR.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot keyId : snapshot.getChildren()) {
                     if (keyId.child("email").getValue().equals(user.getEmail())) {
                         username = keyId.child("username").getValue(String.class);
-                        String keyrestaurant = snapshot.getKey();
                         recyclerViewCart.setLayoutManager( new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
                         FirebaseRecyclerOptions<Cart> cartFirebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<Cart>() .setQuery( FirebaseDatabase.getInstance().getReference("Cart").child(keyId.child("username").getValue(String.class)), Cart.class).build();
                         cartadapter = new cartItemAdapter(cartFirebaseRecyclerOptions);
@@ -108,6 +92,18 @@ public class cartFragment extends Fragment {
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 list.clear();
                                 for (DataSnapshot dataSnapshot:snapshot.getChildren()){
+                                    FirebaseDatabase.getInstance().getReference().child("restaurant").addListenerForSingleValueEvent(new ValueEventListener() {
+
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            for (DataSnapshot dataSnapshot1:snapshot.getChildren()){
+                                                if(dataSnapshot.child("restaurantid").getValue().equals(dataSnapshot1.getKey())) {
+                                                    delivery_fee = (String) dataSnapshot1.child("delivery_fee").getValue();
+
+                                                }}}
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+                                        }});
                                     String M=dataSnapshot.child("total_price").getValue(String.class);
                                     list.add(M);
                                     tv.setText(list.get(list.size()-1));
@@ -126,7 +122,7 @@ public class cartFragment extends Fragment {
 
                 Intent intent = new Intent(view.getContext(),MapActivity.class);
                 intent.putExtra("total", tv.getText().toString());
-                intent.putExtra("id", id);
+                intent.putExtra("delivery_fee", delivery_fee);
                 startActivity(intent);
             }
         });
@@ -154,14 +150,12 @@ public class cartFragment extends Fragment {
         itemTouchHelper.attachToRecyclerView(recyclerViewCart);
 
 
+
+
+
         return view;
     }
 
- void b(){
-
-
-
- }
 
 
  }

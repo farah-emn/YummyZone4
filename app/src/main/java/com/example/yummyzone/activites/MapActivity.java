@@ -20,10 +20,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-
 import com.example.yummyzone.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -85,7 +83,6 @@ public class MapActivity extends AppCompatActivity {
                 .withListener(new PermissionListener() {
                     @Override
                     public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
-                        //     getmylocation();
                     }
 
                     @Override
@@ -135,10 +132,10 @@ public class MapActivity extends AppCompatActivity {
                 }
                 else {
                     String price = getIntent().getStringExtra("total");
-                    String id = getIntent().getStringExtra("id");
+                    String id = getIntent().getStringExtra("delivery_fee");
                     Intent intent = new Intent(MapActivity.this, orderActivity.class);
                     intent.putExtra("total", price.toString());
-                    intent.putExtra("id", id.toString());
+                    intent.putExtra("delivery_fee", id.toString());
                     startActivity(intent);
                 }
             }
@@ -188,8 +185,7 @@ public class MapActivity extends AppCompatActivity {
                     public void onMapReady(GoogleMap googleMap) {
                         LatLng latLng=new LatLng(location.getLatitude(),location.getLongitude());
                         MarkerOptions markerOptions=new MarkerOptions().position(latLng).title("You are here...!!");
-
-                        googleMap.addMarker(markerOptions);
+                        googleMap.addMarker(markerOptions).showInfoWindow();
                         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,17));
 
                     }

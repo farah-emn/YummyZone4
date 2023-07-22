@@ -39,10 +39,14 @@ public class orderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
         getSupportActionBar().hide();
-        String price = getIntent().getStringExtra("total");
+
+        String total_price = getIntent().getStringExtra("total");
+        String delivery_fee=getIntent().getStringExtra("delivery_fee");
+
         tv_date = findViewById(R.id.order_tv_date);
         tv_price = findViewById(R.id.order_tv_price);
-        tv_price = findViewById(R.id.order_tv_price);
+        tv_charge=findViewById(R.id.order_tv_fet);
+        tv_total=findViewById(R.id.order_tv_total);
         bt_order = findViewById(R.id.order_bt);
         Auth = FirebaseAuth.getInstance();
         user = Auth.getCurrentUser();
@@ -72,7 +76,10 @@ public class orderActivity extends AppCompatActivity {
         SimpleDateFormat dateFormat =new SimpleDateFormat("dd / MMMM / yyyy - HH:mm", Locale.getDefault());
         String dateStr = dateFormat.format(date);
         tv_date.setText(dateStr.toString());
-        tv_price.setText(price);
-        //tv_charge.setText(delivery_fee);
+        tv_price.setText(total_price +" "+"SR");
+        tv_charge.setText(delivery_fee+" "+"SR");
+        tv_total.setText(Double.parseDouble(total_price)+Double.parseDouble(delivery_fee)+" "+"SR");
+
+
     }
 }

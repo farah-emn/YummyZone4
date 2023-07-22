@@ -7,19 +7,22 @@ public class Menu_tab {
     private String preparation_time;
     private String item_image;
     private String restaurantid;
-    private String cateid;
     private String calories;
     private String description;
     private String favorite_icon;
 
 
-    public Menu_tab(String item_name, String item_image,String item_price,String preparation_time, String favorite_icon) {
+
+    public Menu_tab( String item_name, String item_image, String item_price,String preparation_time,String favorite_icon , String calories, String description,String restaurantid) {
         this.item_name=item_name;
         this.item_image=item_image;
         this.item_price=item_price;
-        this.preparation_time=preparation_time;
         this.favorite_icon=favorite_icon;
-    }
+        this.preparation_time=preparation_time;
+        this.calories=calories;
+        this.description=description;
+        this.restaurantid=restaurantid;}
+
 
     public String getDescription() {
         return description;
@@ -49,9 +52,6 @@ public class Menu_tab {
         this.calories = calories;
     }
 
-    public String getCateid() {
-        return cateid;
-    }
 
     public String getRestaurantid() {
         return restaurantid;
@@ -109,22 +109,6 @@ public class Menu_tab {
         this.item_image = item_image;
     }
 
-    public void setCateid(String cateid) {
-        this.cateid = cateid;
-    }
-
-    public Menu_tab(String item_name,String favorite_icon,String item_price,String preparation_time,String item_image,String restaurantid,String cateid,String calories){
-this.item_name=item_name;
-this.item_price=item_price;
-this.preparation_time=preparation_time;
-this.item_image=item_image;
-this.cateid=cateid;
-this.restaurantid=restaurantid;
-this.calories=calories;
-this.favorite_icon=favorite_icon;
 
 
-
-
-  }
 }

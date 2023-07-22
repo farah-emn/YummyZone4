@@ -50,6 +50,7 @@ public class cartItemAdapter extends FirebaseRecyclerAdapter<Cart,cartItemAdapte
         userR = rootR.child("user");
         list = new ArrayList<Cart>();
 
+
         userR.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -110,7 +111,7 @@ public class cartItemAdapter extends FirebaseRecyclerAdapter<Cart,cartItemAdapte
                                 }
                                 for (Cart b :list) {
                                            sum += Double.parseDouble(b.getItem_price());
-                                           FirebaseDatabase.getInstance().getReference().child("Cart").child(username).child(b.getItem_name()).child("total_price").setValue(String.valueOf(sum));}}
+                                           FirebaseDatabase.getInstance().getReference().child("Cart").child(username).child(b.getRestaurantid()+"_"+b.getItem_name()).child("total_price").setValue(String.valueOf(sum));}}
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {}});}}}
             @Override

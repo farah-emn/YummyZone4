@@ -79,8 +79,7 @@ public class homeFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 String s = search.getText().toString();
-                FirebaseRecyclerOptions<restaurant> restaurantFirebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<restaurant>().setQuery(FirebaseDatabase.getInstance().getReference("restaurant").orderByChild("restaurant_name") .startAt(s).endAt(s + "\uf8ff"), restaurant.class)
-                        .build();
+                FirebaseRecyclerOptions<restaurant> restaurantFirebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<restaurant>().setQuery(FirebaseDatabase.getInstance().getReference("restaurant").orderByChild("restaurant_name") .startAt(s).endAt(s + "\uf8ff"), restaurant.class).build();
                 restaurantadapter = new restaurantAdapter(restaurantFirebaseRecyclerOptions);
                 recyclerView_restaurants.setAdapter(restaurantadapter);
                 restaurantadapter.startListening();
@@ -102,6 +101,13 @@ public class homeFragment extends Fragment {
                         } else if (restaurant_id.equals(dataSnapshot.child("categoryBurgers_id").getValue())) {
                             FirebaseRecyclerOptions<restaurant> restaurantFirebaseRecyclerOptions1 = new FirebaseRecyclerOptions.Builder<restaurant>()
                                     .setQuery(databaseReference.orderByChild("categoryBurgers_id").equalTo(restaurant_id), restaurant.class).build();
+                            restaurantadapter = new restaurantAdapter(restaurantFirebaseRecyclerOptions1);
+                            recyclerView_restaurants.setAdapter(restaurantadapter);
+                            restaurantadapter.startListening();
+
+                        } else if (restaurant_id.equals(dataSnapshot.child("categorySandwiche_id").getValue())) {
+                            FirebaseRecyclerOptions<restaurant> restaurantFirebaseRecyclerOptions1 = new FirebaseRecyclerOptions.Builder<restaurant>()
+                                    .setQuery(databaseReference.orderByChild("categorySandwiche_id").equalTo(restaurant_id), restaurant.class).build();
                             restaurantadapter = new restaurantAdapter(restaurantFirebaseRecyclerOptions1);
                             recyclerView_restaurants.setAdapter(restaurantadapter);
                             restaurantadapter.startListening();
