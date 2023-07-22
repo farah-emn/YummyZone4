@@ -124,7 +124,7 @@ public class itemInfoFragment extends Fragment {
                                  @Override
                                  public void onDataChange(@NonNull DataSnapshot snapshot) {
                                      if (snapshot.getValue()==null) {
-                                     Toast.makeText(getContext(), "Successfully added to cart1"+(snapshot.getValue()==null), Toast.LENGTH_SHORT).show();
+                                     Toast.makeText(getContext(), "Successfully added to cart1", Toast.LENGTH_SHORT).show();
                                      String item_image = image;
                                      String item_name = name;
                                      String qty = (String) tv_qty.getText();
