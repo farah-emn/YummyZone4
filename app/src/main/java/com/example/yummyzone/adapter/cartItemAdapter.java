@@ -1,5 +1,6 @@
 package com.example.yummyzone.adapter;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,6 +50,8 @@ public class cartItemAdapter extends FirebaseRecyclerAdapter<Cart,cartItemAdapte
         rootR = FirebaseDatabase.getInstance().getReference();
         userR = rootR.child("user");
         list = new ArrayList<Cart>();
+
+
 
         userR.addValueEventListener(new ValueEventListener() {
             @Override
@@ -104,13 +107,13 @@ public class cartItemAdapter extends FirebaseRecyclerAdapter<Cart,cartItemAdapte
                                 list.clear();
                                 for (DataSnapshot dataSnapshot:snapshot.getChildren()){
                                     String keyresturant = dataSnapshot.getKey();
-                                        Cart cart = dataSnapshot.getValue(Cart.class);
-                                        list.add(cart);
-                                         sum = 0;
+                                    Cart cart = dataSnapshot.getValue(Cart.class);
+                                    list.add(cart);
+                                    sum = 0;
                                 }
                                 for (Cart b :list) {
-                                           sum += Double.parseDouble(b.getItem_price());
-                                           FirebaseDatabase.getInstance().getReference().child("Cart").child(username).child(b.getItem_name()).child("total_price").setValue(String.valueOf(sum));}}
+                                    sum += Double.parseDouble(b.getItem_price());
+                                    FirebaseDatabase.getInstance().getReference().child("Cart").child(username).child(b.getRestaurantid()+"_"+b.getItem_name()).child("total_price").setValue(String.valueOf(sum));}}
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {}});}}}
             @Override
@@ -145,27 +148,27 @@ public class cartItemAdapter extends FirebaseRecyclerAdapter<Cart,cartItemAdapte
             rv=itemView.findViewById(R.id.cart_rv);
             tv = itemView.findViewById(R.id.cart_tv_price);
         }
-         public void delete() {
-             Auth = FirebaseAuth.getInstance();
-             user = Auth.getCurrentUser();
-             rootR = FirebaseDatabase.getInstance().getReference();
-             userR = rootR.child("user");
+        public void delete() {
+            Auth = FirebaseAuth.getInstance();
+            user = Auth.getCurrentUser();
+            rootR = FirebaseDatabase.getInstance().getReference();
+            userR = rootR.child("user");
 
-             userR.addValueEventListener(new ValueEventListener() {
-                 @Override
-                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                     for (DataSnapshot keyId : snapshot.getChildren()) {
-                         if (keyId.child("email").getValue().equals(user.  getEmail())) {
-                             username = keyId.child("username").getValue(String.class);
-                             FirebaseDatabase.getInstance()
-                                     .getReference()
-                                     .child("Cart").child(username).child(getRef(getPosition()).getKey()).removeValue();}}}
+            userR.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot keyId : snapshot.getChildren()) {
+                        if (keyId.child("email").getValue().equals(user.  getEmail())) {
+                            username = keyId.child("username").getValue(String.class);
+                            FirebaseDatabase.getInstance()
+                                    .getReference()
+                                    .child("Cart").child(username).child(getRef(getPosition()).getKey()).removeValue();}}}
 
-                 @Override
-                 public void onCancelled(@NonNull DatabaseError error) {
-                 }
-             });
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
 
-         }}
+        }}
 
 }

@@ -32,6 +32,7 @@ public class MenuFragment extends Fragment {
     Menu_Adapter menu_adapter;
     DatabaseReference databaseReference;
     TextView restaurant_name;
+
     public MenuFragment() {
     }
     @Override

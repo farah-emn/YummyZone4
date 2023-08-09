@@ -1,26 +1,32 @@
 package com.example.yummyzone.classes;
 
+import android.os.Bundle;
+
 public class Cart {
     private String item_image;
     private String item_name;
     private String qty;
     private String item_price;
-    private String id;
+    private String restaurantid;
     private  String total_price;
     public Cart(){
 
     }
-    public Cart(String item_image, String item_name, String qty, String item_price, String id,String total_price) {
+    public Cart(String item_image, String item_name, String qty, String item_price, String restaurantid,String total_price) {
         this.item_image = item_image;
         this.item_name = item_name;
         this.qty=qty;
         this.item_price = item_price;
-        this.id=id;
+        this.restaurantid=restaurantid;
         this.total_price=total_price;
     }
 
-    public String getId() {
-        return id;
+    public String getRestaurantid() {
+        return restaurantid;
+    }
+
+    public void setRestaurantid(String restaurantid) {
+        this.restaurantid = restaurantid;
     }
 
     public String getTotal_price() {
@@ -31,9 +37,6 @@ public class Cart {
         this.total_price = total_price;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getQty() {
         return qty;
@@ -66,4 +69,5 @@ public class Cart {
     public void setItem_image(String item_image) {
         this.item_image = item_image;
     }
+
 }

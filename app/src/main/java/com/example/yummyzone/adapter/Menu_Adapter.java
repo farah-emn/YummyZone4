@@ -10,17 +10,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.yummyzone.classes.Cart;
 import com.example.yummyzone.classes.Menu_tab;
 import com.example.yummyzone.R;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
-
 import com.example.yummyzone.fragment.itemInfoFragment;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -29,7 +25,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -59,13 +54,11 @@ public class Menu_Adapter extends FirebaseRecyclerAdapter<Menu_tab,Menu_Adapter.
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String restaurant = model.getRestaurantid();
                 String item_name = model.getItem_name();
                 String item_image = model.getItem_image();
                 String item_price = model.getItem_price();
                 String description=model.getDescription();
-                String id = getRef(position).getKey();
-                itemInfoFragment fragment = new itemInfoFragment(item_name, item_image, id, item_price, restaurant,description,model.getCalories(),model.getPreparation_time());
+                itemInfoFragment fragment = new itemInfoFragment(getRef(position).getKey(),item_name, item_image, item_price,model.getFavorite_icon(),model.getCalories(),description,model.getPreparation_time(),model.getRestaurantid());
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, fragment).addToBackStack(null).commit();
             }
@@ -80,26 +73,26 @@ public class Menu_Adapter extends FirebaseRecyclerAdapter<Menu_tab,Menu_Adapter.
                 long pressTime = System.currentTimeMillis();
                 // If double click...
                 if (pressTime - lastPressTime <= DOUBLE_PRESS_INTERVAL) {
-                          userR.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    for(DataSnapshot keyId : snapshot.getChildren()){
-                                        if (keyId.child("email").getValue().equals(user.getEmail())) {
-                                            username = keyId.child("username").getValue(String.class);
-                                            Toast.makeText(view.getContext(), "delete", Toast.LENGTH_SHORT).show();
-                                            FirebaseDatabase.getInstance().getReference().child("Foods").child(getRef(position).getKey()).child("favorite_icon").setValue("https://i.ibb.co/m571XXg/like-9.png");
+                    userR.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            for(DataSnapshot keyId : snapshot.getChildren()){
+                                if (keyId.child("email").getValue().equals(user.getEmail())) {
+                                    username = keyId.child("username").getValue(String.class);
+                                    Toast.makeText(view.getContext(), "delete", Toast.LENGTH_SHORT).show();
+                                    FirebaseDatabase.getInstance().getReference().child("Foods").child(getRef(position).getKey()).child("favorite_icon").setValue("https://i.ibb.co/m571XXg/like-9.png");
 
-                                        }}FirebaseDatabase.getInstance().getReference().child("Favourite").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot snapshot1) {
-                                            for (DataSnapshot dataSnapshot:snapshot1.getChildren()) {
-                                                FirebaseDatabase.getInstance()
-                                                        .getReference()
-                                                        .child("Favourite").child(username).child(getRef(position).getKey()).removeValue();}}
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {}});}
+                                }}FirebaseDatabase.getInstance().getReference().child("Favourite").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
-                                public void onCancelled(@NonNull DatabaseError error) {}});mHasDoubleClicked = true;}
+                                public void onDataChange(@NonNull DataSnapshot snapshot1) {
+                                    for (DataSnapshot dataSnapshot:snapshot1.getChildren()) {
+                                        FirebaseDatabase.getInstance()
+                                                .getReference()
+                                                .child("Favourite").child(username).child(getRef(position).getKey()).removeValue();}}
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {}});}
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {}});mHasDoubleClicked = true;}
 
                 else {
                     // If not double click....
@@ -114,7 +107,7 @@ public class Menu_Adapter extends FirebaseRecyclerAdapter<Menu_tab,Menu_Adapter.
                                             if (keyId.child("email").getValue().equals(user.getEmail())) {
 
                                                 username = keyId.child("username").getValue(String.class);
-                                                Menu_tab M=new Menu_tab(model.getItem_name(),model.getItem_image(),model.getItem_price(),model.getPreparation_time(),"https://iili.io/HPUQz3x.png");
+                                                Menu_tab M=new Menu_tab(model.getItem_name(),model.getItem_image(),model.getItem_price(),model.getPreparation_time(),"https://iili.io/HPUQz3x.png",model.getCalories(),model.getDescription(),model.getRestaurantid());
                                                 FirebaseDatabase.getInstance().getReference().child("Favourite").child(username).child(getRef(position).getKey()).setValue(M);
                                                 FirebaseDatabase.getInstance().getReference().child("Foods").addListenerForSingleValueEvent(new ValueEventListener() {
                                                     @Override
@@ -137,14 +130,8 @@ public class Menu_Adapter extends FirebaseRecyclerAdapter<Menu_tab,Menu_Adapter.
 
                                                                 }
                                                             });
-
-
                                                         }
                                                     }
-
-
-
-
                                                     @Override
                                                     public void onCancelled(@NonNull DatabaseError error) {
 

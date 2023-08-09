@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -73,17 +74,7 @@ public class eidtProfileFragment extends Fragment {
     FirebaseStorage storage;
     StorageReference storageReference;
 
-    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
-            new ActivityResultCallback<Uri>() {
-                @Override
-                public void onActivityResult(Uri uri) {
-                    if(uri != null){
-                        img_uri = uri;
-                        img_profile.setImageURI(uri);
 
-                    }
-                }
-            });
 
 
     @Override
@@ -110,6 +101,20 @@ public class eidtProfileFragment extends Fragment {
         userR = rootR.child("user");
         storage= FirebaseStorage.getInstance();
         StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("images/");
+        ProgressBar progressBar = new ProgressBar(getContext());
+
+
+        ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
+                new ActivityResultCallback<Uri>() {
+                    @Override
+                    public void onActivityResult(Uri uri) {
+                        if(uri != null){
+                            img_uri = uri;
+                            img_profile.setImageURI(uri);
+
+                        }
+                    }
+                });
 
 
         img_profile.setOnClickListener(new View.OnClickListener() {
@@ -155,22 +160,6 @@ public class eidtProfileFragment extends Fragment {
                     }
                 });
 
-//                Glide.with(getActivity())
-//                        .load(img_uri)
-//                        .into(img_profile);
-
-//                try {
-//                    File localFile = File.createTempFile("images", "jpeg");
-//                    storageReference.getFile(localFile);
-//                    Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-//                    img_profile.setImageBitmap(bitmap);
-//
-//                } catch (IOException e) {
-//                    throw new RuntimeException(e);
-//                }
-
-
-
                 bt_save.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -180,8 +169,9 @@ public class eidtProfileFragment extends Fragment {
                         String ed_city = et_city.getText().toString();
                         String ed_street = et_street.getText().toString();
                         String ed_district = et_district.getText().toString();
-                        FirebaseStorage.getInstance().getReference("images/"+username).putFile(img_uri);
-
+                        if (img_uri != null) {
+                            FirebaseStorage.getInstance().getReference("images/" + username).putFile(img_uri);
+                        }
                         user u = new user(username, email, password, ed_firstName, ed_lastName, ed_mobileNumber, ed_city, ed_street, ed_district);
                         userR.child(String.valueOf(username)).setValue(u);
                         Fragment fragment = new profileFragment();

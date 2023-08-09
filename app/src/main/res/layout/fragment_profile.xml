@@ -40,62 +40,6 @@
         android:layout_weight="1"
         style="@style/Screen">
 
-<!--        <androidx.cardview.widget.CardView-->
-<!--            android:id="@+id/settings_cv_info"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            android:layout_marginTop="15dp"-->
-<!--            android:layout_marginStart="15dp"-->
-<!--            android:layout_marginEnd="15dp"-->
-<!--            app:cardCornerRadius="40dp">-->
-
-<!--            <androidx.cardview.widget.CardView-->
-<!--                android:id="@+id/cardView"-->
-<!--                android:layout_width="120dp"-->
-<!--                android:layout_height="120dp"-->
-<!--                android:layout_marginTop="15dp"-->
-<!--                app:cardCornerRadius="100dp"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent">-->
-
-<!--                <ImageView-->
-<!--                    android:layout_width="120dp"-->
-<!--                    android:layout_height="120dp"-->
-<!--                    android:src="@drawable/yummyzoneimage" />-->
-
-<!--                <Button-->
-<!--                    android:id="@+id/proile_bt_edit"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="40dp"-->
-<!--                    android:layout_marginStart="15dp"-->
-<!--                    android:layout_marginTop="5dp"-->
-<!--                    android:layout_marginEnd="15dp"-->
-<!--                    android:background="@drawable/bt_design"-->
-<!--                    android:text="Eidt profile"-->
-<!--                    android:textAlignment="center"-->
-<!--                    android:textAllCaps="false"-->
-<!--                    android:textSize="17sp"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toBottomOf="@+id/profile_tv_name" />-->
-<!--            </androidx.cardview.widget.CardView>-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/profile_tv_name"-->
-<!--                style="@style/text"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Farah"-->
-<!--                android:textSize="22sp"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/cardView" />-->
-<!--        </androidx.cardview.widget.CardView>-->
-
 
         <RelativeLayout
             android:id="@+id/relativeLayout2"

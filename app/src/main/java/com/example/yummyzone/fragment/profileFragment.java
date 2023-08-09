@@ -1,5 +1,6 @@
 package com.example.yummyzone.fragment;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.yummyzone.R;
+import com.example.yummyzone.activites.shippedActivity;
 import com.example.yummyzone.activites.signIn;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -56,6 +58,7 @@ public class profileFragment extends Fragment {
     String email;
     ImageView img_profile;
     String username;
+    LinearLayout ll_shipped;
 
 
     @Override
@@ -77,6 +80,7 @@ public class profileFragment extends Fragment {
         img_edit= view.findViewById(R.id.profile_iv_edit);
         processing = view.findViewById(R.id.profile_linear_processing);
         img_profile = view.findViewById(R.id.profile_img);
+        ll_shipped = view.findViewById(R.id.profile_linear_shipped);
         Auth = FirebaseAuth.getInstance();
         user = Auth.getCurrentUser();
         rootR = FirebaseDatabase.getInstance().getReference();
@@ -84,6 +88,14 @@ public class profileFragment extends Fragment {
         StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("images/");
 
 
+
+        ll_shipped.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), shippedActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         sharedPreferences = getContext().getSharedPreferences("mode", Context.MODE_PRIVATE);
@@ -110,8 +122,8 @@ public class profileFragment extends Fragment {
         userR.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot keyId : snapshot.getChildren()){
-                    if (keyId.child("email").getValue().equals(user.getEmail())){
+                for (DataSnapshot keyId : snapshot.getChildren()) {
+                    if (keyId.child("email").getValue().equals(user.getEmail())) {
                         name = keyId.child("firstName").getValue(String.class);
                         email = keyId.child("email").getValue(String.class);
                         username = keyId.child("username").getValue(String.class);
@@ -119,30 +131,27 @@ public class profileFragment extends Fragment {
                 }
                 tv_name.setText(name);
                 tv_email.setText(email);
-                storageReference.child(username).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        Glide.with(getActivity()).load(uri).into(img_profile);
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        // Handle any errors
-                    }
-                });
+                if (isAdded()){
+                    storageReference.child(username).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            Glide.with(getActivity()).load(uri).into(img_profile);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            // Handle any errors
+                        }
+                    });
+                }
+
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-//        bt_edit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Fragment fragment = new eidtProfileFragment();
-//                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment, fragment).commit();
-//            }
-//        });
 
         sw_dark.setOnClickListener(new View.OnClickListener() {
             @Override

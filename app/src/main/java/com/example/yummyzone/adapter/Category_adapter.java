@@ -32,7 +32,6 @@ public class Category_Adapter extends FirebaseRecyclerAdapter<Category_tab, Cate
                 AppCompatActivity activity=(AppCompatActivity)view.getContext();
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment,new homeFragment(position_id)).commit();
             }});}
-
     @NonNull
     @Override
     public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

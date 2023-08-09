@@ -16,9 +16,6 @@ import com.example.yummyzone.fragment.searchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-//import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
-//import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
-
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView nav;
     String post_key1 = "";
