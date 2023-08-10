@@ -18,6 +18,7 @@
     <style name="text"><item name="android:textColor">@color/light_black</item></style>
     <style name="subScreen"><item name="android:background">@drawable/profile_bachground</item></style>
     <style name="eidttext"><item name="android:background">@drawable/et_design_gray</item></style>
+    <style name="eidttext2"><item name="android:background">@drawable/et_design_gray2</item></style>
     <style name="bar"><item name="android:background">@drawable/menu_bar_shape</item></style>
     <style name="infobackgrond"><item name="android:background">@drawable/infobackground</item></style>
     <style name="check_mark"><item name="android:background">@drawable/check_light</item></style>

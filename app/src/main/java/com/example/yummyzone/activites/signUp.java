@@ -27,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class signUp extends AppCompatActivity {
     TextView signUp_tv;
-    Button bt_skip;
+
     Button bt_signUp;
     FirebaseAuth mAuth;
     EditText et_email;
@@ -59,7 +59,6 @@ public class signUp extends AppCompatActivity {
         getSupportActionBar().hide();
         mAuth = FirebaseAuth.getInstance();
         signUp_tv = findViewById(R.id.signUp_tv_signIn);
-        bt_skip = findViewById(R.id.signup_bt_skip);
         bt_signUp = findViewById(R.id.signUp_bt_signUp);
         et_email = findViewById(R.id.signUp_et_email);
         et_password = findViewById(R.id.signUp_et_password);
@@ -78,14 +77,7 @@ public class signUp extends AppCompatActivity {
             }
         });
 
-        bt_skip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(signUp.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+
         bt_signUp.setOnClickListener(new View.OnClickListener() {
 
             @Override

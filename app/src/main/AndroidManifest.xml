@@ -16,6 +16,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.YummyZone">
         <activity
+            android:name=".activites.restaurant_signIn"
+            android:exported="false" />
+        <activity
+            android:name=".activites.restaurant_signUp"
+            android:exported="false" />
+        <activity
+            android:name=".activites.restaurant_signUp2"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyD_opFXaJF2cPjbU04frGOrm1UM2Xjhq4g" />
+
+        <activity
+            android:name=".activites.startedActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".activites.shippedActivity"
             android:exported="false" />
         <activity
@@ -24,25 +47,12 @@
         <activity
             android:name=".activites.confirimationActivity"
             android:exported="false" />
-
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyD_opFXaJF2cPjbU04frGOrm1UM2Xjhq4g" />
-
         <activity
             android:name=".activites.signUp"
-            android:exported="false">
-
-        </activity>
+            android:exported="false" />
         <activity
-            android:name=".activites.IntroActivity"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:name=".activites.mainRestaurantActivity"
+            android:exported="false" />
         <activity
             android:name=".activites.signIn"
             android:exported="false" />
@@ -57,6 +67,9 @@
             android:exported="false" />
         <activity
             android:name=".activites.orderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activites.IntroActivity"
             android:exported="false" />
     </application>
 

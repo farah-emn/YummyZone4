@@ -28,7 +28,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class signIn extends AppCompatActivity {
     TextView signUp_tv;
-    Button bt_skip;
     Button bt_signin;
     EditText et_email;
     EditText et_password;
@@ -56,7 +55,6 @@ public class signIn extends AppCompatActivity {
         getSupportActionBar().hide();
 
         signUp_tv = findViewById(R.id.signUp_tv_signIn);
-        bt_skip = findViewById(R.id.signin_bt_skip);
         bt_signin = findViewById(R.id.signIn_bt_signIn);
         et_email = findViewById(R.id.signIn_et_email);
         et_password = findViewById(R.id.signIn_et_password);
@@ -71,13 +69,7 @@ public class signIn extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        bt_skip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(signIn.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
+
 
         bt_signin.setOnClickListener(new View.OnClickListener() {
             @Override
