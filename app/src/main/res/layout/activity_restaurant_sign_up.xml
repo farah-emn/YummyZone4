@@ -38,7 +38,7 @@
         android:drawableStart="@drawable/icon_person_orange"
         android:drawablePadding="10dp"
         android:hint="Commercial register"
-        android:inputType="textEmailAddress"
+        android:inputType="number"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"

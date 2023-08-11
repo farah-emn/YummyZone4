@@ -99,6 +99,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.009" />
 
+    <TextView
+        android:id="@+id/restaurant_signIn_tv_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:textColor="@color/red"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_signIn_et_password" />
+
     <Button
         android:id="@+id/restaurant_signIn_bt_signIn"
         android:layout_width="match_parent"

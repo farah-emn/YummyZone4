@@ -35,31 +35,11 @@
         android:layout_width="320dp"
         android:layout_height="150dp"
         android:scaleType="centerCrop"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView" />
 
-
-
-    <EditText
-        android:id="@+id/restaurant_signUp2_et_restaurantName"
-        style="@style/eidttext"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="20dp"
-        android:drawableStart="@drawable/icon_person_orange"
-        android:drawablePadding="10dp"
-        android:hint="RestaurantName"
-        android:inputType="textEmailAddress"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restaurant_signup2_profile_img" />
 
     <EditText
         android:id="@+id/restaurant_signUp2_et_mobile"
@@ -70,13 +50,13 @@
         android:drawableStart="@drawable/icon_phone"
         android:drawablePadding="10dp"
         android:hint="MobileNumber"
-        android:inputType="text"
+        android:inputType="phone"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restaurant_signUp2_et_restaurantName"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_signup2_profile_img"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"/>
 
@@ -84,12 +64,12 @@
         android:id="@+id/restaurant_signUp2_et_deliveryFee"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         style="@style/eidttext"
         android:drawableStart="@drawable/icon_shipped"
         android:drawablePadding="10dp"
         android:hint="DeliveryFee"
-        android:inputType="text"
+        android:inputType="number"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -103,12 +83,12 @@
         android:id="@+id/restaurant_signUp2_et_deliveryTime"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         style="@style/eidttext"
         android:drawableStart="@drawable/icon_clock2"
         android:drawablePadding="10dp"
         android:hint="DeliveryTime"
-        android:inputType="text"
+        android:inputType="number"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -117,6 +97,30 @@
         app:layout_constraintTop_toBottomOf="@+id/restaurant_signUp2_et_deliveryFee"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/restaurant_signUp2_selectCard"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_signUp2_et_deliveryTime">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/restaurant_signUp2_tv_selected"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:textSize="17sp"
+                android:drawableStart="@drawable/icon_arrow40"
+                android:hint="Select category"/>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 
 
@@ -142,13 +146,13 @@
         android:textColor="@color/red"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restaurant_signUp2_et_deliveryTime" />
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_signUp2_selectCard" />
 
     <Button
         android:id="@+id/restaurant_signUp2_bt_signUp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="5dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/bt_design"
@@ -159,5 +163,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restaurant_signUp2_et_deliveryTime" />
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_signUp2_tv_text" />
 </androidx.constraintlayout.widget.ConstraintLayout>
