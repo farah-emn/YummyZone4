@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +25,18 @@ public class restaurant_signIn extends AppCompatActivity {
     Button bt_signIn;
     EditText et_resName, et_password;
     DatabaseReference restR, rootR;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (sharedPreferences.contains("restaurantName")){
+            Intent intent = new Intent(restaurant_signIn.this, mainRestaurantActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +49,8 @@ public class restaurant_signIn extends AppCompatActivity {
         et_resName = findViewById(R.id.restaurant_signIn_et_restaurantName);
         tv_text = findViewById(R.id.restaurant_signIn_tv_text);
         restR = FirebaseDatabase.getInstance().getReference().child("restaurant");
+        sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
         tv_signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +73,8 @@ public class restaurant_signIn extends AppCompatActivity {
                             if (snapshot.hasChild(resName)){
                                 String getPassword = snapshot.child(resName).child("password").getValue(String.class);
                                 if (getPassword.equals(password)){
+                                    editor.putString("restaurantName", resName);
+                                    editor.commit();
                                     Toast.makeText(restaurant_signIn.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(restaurant_signIn.this, mainRestaurantActivity.class);
                                     startActivity(intent);

@@ -34,7 +34,7 @@ public class mainRestaurantActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         nav = findViewById(R.id.restaurant_main_nav);
-        getSupportFragmentManager().beginTransaction().replace(R.id.restaurant_main_fragment, new homeFragment(post_key1)).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.restaurant_main_fragment, new restaurant_menuFragment()).commit();
         nav.setSelectedItemId(R.id.home);
         nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
