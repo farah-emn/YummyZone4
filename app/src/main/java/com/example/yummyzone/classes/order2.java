@@ -11,9 +11,10 @@ public class order2 {
     String price;
     String city, street, district;
     String orderNumber;
+    String orderState;
 
 
-    public order2(ArrayList<order> items, String mobile, String restaurantName, String username, String date, String price, String city, String street, String district, String orderNumber ) {
+    public order2(ArrayList<order> items, String mobile, String restaurantName, String username, String date, String price, String city, String street, String district, String orderNumber, String orderState ) {
         this.items = items;
         this.mobile = mobile;
         this.restaurantName = restaurantName;
@@ -24,6 +25,11 @@ public class order2 {
         this.street = street;
         this.district = district;
         this.orderNumber = orderNumber;
+        this.orderState = orderState;
+    }
+
+    public String getOrderState() {
+        return orderState;
     }
 
     public String getRestaurantName() {

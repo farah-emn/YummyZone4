@@ -6,6 +6,9 @@ public class shipped {
     String date;
     String price;
     String img;
+    String city;
+    String district;
+    String street;
 
     public shipped(String mobile, String restaurantName, String date, String price) {
         this.mobile = mobile;
@@ -14,12 +17,39 @@ public class shipped {
         this.price = price;
     }
 
-    public shipped(String mobile, String restaurantName, String date, String price, String img) {
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public shipped(String mobile, String restaurantName, String date, String price, String img, String city, String district, String street) {
         this.mobile = mobile;
         this.restaurantName = restaurantName;
         this.date = date;
         this.price = price;
         this.img = img;
+        this.city=city;
+        this.district=district;
+        this.street=street;
     }
 
     public String getMobile() {

@@ -1,13 +1,17 @@
 package com.example.yummyzone.activites;
 
+
+import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.yummyzone.R;
 import com.example.yummyzone.adapter.shippedAdapter;
@@ -30,7 +34,9 @@ public class shippedActivity extends AppCompatActivity {
     FirebaseUser user;
     DatabaseReference userR, orderR, rootR, resR;
     String username;
-    String img;
+    ImageView imageViewback;
+    public static String img="";
+    ProgressBar p;
 
 
     @Override
@@ -44,7 +50,9 @@ public class shippedActivity extends AppCompatActivity {
         rootR = FirebaseDatabase.getInstance().getReference();
         userR = rootR.child("user");
         orderR = rootR.child("order");
+        imageViewback=findViewById(R.id.profile_image_back);
         resR = rootR.child("restaurant");
+
 
         RecyclerView.LayoutManager lm1 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         shippedRec.setHasFixedSize(true);
@@ -53,6 +61,7 @@ public class shippedActivity extends AppCompatActivity {
         shippedList = new ArrayList<>();
         shA = new shippedAdapter(this, shippedList);
         shippedRec.setAdapter(shA);
+        p=findViewById(R.id.s);
 
         userR.addValueEventListener(new ValueEventListener() {
             @Override
@@ -65,25 +74,42 @@ public class shippedActivity extends AppCompatActivity {
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 for (DataSnapshot keyId : snapshot.getChildren()) {
                                     if (keyId.child("username").getValue().equals(username)){
+                                        p.setVisibility(View.GONE);
+                                        if (keyId.getChildrenCount() > 0) {
+
+                                            p.setVisibility(View.INVISIBLE);
+                                        }
+
                                         String mobile = keyId.child("mobile").getValue(String.class);
                                         String date = keyId.child("date").getValue(String.class);
                                         String price = keyId.child("price").getValue(String.class);
+                                        String city=keyId.child("city").getValue(String.class);
+                                        String district=keyId.child("district").getValue(String.class);
+                                        String street=keyId.child("street").getValue(String.class);
                                         String restaurantName = keyId.child("restaurantName").getValue(String.class);
                                         resR.addValueEventListener(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                 for (DataSnapshot keyId : snapshot.getChildren()) {
                                                     if (keyId.child("restaurant_name").getValue().equals(restaurantName)){
-                                                        img = keyId.child("logo").getValue(String.class);
+                                                        img = String.valueOf( keyId.child("logo").getValue());
+                                                        cf();
                                                     }
                                                 }
                                             }
+
+                                            private void cf() {
+                                                shA.notifyDataSetChanged();
+
+                                                shipped s = new shipped(mobile, restaurantName, date, price, img,city,district,street);
+                                                shippedList.add(s);
+                                            }
+
                                             @Override
                                             public void onCancelled(@NonNull DatabaseError error) {
                                             }
                                         });
-                                        shipped s = new shipped(mobile, restaurantName, date, price, img);
-                                        shippedList.add(s);
+
                                     }
                                 }
                                 shA.notifyDataSetChanged();
@@ -100,6 +126,16 @@ public class shippedActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        p.getIndeterminateDrawable().setColorFilter(getResources()
+                .getColor(R.color.dark_orange), PorterDuff.Mode.SRC_IN);
+        imageViewback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(shippedActivity.this,restaurant_signIn.class);
+                startActivity(i);
 
             }
         });

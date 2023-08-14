@@ -16,11 +16,17 @@ public class startedActivity extends AppCompatActivity {
     TextView bt_restaurant;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+    String resName;
 
     @Override
     protected void onStart() {
         super.onStart();
-        if (sharedPreferences.contains("restaurantName")){
+//        if (sharedPreferences.contains("restaurantName")){
+//            Intent intent = new Intent(startedActivity.this, mainRestaurantActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
+        if (!resName.equals("")){
             Intent intent = new Intent(startedActivity.this, mainRestaurantActivity.class);
             startActivity(intent);
             finish();
@@ -37,6 +43,14 @@ public class startedActivity extends AppCompatActivity {
         bt_restaurant = findViewById(R.id.restaurant_started_bt_restaurant);
         sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
         editor = sharedPreferences.edit();
+        resName = sharedPreferences.getString("restaurantName", "");
+
+//        if (resName.equals("")){
+//            Intent intent = new Intent(startedActivity.this, mainRestaurantActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
+
 
         bt_customer.setOnClickListener(new View.OnClickListener() {
             @Override

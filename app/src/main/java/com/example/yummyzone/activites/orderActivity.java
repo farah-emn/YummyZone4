@@ -1,17 +1,15 @@
 package com.example.yummyzone.activites;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.yummyzone.R;
-import com.example.yummyzone.classes.Cart;
 import com.example.yummyzone.classes.order;
 import com.example.yummyzone.classes.order2;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,10 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
-import java.util.UUID;
 
 public class orderActivity extends AppCompatActivity {
     TextView tv_date;
@@ -103,8 +98,9 @@ public class orderActivity extends AppCompatActivity {
                                             orderR.addListenerForSingleValueEvent(new ValueEventListener() {
                                                 @Override
                                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                    order2 o2 = new order2(items, mobileNumber, restaurantName, username, dateStr, String.valueOf(i), city, street, district, String.valueOf(orderNumber));
-                                                    orderR.child(String.valueOf(snapshot.getChildrenCount()+1)).setValue(o2);
+                                                    long count = snapshot.getChildrenCount()+1;
+                                                    order2 o2 = new order2(items, mobileNumber, restaurantName, username, dateStr, String.valueOf(i), city, street, district,String.valueOf(count) ,"new");
+                                                    orderR.child(String.valueOf(count)).setValue(o2);
                                                 }
                                                 @Override
                                                 public void onCancelled(@NonNull DatabaseError error) {

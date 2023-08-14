@@ -28,15 +28,6 @@ public class restaurant_signIn extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (sharedPreferences.contains("restaurantName")){
-            Intent intent = new Intent(restaurant_signIn.this, mainRestaurantActivity.class);
-            startActivity(intent);
-            finish();
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +57,7 @@ public class restaurant_signIn extends AppCompatActivity {
             public void onClick(View v) {
                 String resName = et_resName.getText().toString();
                 String password = et_password.getText().toString();
-                if (!resName.equals("") && !password.equals("")){
+                if (!resName.equals("") && !password.equals("")) {
                     restR.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -77,6 +68,7 @@ public class restaurant_signIn extends AppCompatActivity {
                                     editor.commit();
                                     Toast.makeText(restaurant_signIn.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(restaurant_signIn.this, mainRestaurantActivity.class);
+                                    intent.putExtra("resName",resName);
                                     startActivity(intent);
                                     finish();
                                 }else {
@@ -85,6 +77,22 @@ public class restaurant_signIn extends AppCompatActivity {
                             }else {
                                 tv_text.setText("Restaurant name is no texist");
                             }
+//                            for (DataSnapshot keyId : snapshot.getChildren()) {
+//                                if (keyId.child("restaurant_name").getValue().equals(resName)) {
+//                                    String getPassword = snapshot.child("password").getValue(String.class);
+//                                    if (getPassword.equals(password)) {
+//                                        editor.putString("restaurantName", resName);
+//                                        editor.commit();
+//                                        Toast.makeText(restaurant_signIn.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
+//                                        Intent intent = new Intent(restaurant_signIn.this, mainRestaurantActivity.class);
+//                                        intent.putExtra("resName", resName);
+//                                        startActivity(intent);
+//                                        finish();
+//                                    } else {
+//                                        tv_text.setText("Password is wrong");
+//                                    }
+//                                }
+//                            }
                         }
 
                         @Override
@@ -92,7 +100,7 @@ public class restaurant_signIn extends AppCompatActivity {
 
                         }
                     });
-                }else {
+                } else {
                     tv_text.setText("Please enter all fields");
                 }
 

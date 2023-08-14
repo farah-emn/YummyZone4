@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -24,7 +25,8 @@ import com.google.android.material.navigation.NavigationBarView;
 public class mainRestaurantActivity extends AppCompatActivity {
 
     BottomNavigationView nav;
-    String post_key1 = "";
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +34,15 @@ public class mainRestaurantActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_restaurant);
         getSupportActionBar().hide();
+        sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        String res = sharedPreferences.getString("restaurantName", "");
+
 
         nav = findViewById(R.id.restaurant_main_nav);
         getSupportFragmentManager().beginTransaction().replace(R.id.restaurant_main_fragment, new restaurant_menuFragment()).commit();
         nav.setSelectedItemId(R.id.home);
+
         nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -61,7 +68,7 @@ public class mainRestaurantActivity extends AppCompatActivity {
                         break;
 
                     case R.id.settings:
-                        fragment = new restaurant_profileFragment();
+                        fragment = new restaurant_profileFragment(res);
                         break;
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.restaurant_main_fragment, fragment).commit();

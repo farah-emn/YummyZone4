@@ -1,7 +1,6 @@
 package com.example.yummyzone.adapter;
 
 import android.content.Context;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,18 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.yummyzone.R;
-import com.example.yummyzone.classes.restaurant;
 import com.example.yummyzone.classes.shipped;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -52,8 +40,8 @@ public class shippedAdapter extends RecyclerView.Adapter<shippedAdapter.myviewho
         holder.tv_restaurantName.setText(sh.getRestaurantName());
         holder.tv_mobileNumber.setText(sh.getMobile());
         holder.tv_date.setText(sh.getDate());
-//        Picasso.get().load(sh.getImg()).into(holder.image);
-        Glide.with(context).load(sh.getImg()).into(holder.image);
+        Glide.with(holder.image.getContext()).load(sh.getImg()).into(holder.image) ;
+        holder.tv_address.setText(sh.getCity()+"-"+sh.getDistrict()+"-"+sh.getStreet());
 
     }
 

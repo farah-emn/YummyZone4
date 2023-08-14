@@ -1,66 +1,52 @@
 package com.example.yummyzone.fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.yummyzone.R;
+import com.example.yummyzone.adapter.orderTabAdaptar;
+import com.google.android.material.tabs.TabLayout;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link restaurant_ordersFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class restaurant_ordersFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public restaurant_ordersFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment restaurant_ordersFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static restaurant_ordersFragment newInstance(String param1, String param2) {
-        restaurant_ordersFragment fragment = new restaurant_ordersFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    TabLayout tabLayout;
+    ViewPager viewPager;
+    String resName;
+    SharedPreferences sharedPreferences;
+//    public restaurant_ordersFragment(String resName){
+//        this.resName= resName;
+//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_restaurant_orders, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_restaurant_orders, container, false);
+        tabLayout = view.findViewById(R.id.restaurant_orders_tabs);
+        viewPager = view.findViewById(R.id.restaurant_orders_viewPager);
+        sharedPreferences = getContext().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+        resName = sharedPreferences.getString("restaurantName", "");
+        tabLayout.setupWithViewPager(viewPager);
+        orderTabAdaptar tabA = new orderTabAdaptar(getActivity().getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        tabA.addFragment(new newFragment(), "New");
+        tabA.addFragment(new shippedFragment(), "Shipped");
+
+
+        viewPager.setAdapter(tabA);
+
+        return view;
     }
 }
