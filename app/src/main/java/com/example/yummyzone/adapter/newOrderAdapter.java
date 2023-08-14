@@ -67,10 +67,6 @@ public class newOrderAdapter extends RecyclerView.Adapter<newOrderAdapter.myview
             @Override
             public void onClick(View v) {
                 orderR.child(sh.getOrderNumber()).child("orderState").setValue("shipped");
-                Fragment fragment = new restaurant_ordersFragment();
-                AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.restaurant_main_fragment, fragment).commit();
-
             }
         });
 
