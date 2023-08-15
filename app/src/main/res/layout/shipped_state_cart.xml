@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginEnd="10dp"
+    >
 
     <androidx.cardview.widget.CardView
         style="@style/subScreen"
@@ -45,6 +47,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/restaurant_shippedState_tv_orderNumber"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1233"
@@ -72,7 +75,7 @@
                         android:src="@drawable/icon_calendar" />
 
                     <TextView
-                        android:id="@+id/shipped_tv_date"
+                        android:id="@+id/restaurant_shippedState_tv_date"
                         android:layout_width="wrap_content"
                         android:layout_height="25dp"
                         android:text="22.5.2023"
@@ -92,7 +95,7 @@
                         android:src="@drawable/icon_coin" />
 
                     <TextView
-                        android:id="@+id/shipped_tv_price"
+                        android:id="@+id/restaurant_shippedState_tv_price"
                         android:layout_width="wrap_content"
                         android:layout_height="25dp"
                         android:text="220 SR"
@@ -112,7 +115,7 @@
                     android:layout_marginEnd="15dp"
                     android:src="@drawable/icon_phone" />
                 <TextView
-                    android:id="@+id/shipped_tv_mobileNumber"
+                    android:id="@+id/restaurant_shippedState_tv_mobile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0557502470"
@@ -131,7 +134,7 @@
                     android:layout_marginEnd="15dp"
                     android:src="@drawable/icon_location" />
                 <TextView
-                    android:id="@+id/shipped_tv_address"
+                    android:id="@+id/restaurant_shippedState_tv_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="city-district-street"
@@ -142,7 +145,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/new_order_card_tv_reject"
+                    android:id="@+id/restaurant_shippedState_tv_notReceived"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
@@ -156,7 +159,7 @@
                     android:textColor="@color/white"
                     android:textAllCaps="false"/>
                 <TextView
-                    android:id="@+id/new_order_card_tv_seeDetails"
+                    android:id="@+id/restaurant_shippedState_tv_received"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_weight="1"

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ public class restaurant_signIn extends AppCompatActivity {
     DatabaseReference restR, rootR;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+    ProgressBar progressBar;
 
 
     @Override
@@ -42,6 +44,8 @@ public class restaurant_signIn extends AppCompatActivity {
         restR = FirebaseDatabase.getInstance().getReference().child("restaurant");
         sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
         editor = sharedPreferences.edit();
+        progressBar = findViewById(R.id.restaurant_signIn_pro);
+        progressBar.setVisibility(View.GONE);
 
         tv_signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +61,7 @@ public class restaurant_signIn extends AppCompatActivity {
             public void onClick(View v) {
                 String resName = et_resName.getText().toString();
                 String password = et_password.getText().toString();
+                progressBar.setVisibility(View.VISIBLE);
                 if (!resName.equals("") && !password.equals("")) {
                     restR.addValueEventListener(new ValueEventListener() {
                         @Override
@@ -73,9 +78,11 @@ public class restaurant_signIn extends AppCompatActivity {
                                     finish();
                                 }else {
                                     tv_text.setText("Password is wrong");
+                                    progressBar.setVisibility(View.GONE);
                                 }
                             }else {
                                 tv_text.setText("Restaurant name is no texist");
+                                progressBar.setVisibility(View.GONE);
                             }
 //                            for (DataSnapshot keyId : snapshot.getChildren()) {
 //                                if (keyId.child("restaurant_name").getValue().equals(resName)) {

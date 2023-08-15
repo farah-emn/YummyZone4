@@ -124,6 +124,25 @@
                         android:text="city-district-street"
                         android:textSize="15sp" />
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="15dp"
+                        android:src="@drawable/icon_shipped" />
+
+                    <TextView
+                        android:id="@+id/shipped_tv_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="areived"
+                        android:textSize="15sp" />
+                </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
 

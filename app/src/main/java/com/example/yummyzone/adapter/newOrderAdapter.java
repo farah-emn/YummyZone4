@@ -66,38 +66,33 @@ public class newOrderAdapter extends RecyclerView.Adapter<newOrderAdapter.myview
         holder.tv_ready.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 orderR.child(sh.getOrderNumber()).child("orderState").setValue("shipped");
+                restaurant_ordersFragment newF = new restaurant_ordersFragment();
+                AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.restaurant_main_fragment, newF).commit();
+
             }
         });
 
         holder.tv_seeDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Fragment fragment = new restaurant_orderDetails_fragment();
+                //restaurant_orderDetails_fragment orderFragment = new restaurant_orderDetails_fragment(sh.getOrderNumber(), sh.getDate(), sh.getPrice(), sh.getAddress(), sh.getMobileNumber());
+                restaurant_orderDetails_fragment orderFragment = new restaurant_orderDetails_fragment(sh.getOrderNumber(), sh.getDate(), sh.getPrice(), sh.getAddress(), sh.getMobileNumber());
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.restaurant_main_fragment, fragment).commit();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.restaurant_main_fragment, orderFragment).commit();
             }
         });
 
         holder.tv_reject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                
                 orderR.child(sh.getOrderNumber()).child("orderState").setValue("reject");
-//                orderR.addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//
-//                    }
-//                });
-//                Fragment fragment = new newFragment();
-//                AppCompatActivity activity = (AppCompatActivity) v.getContext();
-//                activity.getSupportFragmentManager().beginTransaction().replace(R.id.restaurant_main_fragment, fragment).commit();
+                restaurant_ordersFragment newF = new restaurant_ordersFragment();
+                AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.restaurant_main_fragment, newF).commit();
             }
         });
 

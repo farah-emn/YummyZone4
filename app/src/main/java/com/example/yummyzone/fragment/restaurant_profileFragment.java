@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
@@ -36,13 +37,11 @@ public class restaurant_profileFragment extends Fragment {
 
     TextView tv_restaurantName;
     String resName;
+    SharedPreferences.Editor editor1;
     TextView tv_mobile, tv_fee, tv_time, tv_category;
     String mobile, fee, time;
 
 
-    public restaurant_profileFragment(String resName) {
-        this.resName = resName;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,10 +59,13 @@ public class restaurant_profileFragment extends Fragment {
         tv_fee = view.findViewById(R.id.restaurant_Profile_tv_fee);
         tv_time = view.findViewById(R.id.restaurant_Profile_tv_time);
 
+
         sharedPreferences = getContext().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
+        resName = sharedPreferences.getString("restaurantName", "");
+
         sharedPreferences1 = getContext().getSharedPreferences("mode", Context.MODE_PRIVATE);
-        nightMode = sharedPreferences1.getBoolean("night", false);
+        nightMode = sharedPreferences1.getBoolean("night", true);
         restR = FirebaseDatabase.getInstance().getReference().child("restaurant");
 
 
@@ -74,12 +76,33 @@ public class restaurant_profileFragment extends Fragment {
             tv_restaurantName.setText("empty");
         }
 
+        if(nightMode){
+            sw_dark.setChecked(true);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+        sw_dark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (nightMode) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    editor1 = sharedPreferences1.edit();
+                    editor1.putBoolean("night", false);
+
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    editor1 = sharedPreferences1.edit();
+                    editor1.putBoolean("night", true);
+
+                }
+                editor1.apply();
+            }});
+
         restR.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot keyId : snapshot.getChildren()) {
                     if (keyId.child("restaurant_name").getValue().equals(resName)) {
-                        mobile = keyId.child("mobilenumber").getValue().toString();
+                        mobile = keyId.child("number").getValue().toString();
                         fee = keyId.child("delivery_fee").getValue().toString();
                         time = keyId.child("delivery_time").getValue().toString();
                     }

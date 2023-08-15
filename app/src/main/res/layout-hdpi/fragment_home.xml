@@ -35,6 +35,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/homeScreen_et_search"
         android:layout_gravity="center"
+        android:scrollbars="vertical"
         />
 
     <androidx.recyclerview.widget.RecyclerView

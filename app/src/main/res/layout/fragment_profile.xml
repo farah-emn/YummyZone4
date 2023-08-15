@@ -199,32 +199,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
-                        <LinearLayout
-                            android:id="@+id/settings_ll2"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/settings_ll1">
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_marginStart="15dp"
-                                android:layout_marginEnd="15dp"
-                                android:src="@drawable/icon_bell" />
-                            <TextView
-                                style="@style/text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:gravity="start|center_vertical"
-                                android:text="Notfications"
-                                android:textSize="17sp" />
-                            <Switch
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-                        </LinearLayout>
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/profile_constrain_logout"
@@ -282,6 +257,7 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:scaleType="centerCrop"
+                    android:src="@drawable/empty_image"
                     />
                 </androidx.cardview.widget.CardView>
             </RelativeLayout>

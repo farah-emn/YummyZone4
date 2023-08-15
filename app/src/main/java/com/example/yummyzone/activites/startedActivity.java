@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.yummyzone.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class startedActivity extends AppCompatActivity {
     Button bt_customer;
@@ -17,18 +19,21 @@ public class startedActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     String resName;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onStart() {
         super.onStart();
-//        if (sharedPreferences.contains("restaurantName")){
-//            Intent intent = new Intent(startedActivity.this, mainRestaurantActivity.class);
-//            startActivity(intent);
-//            finish();
-//        }
-        if (!resName.equals("")){
-            Intent intent = new Intent(startedActivity.this, mainRestaurantActivity.class);
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
+            finish();
+        }
+        if (!resName.equals("")){
+            Intent intent1 = new Intent(startedActivity.this, mainRestaurantActivity.class);
+            startActivity(intent1);
             finish();
         }
     }
@@ -44,6 +49,7 @@ public class startedActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
         editor = sharedPreferences.edit();
         resName = sharedPreferences.getString("restaurantName", "");
+        mAuth = FirebaseAuth.getInstance();
 
 //        if (resName.equals("")){
 //            Intent intent = new Intent(startedActivity.this, mainRestaurantActivity.class);

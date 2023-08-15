@@ -9,8 +9,9 @@ public class shipped {
     String city;
     String district;
     String street;
+    String state;
 
-    public shipped(String mobile, String restaurantName, String date, String price) {
+    public shipped(String mobile, String restaurantName, String date, String price, String state) {
         this.mobile = mobile;
         this.restaurantName = restaurantName;
         this.date = date;
@@ -41,7 +42,11 @@ public class shipped {
         this.city = city;
     }
 
-    public shipped(String mobile, String restaurantName, String date, String price, String img, String city, String district, String street) {
+    public String getState() {
+        return state;
+    }
+
+    public shipped(String mobile, String restaurantName, String date, String price, String img, String city, String district, String street, String state) {
         this.mobile = mobile;
         this.restaurantName = restaurantName;
         this.date = date;
@@ -50,6 +55,7 @@ public class shipped {
         this.city=city;
         this.district=district;
         this.street=street;
+        this.state = state;
     }
 
     public String getMobile() {

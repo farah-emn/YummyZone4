@@ -23,16 +23,20 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class signIn extends AppCompatActivity {
-    TextView signUp_tv;
+    TextView signUp_tv, tv_text;
     Button bt_signin;
     EditText et_email;
     EditText et_password;
     FirebaseAuth mAuth;
     ProgressBar progressBar;
+    DatabaseReference userR, rootR;
 
     @Override
     public void onStart() {
@@ -55,11 +59,15 @@ public class signIn extends AppCompatActivity {
         getSupportActionBar().hide();
 
         signUp_tv = findViewById(R.id.signUp_tv_signIn);
+        tv_text = findViewById(R.id.signIn_tv_text);
         bt_signin = findViewById(R.id.signIn_bt_signIn);
         et_email = findViewById(R.id.signIn_et_email);
         et_password = findViewById(R.id.signIn_et_password);
-        progressBar = findViewById(R.id.signIn_prog);
+        progressBar = findViewById(R.id.signIn_pro);
         mAuth = FirebaseAuth.getInstance();
+        progressBar.setVisibility(View.GONE);
+        rootR = FirebaseDatabase.getInstance().getReference();
+        userR = rootR.child("user");
 
 
         signUp_tv.setOnClickListener(new View.OnClickListener() {
@@ -79,26 +87,45 @@ public class signIn extends AppCompatActivity {
                 email = String.valueOf(et_email.getText());
                 password = String.valueOf(et_password.getText());
 
-                mAuth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                progressBar.setVisibility(View.GONE);
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(signIn.this, "sign in",
-                                            Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
+                userR.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot keyId : snapshot.getChildren()) {
+                            if (keyId.child("email").getValue().equals(email)) {
+                                if (!keyId.child("accountState").getValue().equals("two")){
+                                    mAuth.signInWithEmailAndPassword(email, password)
+                                            .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                                    progressBar.setVisibility(View.GONE);
+                                                    if (task.isSuccessful()) {
+                                                        Toast.makeText(signIn.this, "sign in",
+                                                                Toast.LENGTH_SHORT).show();
+                                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                                        startActivity(intent);
+                                                        finish();
 
-                                } else {
-                                    Toast.makeText(signIn.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
-
+                                                    } else {
+                                                        Toast.makeText(signIn.this, "Authentication failed.",
+                                                                Toast.LENGTH_SHORT).show();
+                                                        tv_text.setText("Username or password wrong");
+                                                    }
+                                                }
+                                            });
+                                }else {
+                                    tv_text.setText("Your account is not available");
+                                    progressBar.setVisibility(View.GONE);
                                 }
-                            }
-                        });
 
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
 

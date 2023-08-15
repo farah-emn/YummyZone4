@@ -13,12 +13,13 @@ public class user {
     String district;
     String username;
     String img;
+    String accountState;
 
     public void setImg(String img) {
         this.img = img;
     }
 
-    public user(String email, String password, String firstName, String lastName, String mobileNumber, String city, String street, String district, String username, String img) {
+    public user(String email, String password, String firstName, String lastName, String mobileNumber, String city, String street, String district, String username, String accountState) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
@@ -28,11 +29,16 @@ public class user {
         this.street = street;
         this.district = district;
         this.username = username;
-        this.img = img;
+        this.accountState = accountState;
     }
+
 
     public String getImg() {
         return img;
+    }
+
+    public String getAccountState() {
+        return accountState;
     }
 
     public user(String email, String password) {

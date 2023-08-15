@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.YummyZone">
         <activity
+            android:name=".activites.processingActivity"
+            android:exported="false" />
+        <activity
             android:name=".activites.restaurant_signIn"
             android:exported="false" />
         <activity
@@ -30,7 +33,7 @@
             android:value="AIzaSyD_opFXaJF2cPjbU04frGOrm1UM2Xjhq4g" />
 
         <activity
-            android:name=".activites.startedActivity"
+            android:name=".activites.IntroActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -69,7 +72,7 @@
             android:name=".activites.orderActivity"
             android:exported="false" />
         <activity
-            android:name=".activites.IntroActivity"
+            android:name=".activites.startedActivity"
             android:exported="false" />
     </application>
 

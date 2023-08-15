@@ -1,17 +1,15 @@
 package com.example.yummyzone.activites;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yummyzone.R;
 import com.example.yummyzone.adapter.shippedAdapter;
@@ -26,8 +24,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class shippedActivity extends AppCompatActivity {
-    RecyclerView shippedRec;
+public class processingActivity extends AppCompatActivity {
+    RecyclerView rv;
     shippedAdapter shA;
     ArrayList<shipped> shippedList;
     FirebaseAuth Auth;
@@ -35,33 +33,32 @@ public class shippedActivity extends AppCompatActivity {
     DatabaseReference userR, orderR, rootR, resR;
     String username;
     ImageView imageViewback;
-    public static String img="";
+    public static String img = "";
     ProgressBar p;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shipped);
+        setContentView(R.layout.activity_processing);
         getSupportActionBar().hide();
-        shippedRec= findViewById(R.id.shipped_rv);
+        rv = findViewById(R.id.processing_rv);
         Auth = FirebaseAuth.getInstance();
         user = Auth.getCurrentUser();
         rootR = FirebaseDatabase.getInstance().getReference();
         userR = rootR.child("user");
         orderR = rootR.child("order");
-        imageViewback=findViewById(R.id.profile_image_back);
+        //imageViewback = findViewById(R.id.profile_image_back);
         resR = rootR.child("restaurant");
 
 
         RecyclerView.LayoutManager lm1 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        shippedRec.setHasFixedSize(true);
-        shippedRec.setLayoutManager(lm1);
+        rv.setHasFixedSize(true);
+        rv.setLayoutManager(lm1);
 
         shippedList = new ArrayList<>();
         shA = new shippedAdapter(this, shippedList);
-        shippedRec.setAdapter(shA);
-        p=findViewById(R.id.s);
+        rv.setAdapter(shA);
+        p = findViewById(R.id.processing_pro);
 
         userR.addValueEventListener(new ValueEventListener() {
             @Override
@@ -74,27 +71,27 @@ public class shippedActivity extends AppCompatActivity {
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 shippedList.clear();
                                 for (DataSnapshot keyId : snapshot.getChildren()) {
-                                    if (keyId.child("username").getValue().equals(username)){
+                                    if (keyId.child("username").getValue().equals(username)) {
                                         p.setVisibility(View.GONE);
                                         if (keyId.getChildrenCount() > 0) {
 
                                             p.setVisibility(View.INVISIBLE);
                                         }
-                                        if (keyId.child("orderState").getValue().equals("received") || keyId.child("orderState").getValue().equals("notReceived")){
+                                        if (keyId.child("orderState").getValue().equals("shipped")) {
                                             String mobile = keyId.child("mobile").getValue(String.class);
                                             String date = keyId.child("date").getValue(String.class);
                                             String price = keyId.child("price").getValue(String.class);
-                                            String city=keyId.child("city").getValue(String.class);
-                                            String district=keyId.child("district").getValue(String.class);
-                                            String street=keyId.child("street").getValue(String.class);
+                                            String city = keyId.child("city").getValue(String.class);
+                                            String district = keyId.child("district").getValue(String.class);
+                                            String street = keyId.child("street").getValue(String.class);
                                             String restaurantName = keyId.child("restaurantName").getValue(String.class);
                                             String state = keyId.child("orderState").getValue().toString();
                                             resR.addValueEventListener(new ValueEventListener() {
                                                 @Override
                                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                     for (DataSnapshot keyId : snapshot.getChildren()) {
-                                                        if (keyId.child("restaurant_name").getValue().equals(restaurantName)){
-                                                            img = String.valueOf( keyId.child("logo").getValue());
+                                                        if (keyId.child("restaurant_name").getValue().equals(restaurantName)) {
+                                                            img = String.valueOf(keyId.child("logo").getValue());
                                                             cf();
                                                         }
                                                     }
@@ -103,7 +100,7 @@ public class shippedActivity extends AppCompatActivity {
                                                 private void cf() {
                                                     shA.notifyDataSetChanged();
 
-                                                    shipped s = new shipped(mobile, restaurantName, date, price, img,city,district,street, state);
+                                                    shipped s = new shipped(mobile, restaurantName, date, price, img, city, district, street, state);
                                                     shippedList.add(s);
                                                 }
 
@@ -134,4 +131,5 @@ public class shippedActivity extends AppCompatActivity {
         p.getIndeterminateDrawable().setColorFilter(getResources()
                 .getColor(R.color.dark_orange), PorterDuff.Mode.SRC_IN);
     }
+
 }

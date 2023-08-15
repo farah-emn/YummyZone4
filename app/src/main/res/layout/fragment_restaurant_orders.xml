@@ -29,55 +29,131 @@
             app:layout_constraintVertical_bias="0.533" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        style="@style/Screen">
+        style="@style/Screen"
+        android:orientation="vertical">
 
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/restaurant_orders_tabs"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:text="New orders:"
             android:layout_marginTop="15dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            style="@style/subScreen"
-            app:tabIndicatorFullWidth="false"
-            app:tabIndicatorAnimationMode="elastic">
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New"
-                android:layout_gravity="center"/>
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Shipped"/>
-        </com.google.android.material.tabs.TabLayout>
-
-        <androidx.viewpager.widget.ViewPager
+            android:layout_marginStart="15dp"
+            android:textSize="20sp"
+            android:textColor="@color/orange"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/restaurant_orders_rv_new"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="15dp"
+            android:scrollbars="horizontal"/>
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/restaurant_orders_tabs"/>
-
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/restaurant_orders_viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/restaurant_orders_tabs"
+            android:text="Shipped orders:"
+            android:layout_marginTop="15dp"
             android:layout_marginStart="15dp"
-            android:layout_marginEnd="@dimen/_15sdp"
-            android:layout_marginTop="15dp"/>
+            android:textSize="20sp"
+            android:textColor="@color/orange"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/restaurant_orders_rv_shipped"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="15dp"
+            android:scrollbars="horizontal"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </LinearLayout>
 
 </LinearLayout>
+
+<!--    <?xml version="1.0" encoding="utf-8"?>-->
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--xmlns:tools="http://schemas.android.com/tools"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent"-->
+<!--android:orientation="vertical"-->
+<!--android:weightSum="15"-->
+<!--android:background="@color/orange">-->
+<!--<androidx.constraintlayout.widget.ConstraintLayout-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:layout_weight="14"-->
+<!--    android:orientation="vertical"-->
+<!--    >-->
+<!--    <TextView-->
+<!--        android:id="@+id/restaurant_name"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:text="Orders"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textSize="25sp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.533" />-->
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--<androidx.constraintlayout.widget.ConstraintLayout-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:layout_weight="1"-->
+<!--    style="@style/Screen">-->
+
+
+<!--    <com.google.android.material.tabs.TabLayout-->
+<!--        android:id="@+id/restaurant_orders_tabs"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:layout_marginTop="15dp"-->
+<!--        android:layout_marginEnd="10dp"-->
+<!--        android:layout_marginStart="10dp"-->
+<!--        style="@style/subScreen"-->
+<!--        app:tabIndicatorFullWidth="false"-->
+<!--        app:tabIndicatorAnimationMode="elastic">-->
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="New"-->
+<!--            android:layout_gravity="center"/>-->
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Shipped"/>-->
+<!--    </com.google.android.material.tabs.TabLayout>-->
+
+<!--    <androidx.viewpager.widget.ViewPager-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/restaurant_orders_tabs"/>-->
+
+
+<!--    <androidx.viewpager.widget.ViewPager-->
+<!--        android:id="@+id/restaurant_orders_viewPager"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/restaurant_orders_tabs"-->
+<!--        android:layout_marginStart="15dp"-->
+<!--        android:layout_marginEnd="@dimen/_15sdp"-->
+<!--        android:layout_marginTop="15dp"/>-->
+
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--</LinearLayout>-->

@@ -62,7 +62,7 @@
             android:id="@+id/RecyclerViewFoodList"
             android:layout_width="0dp"
             android:layout_height="0dp"
-
+            android:scrollbars="vertical"
             android:layout_marginStart="13dp"
             android:layout_marginEnd="@dimen/margin"
 

@@ -3,11 +3,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.newFragment">
+    tools:context=".fragment.newFragment"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp">
+        <TextView
+            android:id="@+id/restaurant_fragment_new_tv_new"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bt_red"
+            android:text="New"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_marginEnd="15dp"/>
+        <TextView
+            android:id="@+id/restaurant_fragment_new_tv_shipped"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bt_design"
+            android:text="Shipped"
+            android:textSize="16sp"
+            android:gravity="center"/>
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/restaurant_fragment_new_rv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"/>
 
 </LinearLayout>

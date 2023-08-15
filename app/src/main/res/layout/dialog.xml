@@ -4,11 +4,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     style="@style/Screen">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:src="@drawable/icon_minus_gray2" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="5dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp">
 
@@ -22,8 +27,9 @@
         <EditText
             android:id="@+id/dialog_et_city"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            style="@style/eidttext"
+            android:layout_height="40dp"
+            style="@style/eidttext2"
+            android:inputType="text"
             android:paddingStart="2dp"/>
     </LinearLayout>
     <LinearLayout
@@ -44,8 +50,9 @@
         <EditText
             android:id="@+id/dialog_et_street"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            style="@style/eidttext"
+            android:layout_height="40dp"
+            android:inputType="text"
+            style="@style/eidttext2"
             android:paddingStart="2dp"/>
     </LinearLayout>
 
@@ -67,8 +74,9 @@
         <EditText
             android:id="@+id/dialog_et_district"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            style="@style/eidttext"
+            android:layout_height="40dp"
+            style="@style/eidttext2"
+            android:inputType="text"
             android:paddingStart="2dp"/>
     </LinearLayout>
 
@@ -78,19 +86,20 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
+        android:layout_marginTop="2dp"
         android:textColor="@color/red"/>
 
     <Button
         android:id="@+id/dialog_bt_save"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginEnd="15dp"
         android:layout_marginStart="15dp"
         android:text="Save"
         android:textAllCaps="false"
         android:textSize="15sp"
         android:layout_marginBottom="30dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="2dp"
         android:background="@drawable/bt_design"/>
 
 </LinearLayout>

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.yummyzone.R;
 import com.example.yummyzone.adapter.newOrderAdapter;
@@ -30,12 +31,19 @@ public class restaurant_orderDetails_fragment extends Fragment {
     DatabaseReference resR, orderR, rootR;
     String orderNumber, date, price, address, mobileNumber;
     SharedPreferences sharedPreferences;
-    String resName;
+    String resName, orderNumber2;
     RecyclerView recyclerView;
     orderDetailsAdapter orderItemAdapter;
     ArrayList<orderItem> orderItemsList;
+    TextView tv_orderNumber, tv_date, tv_price, tv_address, tv_mobileNumber, tv_reject, tv_ready;
 
-
+    public restaurant_orderDetails_fragment(String orderNumber, String date, String price, String address, String mobileNumber){
+        this.orderNumber = orderNumber;
+        this.date = date;
+        this.price = price;
+        this.address = address;
+        this.mobileNumber = mobileNumber;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,6 +55,13 @@ public class restaurant_orderDetails_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_restaurant_order_details, container, false);
         recyclerView = view.findViewById(R.id.restaurant_orderDetailsCard_rv);
+        tv_price = view.findViewById(R.id.restaurant_orderDetailsCart_tv_orderPrice);
+        tv_address = view.findViewById(R.id.restaurant_orderDetailsCart_tv_orderAddress);
+        tv_date = view.findViewById(R.id.restaurant_orderDetailsCart_tv_orderDate);
+        tv_orderNumber = view.findViewById(R.id.restaurant_orderDetailsCart_tv_orderNumber);
+        tv_mobileNumber = view.findViewById(R.id.restaurant_orderDetailsCart_tv_mobile);
+        tv_reject = view.findViewById(R.id.restaurant_orderDetailsCart_tv_reject);
+        tv_ready = view.findViewById(R.id.restaurant_orderDetailsCart_tv_ready);
         rootR = FirebaseDatabase.getInstance().getReference();
         orderR = rootR.child("order");
         sharedPreferences = getContext().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
@@ -60,29 +75,50 @@ public class restaurant_orderDetails_fragment extends Fragment {
         orderItemAdapter = new orderDetailsAdapter(getContext(), orderItemsList, resName);
         recyclerView.setAdapter(orderItemAdapter);
 
-        orderR.addValueEventListener(new ValueEventListener() {
+        tv_mobileNumber.setText(mobileNumber);
+        tv_price.setText(price);
+        tv_date.setText(date);
+        tv_orderNumber.setText(orderNumber);
+        tv_address.setText(address);
+
+        tv_ready.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                orderR.child(orderNumber).child("orderState").setValue("shipped");
+                restaurant_ordersFragment orderFragment = new restaurant_ordersFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.restaurant_main_fragment, orderFragment).commit();
+            }
+        });
+
+        tv_reject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                orderR.child(orderNumber).child("orderState").setValue("reject");
+                restaurant_ordersFragment orderFragment = new restaurant_ordersFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.restaurant_main_fragment, orderFragment).commit();
+            }
+        });
+
+
+        orderR.child(orderNumber).child("items").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot keyId : snapshot.getChildren()) {
-                    if (keyId.child("restaurantName").getValue().equals(resName)){
-                            mobileNumber = keyId.child("mobile").getValue(String.class);
-                            date = keyId.child("date").getValue(String.class);
-                            price = keyId.child("price").getValue(String.class);
-                            orderNumber = keyId.child("orderNumber").getValue(String.class);
-                            String street = keyId.child("street").getValue(String.class);
-                            String city = keyId.child("city").getValue(String.class);
-                            String district = keyId.child("district").getValue(String.class);
-                            address = city+", "+ district+", "+street;
-                            for (DataSnapshot keyId2 : snapshot.getChildren()){}
-                            //keyId2.child("items").
-                    }
+                for(DataSnapshot keyId : snapshot.getChildren()){
+                    orderItem o =new orderItem(keyId.child("itemName").getValue().toString(),keyId.child("itemNumber").getValue().toString());
+                    orderItemsList.add(o);
                 }
+                orderItemAdapter.notifyDataSetChanged();
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
+
         return view;
+
+
     }
 }

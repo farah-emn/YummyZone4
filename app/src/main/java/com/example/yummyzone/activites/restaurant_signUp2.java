@@ -6,11 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.DocumentsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +40,9 @@ public class restaurant_signUp2 extends AppCompatActivity {
     MaterialCardView selectList;
     boolean [] selected;
     StringBuilder stringBuilder;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +56,10 @@ public class restaurant_signUp2 extends AppCompatActivity {
         tv_text = findViewById(R.id.restaurant_signUp2_tv_text);
         selectList = findViewById(R.id.restaurant_signUp2_selectCard);
         tv_selected = findViewById(R.id.restaurant_signUp2_tv_selected);
+        sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        progressBar = findViewById(R.id.restaurant_signUp2_pro);
+        progressBar.setVisibility(View.GONE);
 
         comNum = getIntent().getStringExtra("comNum");
         resName = getIntent().getStringExtra("resName");
@@ -67,6 +76,7 @@ public class restaurant_signUp2 extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(restaurant_signUp2.this);
                 builder.setTitle("Select Categories");
                 builder.setCancelable(false);
+
                 builder.setMultiChoiceItems(category, selected, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which, boolean isChecked) {
@@ -116,6 +126,7 @@ public class restaurant_signUp2 extends AppCompatActivity {
                 mobile = et_mobile.getText().toString();
                 fee = et_fee.getText().toString();
                 time = et_time.getText().toString();
+                progressBar.setVisibility(View.VISIBLE);
 
                 restR.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -128,6 +139,8 @@ public class restaurant_signUp2 extends AppCompatActivity {
                                 String categories = stringBuilder.toString();
                                 restaurantAccount resAccount = new restaurantAccount(resName, password, comNum, fee, time, mobile, categories);
                                 restR.child(resName).setValue(resAccount);
+                                editor.putString("restaurantName", resName);
+                                editor.commit();
                                 Toast.makeText(restaurant_signUp2.this, "Account created successfully", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(restaurant_signUp2.this, mainRestaurantActivity.class);
                                 startActivity(intent);
@@ -136,6 +149,7 @@ public class restaurant_signUp2 extends AppCompatActivity {
 
                             }else {
                                 tv_text.setText("Please enter all fields");
+                                progressBar.setVisibility(View.GONE);
                             }
                         }
 

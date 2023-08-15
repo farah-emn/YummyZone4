@@ -97,13 +97,13 @@
 
                 <TextView
                     android:id="@+id/editProfile_tv_username"
-                    style="@style/eidttext"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/buttonHeight_xhdpi"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="15dp"
                     android:paddingStart="10dp"
                     android:text="Username"
+                    style="@style/eidttext2"
                     android:textAlignment="textStart"
                     android:textSize="@dimen/buttonText_xhdpi" />
             </LinearLayout>
@@ -150,7 +150,7 @@
                     android:layout_marginEnd="15dp"
                     android:paddingStart="10dp"
                     android:text="First name"
-                    style="@style/eidttext"
+                    style="@style/eidttext2"
                     android:textSize="@dimen/buttonText_xhdpi"
                     android:textAlignment="textStart"/>
             </LinearLayout>
@@ -195,7 +195,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/buttonHeight_xhdpi"
                     android:layout_marginStart="5dp"
-                    style="@style/eidttext"
+                    style="@style/eidttext2"
                     android:paddingStart="10dp"
                     android:layout_marginEnd="15dp"
                     android:text="Lirst name"
@@ -243,7 +243,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/buttonHeight_xhdpi"
                     android:layout_marginStart="5dp"
-                    style="@style/eidttext"
+                    style="@style/eidttext2"
                     android:paddingStart="10dp"
                     android:layout_marginEnd="15dp"
                     android:text="Mobile number"
@@ -292,7 +292,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/buttonHeight_xhdpi"
                     android:layout_marginStart="5dp"
-                    style="@style/eidttext"
+                    style="@style/eidttext2"
                     android:paddingStart="10dp"
                     android:layout_marginEnd="15dp"
                     android:text="City"
@@ -341,7 +341,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/buttonHeight_xhdpi"
                     android:layout_marginStart="5dp"
-                    style="@style/eidttext"
+                    style="@style/eidttext2"
                     android:paddingStart="10dp"
                     android:layout_marginEnd="15dp"
                     android:text="Street"
@@ -390,7 +390,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/buttonHeight_xhdpi"
                     android:layout_marginStart="5dp"
-                    style="@style/eidttext"
+                    style="@style/eidttext2"
                     android:paddingStart="10dp"
                     android:layout_marginEnd="15dp"
                     android:text="District"

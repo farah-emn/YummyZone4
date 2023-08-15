@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.yummyzone.R;
+import com.example.yummyzone.activites.processingActivity;
 import com.example.yummyzone.activites.shippedActivity;
 import com.example.yummyzone.activites.signIn;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -99,7 +100,7 @@ public class profileFragment extends Fragment {
 
 
         sharedPreferences = getContext().getSharedPreferences("mode", Context.MODE_PRIVATE);
-        nightMode = sharedPreferences.getBoolean("night", false);
+        nightMode = sharedPreferences.getBoolean("night", true);
         if(nightMode){
             sw_dark.setChecked(true);
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
@@ -115,8 +116,8 @@ public class profileFragment extends Fragment {
         processing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new processingFragment();
-                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.main_fragment, fragment).commit();
+                Intent intent = new Intent(getActivity(), processingActivity.class);
+                startActivity(intent);
             }
         });
         userR.addValueEventListener(new ValueEventListener() {

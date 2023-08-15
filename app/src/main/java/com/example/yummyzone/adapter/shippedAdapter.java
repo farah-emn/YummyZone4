@@ -1,6 +1,7 @@
 package com.example.yummyzone.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,17 @@ public class shippedAdapter extends RecyclerView.Adapter<shippedAdapter.myviewho
         holder.tv_restaurantName.setText(sh.getRestaurantName());
         holder.tv_mobileNumber.setText(sh.getMobile());
         holder.tv_date.setText(sh.getDate());
+        if (sh.getState().equals("received")){
+            holder.tv_state.setTextColor(Color.parseColor("#32cd32"));
+            holder.tv_state.setText(sh.getState());
+        } else if (sh.getState().equals("notReceived")) {
+            holder.tv_state.setTextColor(Color.parseColor("#ed1c24"));
+            holder.tv_state.setText(sh.getState());
+        }else {
+            holder.tv_state.setText(sh.getState());
+        }
+
+
         Glide.with(holder.image.getContext()).load(sh.getImg()).into(holder.image) ;
         holder.tv_address.setText(sh.getCity()+"-"+sh.getDistrict()+"-"+sh.getStreet());
 
@@ -52,7 +64,7 @@ public class shippedAdapter extends RecyclerView.Adapter<shippedAdapter.myviewho
 
     public class myviewholder extends RecyclerView.ViewHolder {
         ImageView image;
-        TextView tv_restaurantName, tv_date, tv_price, tv_address, tv_mobileNumber;
+        TextView tv_restaurantName, tv_date, tv_price, tv_address, tv_mobileNumber, tv_state;
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);
@@ -62,6 +74,7 @@ public class shippedAdapter extends RecyclerView.Adapter<shippedAdapter.myviewho
             tv_price = itemView.findViewById(R.id.shipped_tv_price);
             tv_address = itemView.findViewById(R.id.shipped_tv_address);
             tv_mobileNumber = itemView.findViewById(R.id.shipped_tv_mobileNumber);
+            tv_state = itemView.findViewById(R.id.shipped_tv_state);
 
         }
     }

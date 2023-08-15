@@ -30,7 +30,6 @@ public class mainRestaurantActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_restaurant);
         getSupportActionBar().hide();
@@ -68,7 +67,7 @@ public class mainRestaurantActivity extends AppCompatActivity {
                         break;
 
                     case R.id.settings:
-                        fragment = new restaurant_profileFragment(res);
+                        fragment = new restaurant_profileFragment();
                         break;
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.restaurant_main_fragment, fragment).commit();

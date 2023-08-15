@@ -63,7 +63,7 @@ public class newFragment extends Fragment {
         rv.setAdapter(newOrderAdapter);
 
 
-        orderR.addValueEventListener(new ValueEventListener() {
+        orderR.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot keyId : snapshot.getChildren()) {
@@ -94,6 +94,7 @@ public class newFragment extends Fragment {
 
             }
         });
+
 
         return view;
     }
