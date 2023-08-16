@@ -1,66 +1,75 @@
 package com.example.yummyzone.fragment;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yummyzone.R;
+import com.example.yummyzone.adapter.restaurant_menu_Adapter;
+import com.example.yummyzone.classes.Menu_tab;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link restaurant_searchFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class restaurant_searchFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public restaurant_searchFragment() {
+    EditText search;
+    RecyclerView recyclerViewSearch;
+    restaurant_menu_Adapter menu_adapter;
+    String res;
+    public restaurant_searchFragment(String res) {
+        this.res=res;
         // Required empty public constructor
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment restaurant_searchFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static restaurant_searchFragment newInstance(String param1, String param2) {
-        restaurant_searchFragment fragment = new restaurant_searchFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_restaurant_search, container, false);
-    }
+        View view= inflater.inflate(R.layout.fragment_restaurant_search, container, false);
+        search = view.findViewById(R.id.searchScreen_et_search);
+        recyclerViewSearch = view.findViewById(R.id.sh);
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                recyclerViewSearch.setLayoutManager(new GridLayoutManager(getContext(), 2));
+                String s = search.getText().toString();
+                //String ss=s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
+                FirebaseRecyclerOptions<Menu_tab> options3= new FirebaseRecyclerOptions.Builder<Menu_tab>()
+                        .setQuery(FirebaseDatabase.getInstance()
+                                        .getReference("Foods").orderByKey().startAt(res+"_"+s).endAt(res+"_"+s+"\uf8ff")
+                                , Menu_tab.class).build();
+                recyclerViewSearch.setLayoutManager(new GridLayoutManager(getContext(), 2));
+                menu_adapter = new restaurant_menu_Adapter(options3);
+                //  Toast.makeText(view.getContext(), "ok+"+ss, Toast.LENGTH_SHORT).show();
+                recyclerViewSearch.setAdapter(menu_adapter);
+                menu_adapter.startListening();
+                if (search.getText().toString().trim().length() == 0)
+                {
+                    recyclerViewSearch.setAdapter(null);
+                    menu_adapter.notifyDataSetChanged();
+                }}
+            @Override
+            public void afterTextChanged(Editable editable) {}});
+
+
+        return view;}
 }

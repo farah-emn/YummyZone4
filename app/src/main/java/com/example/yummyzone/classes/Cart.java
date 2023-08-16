@@ -1,7 +1,5 @@
 package com.example.yummyzone.classes;
 
-import android.os.Bundle;
-
 public class Cart {
     private String item_image;
     private String item_name;

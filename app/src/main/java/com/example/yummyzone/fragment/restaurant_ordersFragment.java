@@ -90,12 +90,13 @@ public class restaurant_ordersFragment extends Fragment {
                             String city = keyId.child("city").getValue(String.class);
                             String district = keyId.child("district").getValue(String.class);
                             address = city+", "+ district+", "+street;
+                            if (price != null){
+                                newOrder n = new newOrder(orderNumber, date, price, address, mobileNumber);
+                                newOrderList.add(n);
+                            }
                         }
                     }
-                    if (price != null){
-                        newOrder n = new newOrder(orderNumber, date, price, address, mobileNumber);
-                        newOrderList.add(n);
-                    }
+
                 }
                 newOrderAdapter.notifyDataSetChanged();
 

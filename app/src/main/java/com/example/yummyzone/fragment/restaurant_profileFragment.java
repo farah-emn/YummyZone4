@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.yummyzone.R;
 import com.example.yummyzone.activites.startedActivity;
 import com.google.firebase.database.DataSnapshot;
@@ -40,6 +41,7 @@ public class restaurant_profileFragment extends Fragment {
     SharedPreferences.Editor editor1;
     TextView tv_mobile, tv_fee, tv_time, tv_category;
     String mobile, fee, time;
+    ImageView imageView;
 
 
 
@@ -58,7 +60,7 @@ public class restaurant_profileFragment extends Fragment {
         tv_mobile = view.findViewById(R.id.restaurant_Profile_tv_mobile);
         tv_fee = view.findViewById(R.id.restaurant_Profile_tv_fee);
         tv_time = view.findViewById(R.id.restaurant_Profile_tv_time);
-
+        ImageView imageView=view.findViewById(R.id.restaurant_profile_img);
 
         sharedPreferences = getContext().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -102,13 +104,16 @@ public class restaurant_profileFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot keyId : snapshot.getChildren()) {
                     if (keyId.child("restaurant_name").getValue().equals(resName)) {
-                        mobile = keyId.child("number").getValue().toString();
+                        mobile = keyId.child("mobilenumber").getValue().toString();
                         fee = keyId.child("delivery_fee").getValue().toString();
                         time = keyId.child("delivery_time").getValue().toString();
+                        String img=keyId.child("logo").getValue().toString();
+                        Glide.with(imageView).load(img).into(imageView);
                     }
                     tv_mobile.setText(mobile);
                     tv_time.setText(time);
                     tv_fee.setText(fee);
+
                 }
             }
 
@@ -139,7 +144,7 @@ public class restaurant_profileFragment extends Fragment {
         img_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new restaurant_eidtProfile_fragment();
+                Fragment fragment = new restaurant_eidtProfile_fragment(resName);
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.restaurant_main_fragment, fragment).commit();
             }
         });

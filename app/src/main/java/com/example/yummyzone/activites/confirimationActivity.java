@@ -3,7 +3,10 @@ package com.example.yummyzone.activites;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.yummyzone.R;
@@ -23,7 +26,7 @@ public class confirimationActivity extends AppCompatActivity {
     FirebaseUser user;
     TextView tv_orderNumber;
     String order;
-
+    Button confirm_button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,9 +36,10 @@ public class confirimationActivity extends AppCompatActivity {
         userR = FirebaseDatabase.getInstance().getReference().child("user");
         Auth = FirebaseAuth.getInstance();
         user = Auth.getCurrentUser();
+        confirm_button=findViewById(R.id.confirm_button1);
         tv_orderNumber = findViewById(R.id.confirmation_tv_orderNumber);
 
-        userR.addValueEventListener(new ValueEventListener() {
+        userR.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot keyId : snapshot.getChildren()) {
@@ -45,13 +49,11 @@ public class confirimationActivity extends AppCompatActivity {
                         orderR.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                for (DataSnapshot keyId : snapshot.getChildren()){
-                                    if (keyId.child("username").getValue().equals(username)){
-                                        order = keyId.child("username").getValue().toString();
+                                tv_orderNumber.setText(String.valueOf( snapshot.getChildrenCount()));
 
-                                    }
 
-                                }
+
+
 
                             }
 
@@ -70,10 +72,14 @@ public class confirimationActivity extends AppCompatActivity {
 
             }
         });
+        confirm_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(confirimationActivity.this,MainActivity.class);
+                startActivity(i);
 
 
-
-        tv_orderNumber.setText(order);
-
+            }
+        });
     }
 }

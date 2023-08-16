@@ -81,7 +81,7 @@ public class restaurant_signIn extends AppCompatActivity {
                                     progressBar.setVisibility(View.GONE);
                                 }
                             }else {
-                                tv_text.setText("Restaurant name is no texist");
+                                tv_text.setText("Restaurant name is not exist");
                                 progressBar.setVisibility(View.GONE);
                             }
 //                            for (DataSnapshot keyId : snapshot.getChildren()) {
@@ -109,6 +109,7 @@ public class restaurant_signIn extends AppCompatActivity {
                     });
                 } else {
                     tv_text.setText("Please enter all fields");
+                    progressBar.setVisibility(View.GONE);
                 }
 
             }

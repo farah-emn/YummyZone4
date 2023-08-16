@@ -63,7 +63,6 @@ public class startedActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(startedActivity.this, slide.class);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -72,7 +71,6 @@ public class startedActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(startedActivity.this, restaurant_signIn.class);
                 startActivity(intent);
-                finish();
             }
         });
 

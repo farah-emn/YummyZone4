@@ -1,7 +1,5 @@
 package com.example.yummyzone.classes;
 
-import com.google.firebase.database.DatabaseReference;
-
 public class user {
     String email;
     String password;

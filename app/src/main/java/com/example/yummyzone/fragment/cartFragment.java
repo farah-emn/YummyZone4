@@ -1,18 +1,22 @@
 package com.example.yummyzone.fragment;
+
 import android.content.Intent;
 import android.graphics.Canvas;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.yummyzone.R;
 import com.example.yummyzone.activites.MapActivity;
@@ -26,7 +30,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
+
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
 
@@ -44,6 +50,7 @@ public class cartFragment extends Fragment {
     double sum = 0;
     String username;
     String delivery_fee, restaurantName;
+    ProgressBar p;
 
     public cartFragment() {
     }
@@ -75,6 +82,10 @@ public class cartFragment extends Fragment {
         userR = rootR.child("user");
         cartR = rootR.child("Cart");
         list =new ArrayList<String>();
+        p=view.findViewById(R.id.cart_pro);
+        p.getIndeterminateDrawable().setColorFilter(getResources()
+                .getColor(R.color.dark_orange), PorterDuff.Mode.SRC_IN);
+
 
         userR.addValueEventListener(new ValueEventListener() {
             @Override
@@ -90,8 +101,17 @@ public class cartFragment extends Fragment {
                         FirebaseDatabase.getInstance().getReference().child("Cart").child(username).addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                p.setVisibility(View.GONE);
+
                                 list.clear();
                                 for (DataSnapshot dataSnapshot:snapshot.getChildren()){
+                                    if (dataSnapshot.getChildrenCount() > 0) {
+                                        p.setVisibility(View.INVISIBLE);
+                                    } else {
+                                        p.setVisibility(View.INVISIBLE);
+
+                                    }
+
                                     FirebaseDatabase.getInstance().getReference().child("restaurant").addListenerForSingleValueEvent(new ValueEventListener() {
 
                                         @Override
@@ -161,7 +181,3 @@ public class cartFragment extends Fragment {
 
 
 }
-
-
-
-

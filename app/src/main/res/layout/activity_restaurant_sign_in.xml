@@ -50,7 +50,7 @@
 
     <EditText
         android:id="@+id/restaurant_signIn_et_restaurantName"
-        style="@style/eidttext"
+        style="@style/eidttext2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
@@ -78,7 +78,7 @@
 
     <EditText
         android:id="@+id/restaurant_signIn_et_password"
-        style="@style/eidttext"
+        style="@style/eidttext2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="15dp"

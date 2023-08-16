@@ -50,7 +50,7 @@ public class shippedActivity extends AppCompatActivity {
         rootR = FirebaseDatabase.getInstance().getReference();
         userR = rootR.child("user");
         orderR = rootR.child("order");
-        imageViewback=findViewById(R.id.profile_image_back);
+        //imageViewback=findViewById(R.id.profile_image_back);
         resR = rootR.child("restaurant");
 
 

@@ -69,6 +69,8 @@ public class processingActivity extends AppCompatActivity {
                         orderR.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                p.setVisibility(View.GONE);
+
                                 shippedList.clear();
                                 for (DataSnapshot keyId : snapshot.getChildren()) {
                                     if (keyId.child("username").getValue().equals(username)) {

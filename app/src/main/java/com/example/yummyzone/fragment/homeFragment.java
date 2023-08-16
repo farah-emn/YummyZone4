@@ -1,19 +1,20 @@
 package com.example.yummyzone.fragment;
 
+import android.graphics.PorterDuff;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.ProgressBar;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yummyzone.R;
 import com.example.yummyzone.adapter.Category_Adapter;
@@ -25,7 +26,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class homeFragment extends Fragment {
@@ -35,6 +35,7 @@ public class homeFragment extends Fragment {
     DatabaseReference databaseReference;
     String restaurant_id;
     EditText search;
+    ProgressBar p;
 
     public homeFragment(String restaurant_id) {
         this.restaurant_id = restaurant_id;
@@ -51,6 +52,32 @@ public class homeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView_category = (RecyclerView) view.findViewById(R.id.homeScreen_rv_tabs);
         search = view.findViewById(R.id.homeScreen_et_search);
+        p=view.findViewById(R.id.home_pro);
+        p.getIndeterminateDrawable().setColorFilter(getResources()
+                .getColor(R.color.dark_orange), PorterDuff.Mode.SRC_IN);
+
+        FirebaseDatabase.getInstance().getReference().child("restaurant").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                p.setVisibility(View.GONE);
+                int i=1;
+
+                for (DataSnapshot dataSnapshot1:snapshot.getChildren()
+
+                ){if (dataSnapshot1.getChildrenCount() > 0) {
+
+
+                    p.setVisibility(View.INVISIBLE);
+                }}
+            }
+
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         recyclerView_category.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false));
         FirebaseRecyclerOptions<Category_tab> categoryFirebaseRecyclerOptions =new FirebaseRecyclerOptions.Builder<Category_tab>().setQuery(FirebaseDatabase.getInstance().getReference().child("Category"), Category_tab.class).build();
         category_adapter = new Category_Adapter(categoryFirebaseRecyclerOptions);
@@ -165,5 +192,3 @@ public class homeFragment extends Fragment {
     }
 
 }
-
-

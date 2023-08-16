@@ -1,7 +1,5 @@
 package com.example.yummyzone.classes;
 
-import android.widget.TextView;
-
 public class newOrder {
     String orderNumber, date, price, address, mobileNumber, reject, seeDetails, ready;
 

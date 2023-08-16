@@ -1,8 +1,6 @@
 package com.example.yummyzone.classes;
 
 
-import android.widget.TextView;
-
 public class shippedState {
     String orderNumber, date, price, address, mobileNumber, received, notReceived;
 

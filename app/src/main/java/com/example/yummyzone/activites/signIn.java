@@ -69,6 +69,7 @@ public class signIn extends AppCompatActivity {
         rootR = FirebaseDatabase.getInstance().getReference();
         userR = rootR.child("user");
 
+        progressBar.setVisibility(View.GONE);
 
         signUp_tv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,7 +109,8 @@ public class signIn extends AppCompatActivity {
                                                     } else {
                                                         Toast.makeText(signIn.this, "Authentication failed.",
                                                                 Toast.LENGTH_SHORT).show();
-                                                        tv_text.setText("Username or password wrong");
+                                                        tv_text.setText("Email or password wrong");
+                                                        progressBar.setVisibility(View.GONE);
                                                     }
                                                 }
                                             });
@@ -117,6 +119,9 @@ public class signIn extends AppCompatActivity {
                                     progressBar.setVisibility(View.GONE);
                                 }
 
+                            }else{
+                                tv_text.setText("Email or password wrong");
+                                progressBar.setVisibility(View.GONE);
                             }
                         }
                     }

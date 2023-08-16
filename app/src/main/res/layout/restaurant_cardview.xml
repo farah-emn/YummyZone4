@@ -8,13 +8,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <androidx.cardview.widget.CardView
-        android:layout_marginLeft="3dp"
+        style="@style/subScreen"
         android:layout_width="183dp"
-        android:layout_height="wrap_content"
+        android:layout_height="204dp"
+        android:layout_marginLeft="3dp"
         android:layout_marginBottom="10dp"
         android:foregroundGravity="center"
         app:cardCornerRadius="10dp"
-        style="@style/subScreen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,8 +22,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="183dp"
-            android:layout_height="198dp"
+            android:layout_height="match_parent"
             android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/homeScreen_restaurant_image"
                 android:layout_width="match_parent"
@@ -38,47 +39,52 @@
             <TextView
                 android:id="@+id/homeScreen_tv_restaurantName"
                 style="@style/text"
-                android:paddingRight="2dp"
-                android:paddingTop="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:layout_marginBottom="44dp"
+                android:paddingTop="2dp"
+                android:paddingRight="2dp"
                 android:text="Dominos"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/homeScreen_restaurant_image"
+                app:layout_constraintVertical_bias="0.545" />
 
             <TextView
-                android:paddingRight="0.2dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
                 android:id="@+id/homeScreen_tv_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:paddingRight="0.2dp"
                 android:text="Pizza - chickens"
                 android:textSize="10.5sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/homeScreen_tv_restaurantName" />
 
             <ImageView
-                android:paddingRight="2dp"
                 android:id="@+id/imageView6"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
                 android:layout_marginStart="1dp"
+                android:paddingRight="2dp"
                 android:src="@drawable/icon_coin"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/homeScreen_tv_description" />
 
             <TextView
-                android:paddingLeft="2dp"
                 android:id="@+id/homeScreen_tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="0dp"
+                android:paddingLeft="2dp"
                 android:text="15 SR"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -86,7 +92,55 @@
                 app:layout_constraintTop_toBottomOf="@+id/homeScreen_tv_description"
                 app:layout_constraintVertical_bias="0.0" />
 
+            <TextView
+                android:id="@+id/homeScreent"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="24dp"
+                android:paddingLeft="2dp"
+                android:text="SR"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView6"
+                app:layout_constraintTop_toBottomOf="@+id/homeScreen_tv_description"
+                app:layout_constraintVertical_bias="0.0" />
 
+            <ImageView
+                android:id="@+id/imageViewclock"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="44dp"
+                android:paddingRight="2dp"
+                android:src="@drawable/icon_clock2"
+                app:layout_constraintStart_toEndOf="@+id/homeScreent"
+                app:layout_constraintTop_toBottomOf="@+id/homeScreen_tv_description" />
+
+            <TextView
+                android:id="@+id/homeScreen_tv_clock"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="2dp"
+                android:paddingLeft="2dp"
+                android:text="15 SR"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/imageViewclock"
+                app:layout_constraintTop_toBottomOf="@+id/homeScreen_tv_description" />
+
+            <TextView
+                android:id="@+id/homeScreent1"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="2dp"
+                android:paddingLeft="2dp"
+                android:text="SR"
+
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/imageViewclock"
+                app:layout_constraintTop_toBottomOf="@+id/homeScreen_tv_description" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

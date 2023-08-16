@@ -17,7 +17,7 @@
         android:layout_marginTop="@dimen/margin_xxxhdpi"
         android:layout_marginEnd="@dimen/margin_xxxhdpi"
         android:drawableStart="@drawable/icon_search_gray"
-        style="@style/eidttext"
+        style="@style/eidttext2"
         android:hint="Search here.."
         android:paddingStart="5dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,5 +51,12 @@
         app:layout_constraintTop_toBottomOf="@+id/homeScreen_rv_tabs"
         android:layout_gravity="center"
         />
+    <ProgressBar android:id="@+id/home_pro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
