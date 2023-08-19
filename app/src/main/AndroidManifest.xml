@@ -55,12 +55,14 @@
             android:exported="false" />
         <activity
             android:name=".activites.mainRestaurantActivity"
+            android:windowSoftInputMode="adjustNothing"
             android:exported="false" />
         <activity
             android:name=".activites.signIn"
             android:exported="false" />
         <activity
             android:name=".activites.MainActivity"
+            android:windowSoftInputMode="adjustNothing"
             android:exported="false" />
         <activity
             android:name=".activites.MenuActivity"

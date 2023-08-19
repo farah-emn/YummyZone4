@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class restaurant_profileFragment extends Fragment {
     SharedPreferences sharedPreferences, sharedPreferences1;
@@ -108,7 +109,9 @@ public class restaurant_profileFragment extends Fragment {
                         fee = keyId.child("delivery_fee").getValue().toString();
                         time = keyId.child("delivery_time").getValue().toString();
                         String img=keyId.child("logo").getValue().toString();
-                        Glide.with(imageView).load(img).into(imageView);
+                        Picasso.get()
+                                .load(img)
+                                .into(imageView);
                     }
                     tv_mobile.setText(mobile);
                     tv_time.setText(time);

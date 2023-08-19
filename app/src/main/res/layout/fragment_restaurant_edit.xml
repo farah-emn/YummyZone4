@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
-            android:text="Add"
+            android:text="Edit"
             android:textAlignment="center"
             android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -39,8 +39,8 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView3"
             style="@style/subScreen"
-            android:layout_width="395dp"
-            android:layout_height="490dp"
+            android:layout_width="403dp"
+            android:layout_height="528dp"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="15dp"
@@ -51,16 +51,16 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="487dp"
+                android:layout_height="528dp"
                 android:orientation="vertical">
 
 
                 <ImageView
-                    android:id="@+id/restaurantAdd_img"
+                    android:id="@+id/restaurantedit_img"
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"
+                    android:layout_height="200dp"
                     android:layout_marginTop="5dp"
-                    android:src="@drawable/empty_image" />
+                    android:src="@drawable/image" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -83,16 +83,22 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/restaurantAdd_et_itemName"
+                        android:id="@+id/restaurant_et_itemName"
                         style="@style/eidttext"
-                        android:layout_width="match_parent"
+                        android:layout_width="211dp"
                         android:layout_height="50dp"
                         android:layout_marginStart="5dp"
-                        android:layout_marginEnd="15dp"
                         android:hint="Item Name"
                         android:paddingStart="10dp"
                         android:textAlignment="textStart"
                         android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/delete_item_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/delete" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -116,17 +122,22 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/restaurantAdd_et_price"
+                        android:id="@+id/restaurant_et_price"
                         style="@style/eidttext"
-                        android:layout_width="match_parent"
+                        android:layout_width="213dp"
                         android:layout_height="50dp"
                         android:layout_marginStart="5dp"
-                        android:layout_marginEnd="15dp"
                         android:hint="Item price"
                         android:inputType="number"
                         android:paddingStart="10dp"
                         android:textAlignment="textStart"
                         android:textSize="16sp" />
+                    <ImageView
+                        android:id="@+id/delete_item_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/delete" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -150,17 +161,23 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/restaurantAdd_et_time"
+                        android:id="@+id/restaurant_et_time"
                         style="@style/eidttext"
-                        android:layout_width="match_parent"
+                        android:layout_width="214dp"
                         android:layout_height="50dp"
                         android:layout_marginStart="5dp"
-                        android:layout_marginEnd="15dp"
                         android:hint="Preparation time"
                         android:inputType="number"
                         android:paddingStart="10dp"
                         android:textAlignment="textStart"
+
                         android:textSize="16sp" />
+                    <ImageView
+                        android:id="@+id/delete_preparation_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/delete" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -184,25 +201,29 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/restaurantAdd_et_calories"
+                        android:id="@+id/restaurant_et_calories"
                         style="@style/eidttext"
-                        android:layout_width="match_parent"
+                        android:layout_width="212dp"
                         android:layout_height="50dp"
                         android:layout_marginStart="5dp"
-                        android:layout_marginEnd="15dp"
                         android:hint="Calories"
                         android:inputType="number"
                         android:paddingStart="10dp"
                         android:textAlignment="textStart"
 
                         android:textSize="16sp" />
+                    <ImageView
+                        android:id="@+id/delete_calories"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/delete" />
                 </LinearLayout>
 
-
                 <LinearLayout
-                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -220,36 +241,42 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:padding="8dp"
                         android:id="@+id/description"
                         style="@style/eidttext"
-                        android:layout_width="match_parent"
+                        android:layout_width="211dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:layout_marginEnd="15dp"
                         android:hint="Description"
                         android:inputType="textMultiLine"
+                        android:padding="6dp"
                         android:paddingStart="10dp"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="2dp"
                         android:textAlignment="textStart"
                         android:textSize="@dimen/buttonText_xhdpi" />
+                    <ImageView
+                        android:id="@+id/delete_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/delete" />
                 </LinearLayout>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <Button
-            android:id="@+id/add"
+            android:id="@+id/save"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="15dp"
             android:background="@drawable/bt_design"
-            android:text="Add"
+            android:text="Save"
             android:textAllCaps="false"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView3" />
 
